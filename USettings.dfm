@@ -28,19 +28,6 @@ object FSettings: TFSettings
     Font.Style = []
     ParentFont = False
   end
-  object Label2: TLabel
-    Left = 10
-    Top = 49
-    Width = 122
-    Height = 19
-    Caption = #1044#1072#1085#1085#1099#1077' '#1086' '#1089#1077#1088#1074#1077#1088#1077
-    Font.Charset = RUSSIAN_CHARSET
-    Font.Color = clWindowText
-    Font.Height = -16
-    Font.Name = 'Times New Roman'
-    Font.Style = []
-    ParentFont = False
-  end
   object Label3: TLabel
     Left = 19
     Top = 74
@@ -92,6 +79,32 @@ object FSettings: TFSettings
     Font.Name = 'Times New Roman'
     Font.Style = []
     ParentFont = False
+  end
+  object Label2: TLabel
+    Left = 10
+    Top = 49
+    Width = 122
+    Height = 19
+    Caption = #1044#1072#1085#1085#1099#1077' '#1086' '#1089#1077#1088#1074#1077#1088#1077
+    Font.Charset = RUSSIAN_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -16
+    Font.Name = 'Times New Roman'
+    Font.Style = []
+    ParentFont = False
+  end
+  object Memo1: TMemo
+    Left = 8
+    Top = 34
+    Width = 412
+    Height = 30
+    Font.Charset = RUSSIAN_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -8
+    Font.Name = 'Times New Roman'
+    Font.Style = []
+    ParentFont = False
+    TabOrder = 8
   end
   object Edit1: TEdit
     Left = 176
@@ -192,21 +205,10 @@ object FSettings: TFSettings
     TabOrder = 7
     OnClick = Button1Click
   end
-  object Memo1: TMemo
-    Left = 8
-    Top = 38
-    Width = 419
-    Height = 12
-    Font.Charset = RUSSIAN_CHARSET
-    Font.Color = clWindowText
-    Font.Height = -8
-    Font.Name = 'Times New Roman'
-    Font.Style = []
-    ParentFont = False
-    TabOrder = 8
-  end
   object ADOConnection1: TADOConnection
     LoginPrompt = False
+    Mode = cmShareDenyWrite
+    Provider = 'SQLOLEDB'
     Left = 352
     Top = 144
   end

@@ -77,7 +77,7 @@ begin
     fFileCreate.destroy;
     //создаем нужную форму
     fFileCreate:=TRequestAllRecords.create(self);
-    fFileCreate.make;
+    //fFileCreate.make;
     SelectMenu:=2;
   end;
 end;
@@ -113,7 +113,6 @@ begin
     fFileCreate.destroy;
     //создаем нужную форму
     fFileCreate:=TRequestTypeCall.create(self);
-    //fFileCreate.make;
     SelectMenu:=5;
   end;
 end;
@@ -125,7 +124,6 @@ begin
     fFileCreate.destroy;
     //создаем нужную форму
     fFileCreate:=TRequestNumber.create(self);
-    //fFileCreate.make;
     SelectMenu:=6;
   end;
 end;

@@ -13,7 +13,6 @@ type
   public
     constructor create(AOwner: TForm);virtual;abstract;
     procedure destroy;virtual;abstract;
-    procedure make;virtual;abstract;
   end;
 
   TRequestAllRecords = class(TRequestCreate)
@@ -25,7 +24,8 @@ type
   public
     constructor create(AOwner: TForm);override;
     procedure destroy;override;
-    procedure make;override;
+    procedure Button1Click(Sender:TObject);
+    procedure Button2Click(Sender:TObject);
   end;
 
   TRequestDate = class(TRequestCreate)
@@ -39,7 +39,7 @@ type
   public
     constructor create(AOwner: TForm);override;
     procedure destroy;override;
-    procedure make;override;
+    procedure Button1Click(Sender:TObject);
   end;
 
   TRequestStatusCall = class(TRequestCreate)
@@ -51,7 +51,7 @@ type
   public
     constructor create(AOwner: TForm);override;
     procedure destroy;override;
-    procedure make;override;
+    procedure Button1Click(Sender:TObject);
   end;
 
   TRequestTypeCall = class(TRequestCreate)
@@ -63,7 +63,7 @@ type
   public
     constructor create(AOwner: TForm);override;
     procedure destroy;override;
-    procedure make;override;
+    procedure Button1Click(Sender:TObject);
   end;
 
   TRequestNumber = class(TRequestCreate)
@@ -76,7 +76,7 @@ type
   public
     constructor create(AOwner: TForm);override;
     procedure destroy;override;
-    procedure make;override;
+    procedure Button1Click(Sender:TObject);
   end;
 
 var
@@ -128,6 +128,7 @@ begin
   Button1.Font.Name:='Times New Roman';
   Button1.Font.Size:=11;
   Button1.Caption:='Выполнить запрос';
+  Button1.OnClick:=Button1Click;
 
   Button2:=TButton.create(AOwner);
   Button2.Left:=460;
@@ -137,6 +138,9 @@ begin
   Button2.Font.Name:='Times New Roman';
   Button2.Font.Size:=11;
   Button2.Caption:='Сохранить в файл';
+
+  if NameServer='' then FMain.Panel1.Caption:='Необходимо зайти в настройки программы!'
+  else FMain.Panel1.Caption:=' Используется сервер: '+NameServer+', база данных: '+DataBase;
 end;
 
 procedure TRequestAllRecords.destroy;
@@ -147,9 +151,8 @@ begin
   Button2.Free;
 end;
 
-procedure TRequestAllRecords.make;
+procedure TRequestAllRecords.Button1Click(Sender: TObject);
 begin
-  //Label1.Caption:='1';
   with FMain.AdoQuery1 do
   begin
     active:=false;
@@ -170,7 +173,14 @@ begin
   FMain.DBGrid1.Columns[6].Title.Caption:='Код';
   FMain.DBGrid1.Columns[7].Title.Caption:='Городской номер';
   FMain.DBGrid1.Columns[8].Title.Caption:='Внутренний номер';
-  //FMain.Label10.Caption:='Записей: '+IntToStr(Form1.DBGrid1.DataSource.DataSet.RecordCount)+'     ';
+  if NameServer='' then FMain.Panel1.Caption:='Необходимо зайти в настройки программы!'
+  else FMain.Panel1.Caption:=' Используется сервер: '+NameServer+', база данных: '+DataBase+
+  '  Записей: '+IntToStr(FMain.DBGrid1.DataSource.DataSet.RecordCount)+'  ';
+end;
+
+procedure TRequestAllRecords.Button2Click(Sender: TObject);
+begin
+
 end;
 
 { TRequewtDate }
@@ -267,6 +277,7 @@ begin
   Button1.Width:=130;
   Button1.Parent:= AOwner;
   Button1.Caption:='Выполнить запрос';
+  Button1.OnClick:=Button1Click;
 
   Button2:=TButton.create(AOwner);
   Button2.Left:=450;
@@ -276,6 +287,9 @@ begin
   Button2.Font.Name:='Times New Roman';
   Button2.Font.Size:=11;
   Button2.Caption:='Сохранить в файл';
+
+  if NameServer='' then FMain.Panel1.Caption:='Необходимо зайти в настройки программы!'
+  else FMain.Panel1.Caption:=' Используется сервер: '+NameServer+', база данных: '+DataBase;
 end;
 
 procedure TRequestDate.destroy;
@@ -292,7 +306,7 @@ begin
   Button2.Free;
 end;
 
-procedure TRequestDate.make;
+procedure TRequestDate.Button1Click(Sender: TObject);
 begin
   with FMain.AdoQuery1 do
   begin
@@ -318,7 +332,9 @@ begin
   FMain.DBGrid1.Columns[6].Title.Caption:='Код';
   FMain.DBGrid1.Columns[7].Title.Caption:='Городской номер';
   FMain.DBGrid1.Columns[8].Title.Caption:='Внутренний номер';
-  //Form1.Label10.Caption:='Записей: '+IntToStr(Form1.DBGrid1.DataSource.DataSet.RecordCount)+'     ';
+  if NameServer='' then FMain.Panel1.Caption:='Необходимо зайти в настройки программы!'
+  else FMain.Panel1.Caption:=' Используется сервер: '+NameServer+', база данных: '+DataBase+
+  '  Записей: '+IntToStr(FMain.DBGrid1.DataSource.DataSet.RecordCount)+'  ';
 end;
 
 { TRequestStatusCall }
@@ -388,6 +404,7 @@ begin
   Button1.Width:=130;
   Button1.Parent:= AOwner;
   Button1.Caption:='Выполнить запрос';
+  Button1.OnClick:=Button1Click;
 
   Button2:=TButton.create(AOwner);
   Button2.Left:=510;
@@ -397,6 +414,9 @@ begin
   Button2.Font.Name:='Times New Roman';
   Button2.Font.Size:=11;
   Button2.Caption:='Сохранить в файл';
+
+  if NameServer='' then FMain.Panel1.Caption:='Необходимо зайти в настройки программы!'
+  else FMain.Panel1.Caption:=' Используется сервер: '+NameServer+', база данных: '+DataBase;
 end;
 
 procedure TRequestStatusCall.destroy;
@@ -409,7 +429,7 @@ begin
   Button2.Free;
 end;
 
-procedure TRequestStatusCall.make;
+procedure TRequestStatusCall.Button1Click(Sender: TObject);
 begin
   with FMain.AdoQuery1 do
   begin
@@ -435,7 +455,9 @@ begin
   FMain.DBGrid1.Columns[6].Title.Caption:='Код';
   FMain.DBGrid1.Columns[7].Title.Caption:='Городской номер';
   FMain.DBGrid1.Columns[8].Title.Caption:='Внутренний номер';
-  //Form1.Label10.Caption:='Записей: '+IntToStr(Form1.DBGrid1.DataSource.DataSet.RecordCount)+'     ';
+  if NameServer='' then FMain.Panel1.Caption:='Необходимо зайти в настройки программы!'
+  else FMain.Panel1.Caption:=' Используется сервер: '+NameServer+', база данных: '+DataBase+
+  '  Записей: '+IntToStr(FMain.DBGrid1.DataSource.DataSet.RecordCount)+'  ';
 end;
 
 { TRequestTypeCall }
@@ -509,6 +531,7 @@ begin
   Button1.Width:=130;
   Button1.Parent:= AOwner;
   Button1.Caption:='Выполнить запрос';
+  Button1.OnClick:=Button1Click;
 
   Button2:=TButton.create(AOwner);
   Button2.Left:=510;
@@ -518,6 +541,9 @@ begin
   Button2.Font.Name:='Times New Roman';
   Button2.Font.Size:=11;
   Button2.Caption:='Сохранить в файл';
+
+  if NameServer='' then FMain.Panel1.Caption:='Необходимо зайти в настройки программы!'
+  else FMain.Panel1.Caption:=' Используется сервер: '+NameServer+', база данных: '+DataBase;
 end;
 
 procedure TRequestTypeCall.destroy;
@@ -530,7 +556,7 @@ begin
   Button2.Free;
 end;
 
-procedure TRequestTypeCall.make;
+procedure TRequestTypeCall.Button1Click(Sender: TObject);
 begin
   with FMain.AdoQuery1 do
   begin
@@ -556,7 +582,9 @@ begin
   FMain.DBGrid1.Columns[6].Title.Caption:='Код';
   FMain.DBGrid1.Columns[7].Title.Caption:='Городской номер';
   FMain.DBGrid1.Columns[8].Title.Caption:='Внутренний номер';
-  //Form1.Label10.Caption:='Записей: '+IntToStr(Form1.DBGrid1.DataSource.DataSet.RecordCount)+'     ';
+  if NameServer='' then FMain.Panel1.Caption:='Необходимо зайти в настройки программы!'
+  else FMain.Panel1.Caption:=' Используется сервер: '+NameServer+', база данных: '+DataBase+
+  '  Записей: '+IntToStr(FMain.DBGrid1.DataSource.DataSet.RecordCount)+'  ';
 end;
 
 { TRequestNumber }
@@ -639,6 +667,7 @@ begin
   Button1.Width:=130;
   Button1.Parent:= AOwner;
   Button1.Caption:='Выполнить запрос';
+  Button1.OnClick:=Button1Click;
 
   Button2:=TButton.create(AOwner);
   Button2.Left:=510;
@@ -648,6 +677,8 @@ begin
   Button2.Font.Name:='Times New Roman';
   Button2.Font.Size:=11;
   Button2.Caption:='Сохранить в файл';
+  if NameServer='' then FMain.Panel1.Caption:='Необходимо зайти в настройки программы!'
+  else FMain.Panel1.Caption:=' Используется сервер: '+NameServer+', база данных: '+DataBase;
 end;
 
 procedure TRequestNumber.destroy;
@@ -662,7 +693,7 @@ begin
   Button2.Free;
 end;
 
-procedure TRequestNumber.make;
+procedure TRequestNumber.Button1Click(Sender: TObject);
 begin
   with FMain.AdoQuery1 do
   begin
@@ -696,7 +727,9 @@ begin
   FMain.DBGrid1.Columns[6].Title.Caption:='Код';
   FMain.DBGrid1.Columns[7].Title.Caption:='Городской номер';
   FMain.DBGrid1.Columns[8].Title.Caption:='Внутренний номер';
-  //Form1.Label10.Caption:='Записей: '+IntToStr(Form1.DBGrid1.DataSource.DataSet.RecordCount)+'     ';
+  if NameServer='' then FMain.Panel1.Caption:='Необходимо зайти в настройки программы!'
+  else FMain.Panel1.Caption:=' Используется сервер: '+NameServer+', база данных: '+DataBase+
+  '  Записей: '+IntToStr(FMain.DBGrid1.DataSource.DataSet.RecordCount)+'  ';
 end;
 
 end.

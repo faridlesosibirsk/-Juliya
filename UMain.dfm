@@ -20,6 +20,7 @@ object FMain: TFMain
     Top = 139
     Width = 438
     Height = 75
+    DataSource = DataSource1
     TabOrder = 0
     TitleFont.Charset = RUSSIAN_CHARSET
     TitleFont.Color = clWindowText
@@ -94,6 +95,7 @@ object FMain: TFMain
     Top = 160
   end
   object DataSource1: TDataSource
+    DataSet = ADOQuery1
     Left = 88
     Top = 160
   end

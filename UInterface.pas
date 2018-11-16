@@ -11,7 +11,6 @@ uses
 type
   TInterfaceMenuCreate = interface
     procedure destroy;
-    procedure make;
   end;
 
 implementation

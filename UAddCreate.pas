@@ -6,7 +6,7 @@ uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
   Dialogs, StdCtrls, Buttons, ToolWin, ActnMan, ActnCtrls,
   ActnMenus, Menus, Data.DB, Data.Win.ADODB, Contnrs,
-  Generics.Collections, UInterface,FileCtrl;
+  Generics.Collections, UInterface,FileCtrl,USettings;
 
 type
 
@@ -18,7 +18,7 @@ type
   public
     constructor create(AOwner: TForm);
     procedure destroy;
-    procedure make;
+    procedure Button1Click(Sender:TObject);
   end;
 
 implementation
@@ -87,7 +87,6 @@ begin
   Label6.Font.Name:='Times New Roman';
   Label6.Font.Size:=11;
   Label6.Caption:='_-_-_-_-_-_-_-_-';//Label6.Caption:='05.11.2018 16:34';
-  
 
   Button1:=TButton.create(AOwner);
   Button1.Left:=235;
@@ -99,9 +98,9 @@ begin
   Button1.Font.Size:=11;
   Button1.Caption:='Добавить';
 
-  //Button1.OnClick:=Button1Click;
-  //AOwner.DBGrid1.TabOrder:=2;
-  //все объекты первой формы/юнита(добавление)
+  if NameServer='' then FMain.Panel1.Caption:='Необходимо зайти в настройки программы!'
+  else  FMain.Panel1.Caption:=' Используется сервер: '+NameServer+', база данных: '+DataBase;
+  Button1.OnClick:=Button1Click;
 end;
 
 procedure TAddCreate.destroy;
@@ -116,7 +115,7 @@ begin
   FMain.FileListBox1.Visible:=False;
 end;
 
-procedure TAddCreate.make;
+procedure TAddCreate.Button1Click(Sender: TObject);
 begin
 
 end;
