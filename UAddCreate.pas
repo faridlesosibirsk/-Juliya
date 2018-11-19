@@ -118,6 +118,7 @@ begin
   Button1.Font.Size:=11;
   Button1.Caption:='Добавить';
 
+  FMain.ADOQuery1.Close;
   if NameServer='' then FMain.Panel1.Caption:='Необходимо зайти в настройки программы!'
   else  FMain.Panel1.Caption:=' Используется сервер: '+NameServer+', база данных: '+DataBase;
   Button1.OnClick:=Button1Click;

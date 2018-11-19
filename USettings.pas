@@ -53,8 +53,6 @@ uses UMain;
 
 procedure TFSettings.FormCreate(Sender: TObject);
 begin
-  //видимость убрать при запуске настроек, а вернуть после закрытия??
-  //FMain.DBGrid1.Visible:=false;
   ReadConfig;
   BitBtn1.glyph.LoadFromFile(getcurrentdir()+'\Folder.bmp');
 end;
@@ -282,6 +280,7 @@ var
   ButtonSelected1,ButtonSelected2:integer;
   flag,equal:boolean;
   i:integer;
+  //Connection: TConnection;
 begin
   if length(path)<>0 then if path[length(path)]<>'\' then path:=path+'\';
   if length(path)<>0 then edit1.Text:=path;
@@ -295,6 +294,8 @@ begin
     FMain.FileListBox1.Mask:=path+'*.trc';                                           //Fmain
     CreateSqript;
     ///// ПРОВЕРКА СОЕДИНЕНИЯ С СЕРВЕРОМ /////
+    {Connection := TConnection.create;
+    ADOConnection1:=Connection.GetADOConnection; }
     try
       ADOConnection1.ConnectionString:=GetDBConnect;
     except
