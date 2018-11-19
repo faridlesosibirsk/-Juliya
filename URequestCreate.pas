@@ -40,6 +40,7 @@ type
     constructor create(AOwner: TForm);override;
     procedure destroy;override;
     procedure Button1Click(Sender:TObject);
+    procedure Button2Click(Sender:TObject);
   end;
 
   TRequestStatusCall = class(TRequestCreate)
@@ -52,6 +53,7 @@ type
     constructor create(AOwner: TForm);override;
     procedure destroy;override;
     procedure Button1Click(Sender:TObject);
+    procedure Button2Click(Sender:TObject);
   end;
 
   TRequestTypeCall = class(TRequestCreate)
@@ -64,6 +66,7 @@ type
     constructor create(AOwner: TForm);override;
     procedure destroy;override;
     procedure Button1Click(Sender:TObject);
+    procedure Button2Click(Sender:TObject);
   end;
 
   TRequestNumber = class(TRequestCreate)
@@ -77,6 +80,7 @@ type
     constructor create(AOwner: TForm);override;
     procedure destroy;override;
     procedure Button1Click(Sender:TObject);
+    procedure Button2Click(Sender:TObject);
   end;
 
 var
@@ -91,13 +95,13 @@ uses UMain;
 constructor TRequestAllRecords.create(AOwner: TForm);
 begin
   FMain.Caption:='Запрос: все записи';
-  FMain.Height:=500;
-  FMain.Width:=700;
+  FMain.Height:=700;
+  FMain.Width:=1000;
   FMain.FileListBox1.Visible:=True;
   FMain.DBGrid1.Left:=8;
   FMain.DBGrid1.Top:=36;
-  FMain.DBGrid1.Height:=469;
-  FMain.DBGrid1.Width:=669;
+  FMain.DBGrid1.Height:=584;
+  FMain.DBGrid1.Width:=969;
   FMain.FileListBox1.Visible:=false;
 
   Label1:=TLabel.create(AOwner);
@@ -138,6 +142,7 @@ begin
   Button2.Font.Name:='Times New Roman';
   Button2.Font.Size:=11;
   Button2.Caption:='Сохранить в файл';
+  Button2.OnClick:=Button2Click;
 
   if NameServer='' then FMain.Panel1.Caption:='Необходимо зайти в настройки программы!'
   else FMain.Panel1.Caption:=' Используется сервер: '+NameServer+', база данных: '+DataBase;
@@ -179,8 +184,48 @@ begin
 end;
 
 procedure TRequestAllRecords.Button2Click(Sender: TObject);
+var
+  ExFileFields,ExFileTemp,ExFileName:String;
 begin
-
+  with FMain.adoQuery1 do
+  begin
+    active:=false;
+    SQL.Clear;
+    SQL.Add('USE ['+DataBase+']');
+    SQL.Add('SET ANSI_PADDING ON');
+    SQL.Add('CREATE TABLE [dbo].[Temp] ([№] [int] IDENTITY(1,1) NOT NULL,[date] [date] NOT NULL,'+
+      '[time] [time](0) NOT NULL,[duration] [int] NOT NULL,[statuscall] [char](9) NOT NULL,'+
+      '[typecall] [char](9) NULL,[code] [int] NULL,[citynumber] [varchar](17) NOT NULL,'+
+	    '[insidenumber] [bigint] NULL,	[id] [int] NULL,[trunkid1] [int] NULL,'+
+      '[trunkid2] [int] NULL,[trunkid3] [int] NULL) ON [PRIMARY]');
+    SQL.Add('SET ANSI_PADDING OFF');
+    SQL.Add('INSERT INTO ['+DataBase+'].[dbo].[Temp] ([date],[time],[duration],[statuscall],[typecall],'+
+      '[code],[citynumber],[insidenumber],[id],[trunkid1],[trunkid2],[trunkid3])');
+    SQL.Add('SELECT [date],[time],[duration],[statuscall],[typecall],[code],[citynumber],'+
+      '[insidenumber],[id],[trunkid1],[trunkid2],[trunkid3]');
+    ///// ЗАПРОС /////
+    SQL.Add('FROM ['+DataBase+'].[dbo].[Call_records]');
+    case ComboBox1.ItemIndex of
+      0:SQL.Add('ORDER BY [date] asc,[time] asc');
+      1:SQL.Add('ORDER BY [date] desc,[time] desc');
+    end;
+    /////  /////
+    {SQL.Add('EXEC sp_configure '+''''+'show advanced options'+''''+',1');
+    SQL.Add('RECONFIGURE');
+    SQL.Add('EXEC sp_configure '+''''+'xp_cmdshell'+''''+', 1');
+    SQL.Add('RECONFIGURE');}
+    ExFileName:=getcurrentdir()+'\Отчеты\'+
+      FormatDateTime('yyyy-mm-dd',date())+'_'+FormatDateTime('hh-mm-ss',time())+'.csv';
+    ExFileFields:=getcurrentdir()+'\Name.csv';
+    ExFileTemp:=getcurrentdir()+'\Temp.csv';
+    SQL.Add('EXEC master..xp_cmdshell');
+    SQL.Add(''''+'bcp "SELECT * FROM ['+DataBase+'].[dbo].[Temp]" queryout '+
+      '"'+ExFileTemp+'"'+' -T -w -x -t"	"'+'''');
+    SQL.Add('EXEC master..xp_cmdshell');
+    SQL.Add(''''+'copy '+'"'+ExFileFields+'"'+' + '+'"'+ExFileTemp+'"'+' '+'"'+ExFileName+'"'+'''');
+    SQL.Add('Drop Table ['+DataBase+'].[dbo].[Temp]');
+    Active:=True;  //ExecSQL;
+  end;
 end;
 
 { TRequewtDate }
@@ -188,13 +233,13 @@ end;
 constructor TRequestDate.create(AOwner: TForm);
 begin
   FMain.Caption:='Запрос: по дате и времени';
-  FMain.Height:=500;
-  FMain.Width:=700;//FMain.Height:=290;  //FMain.Width:=470;
+  FMain.Height:=700;
+  FMain.Width:=1000;
   FMain.FileListBox1.Visible:=True;
   FMain.DBGrid1.Left:=8;
   FMain.DBGrid1.Top:=100;
-  FMain.DBGrid1.Height:=469;
-  FMain.DBGrid1.Width:=669;
+  FMain.DBGrid1.Height:=520;
+  FMain.DBGrid1.Width:=969;
   FMain.FileListBox1.Visible:=false;
 
   Label1:=TLabel.create(AOwner);
@@ -287,6 +332,7 @@ begin
   Button2.Font.Name:='Times New Roman';
   Button2.Font.Size:=11;
   Button2.Caption:='Сохранить в файл';
+  Button2.OnClick:=Button2Click;
 
   if NameServer='' then FMain.Panel1.Caption:='Необходимо зайти в настройки программы!'
   else FMain.Panel1.Caption:=' Используется сервер: '+NameServer+', база данных: '+DataBase;
@@ -337,18 +383,67 @@ begin
   '  Записей: '+IntToStr(FMain.DBGrid1.DataSource.DataSet.RecordCount)+'  ';
 end;
 
+procedure TRequestDate.Button2Click(Sender: TObject);
+var
+  ExFileFields,ExFileTemp,ExFileName:String;
+begin
+  with FMain.adoQuery1 do
+  begin
+    active:=false;
+    SQL.Clear;
+    SQL.Add('USE ['+DataBase+']');
+    SQL.Add('SET ANSI_PADDING ON');
+    SQL.Add('CREATE TABLE [dbo].[Temp] ([№] [int] IDENTITY(1,1) NOT NULL,[date] [date] NOT NULL,'+
+      '[time] [time](0) NOT NULL,[duration] [int] NOT NULL,[statuscall] [char](9) NOT NULL,'+
+      '[typecall] [char](9) NULL,[code] [int] NULL,[citynumber] [varchar](17) NOT NULL,'+
+	    '[insidenumber] [bigint] NULL,	[id] [int] NULL,[trunkid1] [int] NULL,'+
+      '[trunkid2] [int] NULL,[trunkid3] [int] NULL) ON [PRIMARY]');
+    SQL.Add('SET ANSI_PADDING OFF');
+    SQL.Add('INSERT INTO ['+DataBase+'].[dbo].[Temp] ([date],[time],[duration],[statuscall],[typecall],'+
+      '[code],[citynumber],[insidenumber],[id],[trunkid1],[trunkid2],[trunkid3])');
+    SQL.Add('SELECT [date],[time],[duration],[statuscall],[typecall],[code],[citynumber],'+
+      '[insidenumber],[id],[trunkid1],[trunkid2],[trunkid3]');
+    ///// ЗАПРОС /////
+    SQL.Add('FROM ['+DataBase+'].[dbo].[Call_records]');
+    SQL.Add('WHERE (date>='+''''+FormatDateTime('yyyy-mm-dd',DateTimePicker1.Date)+''''+')');
+    SQL.Add(' AND (date<='+''''+FormatDateTime('yyyy-mm-dd',DateTimePicker2.Date)+''''+')');
+    SQL.Add(' AND (time>='+''''+FormatDateTime('hh:mm:ss',DateTimePicker3.Time)+''''+')');
+    SQL.Add(' AND (time<'+''''+FormatDateTime('hh:mm:ss',DateTimePicker4.Time)+''''+')');
+    case ComboBox1.ItemIndex of
+      0:SQL.Add('ORDER BY [date] asc,[time] asc');
+      1:SQL.Add('ORDER BY [date] desc,[time] desc');
+    end;
+    /////  /////
+    {SQL.Add('EXEC sp_configure '+''''+'show advanced options'+''''+',1');
+    SQL.Add('RECONFIGURE');
+    SQL.Add('EXEC sp_configure '+''''+'xp_cmdshell'+''''+', 1');
+    SQL.Add('RECONFIGURE');}
+    ExFileName:=getcurrentdir()+'\Отчеты\'+
+      FormatDateTime('yyyy-mm-dd',date())+'_'+FormatDateTime('hh-mm-ss',time())+'.csv';
+    ExFileFields:=getcurrentdir()+'\Name.csv';
+    ExFileTemp:=getcurrentdir()+'\Temp.csv';
+    SQL.Add('EXEC master..xp_cmdshell');
+    SQL.Add(''''+'bcp "SELECT * FROM ['+DataBase+'].[dbo].[Temp]" queryout '+
+      '"'+ExFileTemp+'"'+' -T -w -x -t"	"'+'''');
+    SQL.Add('EXEC master..xp_cmdshell');
+    SQL.Add(''''+'copy '+'"'+ExFileFields+'"'+' + '+'"'+ExFileTemp+'"'+' '+'"'+ExFileName+'"'+'''');
+    SQL.Add('Drop Table ['+DataBase+'].[dbo].[Temp]');
+    Active:=True;  //ExecSQL;
+  end;
+end;
+
 { TRequestStatusCall }
 
 constructor TRequestStatusCall.create(AOwner: TForm);
 begin
   FMain.Caption:='Запрос: статус звонка';
-  FMain.Height:=500;
-  FMain.Width:=700;//FMain.Height:=290;  //FMain.Width:=470;
+  FMain.Height:=700;
+  FMain.Width:=1000;
   FMain.FileListBox1.Visible:=True;
   FMain.DBGrid1.Left:=8;
   FMain.DBGrid1.Top:=70;
-  FMain.DBGrid1.Height:=469;
-  FMain.DBGrid1.Width:=669;
+  FMain.DBGrid1.Height:=550;
+  FMain.DBGrid1.Width:=969;
   FMain.FileListBox1.Visible:=false;
 
   Label1:=TLabel.create(AOwner);
@@ -414,6 +509,7 @@ begin
   Button2.Font.Name:='Times New Roman';
   Button2.Font.Size:=11;
   Button2.Caption:='Сохранить в файл';
+  Button2.OnClick:=Button2Click;
 
   if NameServer='' then FMain.Panel1.Caption:='Необходимо зайти в настройки программы!'
   else FMain.Panel1.Caption:=' Используется сервер: '+NameServer+', база данных: '+DataBase;
@@ -460,18 +556,67 @@ begin
   '  Записей: '+IntToStr(FMain.DBGrid1.DataSource.DataSet.RecordCount)+'  ';
 end;
 
+procedure TRequestStatusCall.Button2Click(Sender: TObject);
+var
+  ExFileFields,ExFileTemp,ExFileName:String;
+begin
+  with FMain.adoQuery1 do
+  begin
+    active:=false;
+    SQL.Clear;
+    SQL.Add('USE ['+DataBase+']');
+    SQL.Add('SET ANSI_PADDING ON');
+    SQL.Add('CREATE TABLE [dbo].[Temp] ([№] [int] IDENTITY(1,1) NOT NULL,[date] [date] NOT NULL,'+
+      '[time] [time](0) NOT NULL,[duration] [int] NOT NULL,[statuscall] [char](9) NOT NULL,'+
+      '[typecall] [char](9) NULL,[code] [int] NULL,[citynumber] [varchar](17) NOT NULL,'+
+	    '[insidenumber] [bigint] NULL,	[id] [int] NULL,[trunkid1] [int] NULL,'+
+      '[trunkid2] [int] NULL,[trunkid3] [int] NULL) ON [PRIMARY]');
+    SQL.Add('SET ANSI_PADDING OFF');
+    SQL.Add('INSERT INTO ['+DataBase+'].[dbo].[Temp] ([date],[time],[duration],[statuscall],[typecall],'+
+      '[code],[citynumber],[insidenumber],[id],[trunkid1],[trunkid2],[trunkid3])');
+    SQL.Add('SELECT [date],[time],[duration],[statuscall],[typecall],[code],[citynumber],'+
+      '[insidenumber],[id],[trunkid1],[trunkid2],[trunkid3]');
+    ///// ЗАПРОС /////
+    SQL.Add('FROM ['+DataBase+'].[dbo].[Call_records]');
+    case ComboBox1.ItemIndex of
+      0:SQL.Add('WHERE statuscall='+''''+ComboBox1.Items[ComboBox1.ItemIndex]+'''');
+      1:SQL.Add('WHERE statuscall='+''''+ComboBox1.Items[ComboBox1.ItemIndex]+'''');
+    end;
+    case ComboBox2.ItemIndex of
+      0:SQL.Add('ORDER BY [date] asc,[time] asc');
+      1:SQL.Add('ORDER BY [date] desc,[time] desc');
+    end;
+    /////  /////
+    {SQL.Add('EXEC sp_configure '+''''+'show advanced options'+''''+',1');
+    SQL.Add('RECONFIGURE');
+    SQL.Add('EXEC sp_configure '+''''+'xp_cmdshell'+''''+', 1');
+    SQL.Add('RECONFIGURE');}
+    ExFileName:=getcurrentdir()+'\Отчеты\'+
+      FormatDateTime('yyyy-mm-dd',date())+'_'+FormatDateTime('hh-mm-ss',time())+'.csv';
+    ExFileFields:=getcurrentdir()+'\Name.csv';
+    ExFileTemp:=getcurrentdir()+'\Temp.csv';
+    SQL.Add('EXEC master..xp_cmdshell');
+    SQL.Add(''''+'bcp "SELECT * FROM ['+DataBase+'].[dbo].[Temp]" queryout '+
+      '"'+ExFileTemp+'"'+' -T -w -x -t"	"'+'''');
+    SQL.Add('EXEC master..xp_cmdshell');
+    SQL.Add(''''+'copy '+'"'+ExFileFields+'"'+' + '+'"'+ExFileTemp+'"'+' '+'"'+ExFileName+'"'+'''');
+    SQL.Add('Drop Table ['+DataBase+'].[dbo].[Temp]');
+    Active:=True;  //ExecSQL;
+  end;
+end;
+
 { TRequestTypeCall }
 
 constructor TRequestTypeCall.create(AOwner: TForm);
 begin
   FMain.Caption:='Запрос: тип звонка';
-  FMain.Height:=500;
-  FMain.Width:=700;//FMain.Height:=290;  //FMain.Width:=470;
+  FMain.Height:=700;
+  FMain.Width:=1000;
   FMain.FileListBox1.Visible:=True;
   FMain.DBGrid1.Left:=8;
   FMain.DBGrid1.Top:=70;
-  FMain.DBGrid1.Height:=469;
-  FMain.DBGrid1.Width:=669;
+  FMain.DBGrid1.Height:=550;
+  FMain.DBGrid1.Width:=969;
   FMain.FileListBox1.Visible:=false;
 
   Label1:=TLabel.create(AOwner);
@@ -541,6 +686,7 @@ begin
   Button2.Font.Name:='Times New Roman';
   Button2.Font.Size:=11;
   Button2.Caption:='Сохранить в файл';
+  Button2.OnClick:=Button2Click;
 
   if NameServer='' then FMain.Panel1.Caption:='Необходимо зайти в настройки программы!'
   else FMain.Panel1.Caption:=' Используется сервер: '+NameServer+', база данных: '+DataBase;
@@ -587,18 +733,67 @@ begin
   '  Записей: '+IntToStr(FMain.DBGrid1.DataSource.DataSet.RecordCount)+'  ';
 end;
 
+procedure TRequestTypeCall.Button2Click(Sender: TObject);
+var
+  ExFileFields,ExFileTemp,ExFileName:String;
+begin
+  with FMain.adoQuery1 do
+  begin
+    active:=false;
+    SQL.Clear;
+    SQL.Add('USE ['+DataBase+']');
+    SQL.Add('SET ANSI_PADDING ON');
+    SQL.Add('CREATE TABLE [dbo].[Temp] ([№] [int] IDENTITY(1,1) NOT NULL,[date] [date] NOT NULL,'+
+      '[time] [time](0) NOT NULL,[duration] [int] NOT NULL,[statuscall] [char](9) NOT NULL,'+
+      '[typecall] [char](9) NULL,[code] [int] NULL,[citynumber] [varchar](17) NOT NULL,'+
+	    '[insidenumber] [bigint] NULL,	[id] [int] NULL,[trunkid1] [int] NULL,'+
+      '[trunkid2] [int] NULL,[trunkid3] [int] NULL) ON [PRIMARY]');
+    SQL.Add('SET ANSI_PADDING OFF');
+    SQL.Add('INSERT INTO ['+DataBase+'].[dbo].[Temp] ([date],[time],[duration],[statuscall],[typecall],'+
+      '[code],[citynumber],[insidenumber],[id],[trunkid1],[trunkid2],[trunkid3])');
+    SQL.Add('SELECT [date],[time],[duration],[statuscall],[typecall],[code],[citynumber],'+
+      '[insidenumber],[id],[trunkid1],[trunkid2],[trunkid3]');
+    ///// ЗАПРОС /////
+    SQL.Add('FROM ['+DataBase+'].[dbo].[Call_records]');
+    case ComboBox1.ItemIndex of
+      0:SQL.Add('WHERE typecall='+''''+ComboBox1.Items[ComboBox1.ItemIndex]+'''');
+      1:SQL.Add('WHERE typecall='+''''+ComboBox1.Items[ComboBox1.ItemIndex]+'''');
+    end;
+    case ComboBox2.ItemIndex of
+      0:SQL.Add('ORDER BY [date] asc,[time] asc');
+      1:SQL.Add('ORDER BY [date] desc,[time] desc');
+    end;
+    /////  /////
+    {SQL.Add('EXEC sp_configure '+''''+'show advanced options'+''''+',1');
+    SQL.Add('RECONFIGURE');
+    SQL.Add('EXEC sp_configure '+''''+'xp_cmdshell'+''''+', 1');
+    SQL.Add('RECONFIGURE');}
+    ExFileName:=getcurrentdir()+'\Отчеты\'+
+      FormatDateTime('yyyy-mm-dd',date())+'_'+FormatDateTime('hh-mm-ss',time())+'.csv';
+    ExFileFields:=getcurrentdir()+'\Name.csv';
+    ExFileTemp:=getcurrentdir()+'\Temp.csv';
+    SQL.Add('EXEC master..xp_cmdshell');
+    SQL.Add(''''+'bcp "SELECT * FROM ['+DataBase+'].[dbo].[Temp]" queryout '+
+      '"'+ExFileTemp+'"'+' -T -w -x -t"	"'+'''');
+    SQL.Add('EXEC master..xp_cmdshell');
+    SQL.Add(''''+'copy '+'"'+ExFileFields+'"'+' + '+'"'+ExFileTemp+'"'+' '+'"'+ExFileName+'"'+'''');
+    SQL.Add('Drop Table ['+DataBase+'].[dbo].[Temp]');
+    Active:=True;  //ExecSQL;
+  end;
+end;
+
 { TRequestNumber }
 
 constructor TRequestNumber.create(AOwner: TForm);
 begin
   FMain.Caption:='Запрос: по номеру телефона';
-  FMain.Height:=500;
-  FMain.Width:=700;//FMain.Height:=290;  //FMain.Width:=470;
+  FMain.Height:=700;
+  FMain.Width:=1000;
   FMain.FileListBox1.Visible:=True;
   FMain.DBGrid1.Left:=8;
   FMain.DBGrid1.Top:=100;
-  FMain.DBGrid1.Height:=469;
-  FMain.DBGrid1.Width:=669;
+  FMain.DBGrid1.Height:=520;
+  FMain.DBGrid1.Width:=969;
   FMain.FileListBox1.Visible:=false;
 
   Label1:=TLabel.create(AOwner);
@@ -677,6 +872,7 @@ begin
   Button2.Font.Name:='Times New Roman';
   Button2.Font.Size:=11;
   Button2.Caption:='Сохранить в файл';
+  Button2.OnClick:=Button2Click;
   if NameServer='' then FMain.Panel1.Caption:='Необходимо зайти в настройки программы!'
   else FMain.Panel1.Caption:=' Используется сервер: '+NameServer+', база данных: '+DataBase;
 end;
@@ -730,6 +926,63 @@ begin
   if NameServer='' then FMain.Panel1.Caption:='Необходимо зайти в настройки программы!'
   else FMain.Panel1.Caption:=' Используется сервер: '+NameServer+', база данных: '+DataBase+
   '  Записей: '+IntToStr(FMain.DBGrid1.DataSource.DataSet.RecordCount)+'  ';
+end;
+
+procedure TRequestNumber.Button2Click(Sender: TObject);
+var
+  ExFileFields,ExFileTemp,ExFileName:String;
+begin
+  with FMain.adoQuery1 do
+  begin
+    active:=false;
+    SQL.Clear;
+    SQL.Add('USE ['+DataBase+']');
+    SQL.Add('SET ANSI_PADDING ON');
+    SQL.Add('CREATE TABLE [dbo].[Temp] ([№] [int] IDENTITY(1,1) NOT NULL,[date] [date] NOT NULL,'+
+      '[time] [time](0) NOT NULL,[duration] [int] NOT NULL,[statuscall] [char](9) NOT NULL,'+
+      '[typecall] [char](9) NULL,[code] [int] NULL,[citynumber] [varchar](17) NOT NULL,'+
+	    '[insidenumber] [bigint] NULL,	[id] [int] NULL,[trunkid1] [int] NULL,'+
+      '[trunkid2] [int] NULL,[trunkid3] [int] NULL) ON [PRIMARY]');
+    SQL.Add('SET ANSI_PADDING OFF');
+    SQL.Add('INSERT INTO ['+DataBase+'].[dbo].[Temp] ([date],[time],[duration],[statuscall],[typecall],'+
+      '[code],[citynumber],[insidenumber],[id],[trunkid1],[trunkid2],[trunkid3])');
+    SQL.Add('SELECT [date],[time],[duration],[statuscall],[typecall],[code],[citynumber],'+
+      '[insidenumber],[id],[trunkid1],[trunkid2],[trunkid3]');
+    ///// ЗАПРОС /////
+    SQL.Add('FROM ['+DataBase+'].[dbo].[Call_records]');
+    case ComboBox1.ItemIndex of
+      0:begin
+        SQL.Add('WHERE ('+'citynumber=');
+        if Edit1.Text='' then SQL.Add('NULL'+')')
+        else SQL.Add(''''+Edit1.Text+''''+')');
+      end;
+      1:begin
+        SQL.Add('WHERE ('+'insidenumber=');
+        if (Edit1.Text='') then SQL.Add('NULL'+')')
+        else SQL.Add(''''+Edit1.Text+''''+')');
+      end;
+    end;
+    case ComboBox2.ItemIndex of
+      0:SQL.Add(' ORDER BY [date] asc,[time] asc');
+      1:SQL.Add(' ORDER BY [date] desc,[time] desc');
+    end;
+    /////  /////
+    {SQL.Add('EXEC sp_configure '+''''+'show advanced options'+''''+',1');
+    SQL.Add('RECONFIGURE');
+    SQL.Add('EXEC sp_configure '+''''+'xp_cmdshell'+''''+', 1');
+    SQL.Add('RECONFIGURE');}
+    ExFileName:=getcurrentdir()+'\Отчеты\'+
+      FormatDateTime('yyyy-mm-dd',date())+'_'+FormatDateTime('hh-mm-ss',time())+'.csv';
+    ExFileFields:=getcurrentdir()+'\Name.csv';
+    ExFileTemp:=getcurrentdir()+'\Temp.csv';
+    SQL.Add('EXEC master..xp_cmdshell');
+    SQL.Add(''''+'bcp "SELECT * FROM ['+DataBase+'].[dbo].[Temp]" queryout '+
+      '"'+ExFileTemp+'"'+' -T -w -x -t"	"'+'''');
+    SQL.Add('EXEC master..xp_cmdshell');
+    SQL.Add(''''+'copy '+'"'+ExFileFields+'"'+' + '+'"'+ExFileTemp+'"'+' '+'"'+ExFileName+'"'+'''');
+    SQL.Add('Drop Table ['+DataBase+'].[dbo].[Temp]');
+    Active:=True;  //ExecSQL;
+  end;
 end;
 
 end.

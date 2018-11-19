@@ -15,6 +15,20 @@ object FMain: TFMain
   Position = poDesktopCenter
   PixelsPerInch = 96
   TextHeight = 17
+  object Memo1: TMemo
+    Left = 8
+    Top = 8
+    Width = 438
+    Height = 33
+    Font.Charset = RUSSIAN_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -8
+    Font.Name = 'Times New Roman'
+    Font.Style = []
+    ParentFont = False
+    TabOrder = 3
+    Visible = False
+  end
   object DBGrid1: TDBGrid
     Left = 8
     Top = 139

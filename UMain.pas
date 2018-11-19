@@ -26,6 +26,7 @@ type
     FileListBox1: TFileListBox;
     Panel1: TPanel;
     DataSource1: TDataSource;
+    Memo1: TMemo;
     procedure AddFileClick(Sender: TObject);
     procedure MSettingsClick(Sender: TObject);
     procedure MHelpClick(Sender: TObject);
