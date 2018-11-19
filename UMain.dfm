@@ -15,11 +15,26 @@ object FMain: TFMain
   Position = poDesktopCenter
   PixelsPerInch = 96
   TextHeight = 17
+  object Memo1: TMemo
+    Left = 8
+    Top = 8
+    Width = 438
+    Height = 33
+    Font.Charset = RUSSIAN_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -8
+    Font.Name = 'Times New Roman'
+    Font.Style = []
+    ParentFont = False
+    TabOrder = 3
+    Visible = False
+  end
   object DBGrid1: TDBGrid
     Left = 8
     Top = 139
     Width = 438
     Height = 75
+    DataSource = DataSource1
     TabOrder = 0
     TitleFont.Charset = RUSSIAN_CHARSET
     TitleFont.Color = clWindowText
@@ -94,6 +109,7 @@ object FMain: TFMain
     Top = 160
   end
   object DataSource1: TDataSource
+    DataSet = ADOQuery1
     Left = 88
     Top = 160
   end

@@ -75,7 +75,7 @@ end;
 procedure TFSettings.Button1Click(Sender: TObject);
 begin
   FMain.Panel1.Caption:=' Используется сервер: '+NameServer+', база данных: '+DataBase;
-  //Test1;
+  Test1;
 end;
 
 procedure TFSettings.CheckBox1Click(Sender: TObject);
@@ -341,6 +341,8 @@ begin
     equal:=false;
     for i:=0 to FMain.ADOQuery1.RecordCount-1 do
       if Memo1.Lines[i]=DataBase then equal:=true;
+    Memo1.Clear;
+    FMain.ADOQuery1.Close;//очищаем таблицу от записей
     if equal=true then
     begin
       ButtonSelected1:=MessageDlg('База данных с именем '+DataBase+
