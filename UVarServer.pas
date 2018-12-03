@@ -2,7 +2,7 @@ unit UVarServer;
 
 interface
 
-uses SysUtils;//USettings;
+uses SysUtils;
 
 type
   TNameServer = class
@@ -57,6 +57,11 @@ end;
 function TNameServer.Getpath: string;
 begin
   result:=path;
+end;
+
+function TNameServer.SetPath(PT: string): string;
+begin
+  path:=PT;
 end;
 
 procedure TNameServer.ReadConfig;
@@ -136,10 +141,5 @@ begin
 end;
 
 
-
-function TNameServer.SetPath(PT: string): string;
-begin
-  path:=PT;
-end;
 
 end.

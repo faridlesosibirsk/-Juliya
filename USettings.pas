@@ -5,7 +5,7 @@ interface
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.Buttons, Data.DB,UDBConnection,
-  Data.Win.ADODB,FileCtrl,UVarServer;
+  Data.Win.ADODB,FileCtrl,UVarServer,UScript;
 
 type
   TFSettings = class(TForm)
@@ -28,10 +28,9 @@ type
     procedure BitBtn1Click(Sender: TObject);
     procedure Button1Click(Sender: TObject);
     procedure CheckBox1Click(Sender: TObject);
-    procedure CreateSqript;
-    procedure RequestCreateTables;
     procedure FormCreate(Sender: TObject);
     procedure Test1;
+    procedure FormActivate(Sender: TObject);
   private
     { Private declarations }
   public
@@ -40,6 +39,7 @@ type
 
 var
   FSettings:TFSettings;
+  Script:TScript;
 
 implementation
 
@@ -47,13 +47,17 @@ implementation
 
 uses UMain;
 
-procedure TFSettings.FormCreate(Sender: TObject);
+procedure TFSettings.FormActivate(Sender: TObject);
 begin
   NameServer.ReadConfig;
   Edit1.Text:=NameServer.Getpath;
   Edit2.Text:=NameServer.GetNameServer;
   Edit3.Text:=NameServer.GetNameUser;
   Edit5.Text:=NameServer.GetDataBase;
+end;
+
+procedure TFSettings.FormCreate(Sender: TObject);
+begin
   BitBtn1.glyph.LoadFromFile(getcurrentdir()+'\Folder.bmp');
 end;
 
@@ -83,115 +87,6 @@ begin
     else Edit4.PasswordChar:=#42;
 end;
 
-procedure TFSettings.CreateSqript;
-var
-  myFile:TextFile;
-  startword,endword,lengthword:integer;
-  text:string;
-begin
-  ///// Œ¡–¿¡¿“€¬¿≈Ã — –»œ“ —Œ«ƒ¿Õ»ﬂ ¡¿«€ ƒ¿ÕÕ€’ /////
-  AssignFile(myFile,GetCurrentDir()+'\Calls.sql');
-  Reset(myFile);
-  Memo1.Clear;
-  while (not Eof(myFile)) do
-  begin
-    readln(myFile,text);
-    if pos('[',text)<>0 then
-    begin
-      startword:=pos('[',text)+1;
-      endword:=pos(']',text);
-      lengthword:=endword-startword;
-      delete(text,startword,lengthword);
-      insert(NameServer.GetDataBase,text,startword);
-    end;
-    if pos('.mdf',text)<>0 then
-    begin
-      startword:=pos('= N',text)+4;
-      endword:=pos(', ',text)-1;
-      lengthword:=endword-startword;
-      delete(text,startword,lengthword);
-      insert(NameServer.GetDataBase,text,startword);
-      startword:=pos('MSSQL\DATA\',text)+11;
-      endword:=pos('.mdf',text);
-      lengthword:=endword-startword;
-      delete(text,startword,lengthword);
-      insert(NameServer.GetDataBase,text,startword);
-    end;
-    if pos('_log.ldf',text)<>0 then
-    begin
-      startword:=pos('= N',text)+4;
-      endword:=pos('_log',text);
-      lengthword:=endword-startword;
-      delete(text,startword,lengthword);
-      insert(NameServer.GetDataBase,text,startword);
-      startword:=pos('MSSQL\DATA\',text)+11;
-      endword:=pos('_log.ldf',text);
-      lengthword:=endword-startword;
-      delete(text,startword,lengthword);
-      insert(NameServer.GetDataBase,text,startword);
-    end;
-    Memo1.Lines.Add(text);
-  end;
-  closefile(myFile);
-  Memo1.Lines.SaveToFile(GetCurrentDir()+'\Calls.sql');
-      ///// Œ¡–¿¡¿“€¬¿≈Ã — –»œ“ —Œ«ƒ¿Õ»ﬂ “¿¡À»÷ /////
-  AssignFile(myFile,GetCurrentDir()+'\Table.sql');
-  Reset(myFile);
-  Memo1.Clear;
-  while (not Eof(myFile)) do
-  begin
-    readln(myFile,text);
-    if pos('USE',text)<>0 then
-    begin
-      startword:=pos('[',text)+1;
-      endword:=pos(']',text);
-      lengthword:=endword-startword;
-      delete(text,startword,lengthword);
-      insert(NameServer.GetDataBase,text,startword);
-    end;
-    Memo1.Lines.Add(text);
-  end;
-  closefile(myFile);
-  Memo1.Lines.SaveToFile(GetCurrentDir()+'\Table.sql');
-  Memo1.Clear;
-end;
-
-procedure TFSettings.RequestCreateTables;
-var
-  myFile:TextFile;
-  text:string;
-begin
-  ///// —Œ«ƒ¿Õ»≈ ¡¿«€ ƒ¿ÕÕ€’, “¿¡À»÷ ¬ SQL /////
-  AssignFile(myFile,GetCurrentDir()+'\Calls.sql');
-  Reset(myFile);
-  try
-    FMain.adoQuery1.active:=false;
-    FMain.adoQuery1.SQL.Clear;
-    while (not Eof(myFile)) do
-    begin
-      readln(myFile,text);
-      FMain.adoQuery1.SQL.Add(text);
-    end;
-    FMain.adoQuery1.ExecSQL;
-  finally
-    closefile(myFile);
-  end;
-  AssignFile(myFile,GetCurrentDir()+'\Table.sql');
-  Reset(myFile);
-  try
-    FMain.adoQuery1.active:=false;
-    FMain.adoQuery1.SQL.Clear;
-    while (not Eof(myFile)) do
-    begin
-      readln(myFile,text);
-      FMain.adoQuery1.SQL.Add(text);
-    end;
-    FMain.adoQuery1.ExecSQL;
-  finally
-    closefile(myFile);
-  end;
-end;
-
 procedure TFSettings.Test1;
 var
   ButtonSelected1,ButtonSelected2:integer;
@@ -207,10 +102,9 @@ begin
   begin
     NameServer.SaveConfig(edit2.Text,edit3.Text,edit4.Text,edit5.Text,edit1.text);
     FMain.FileListBox1.Mask:=NameServer.Getpath+'*.trc';                                           //Fmain
-    CreateSqript;
+    Script.ScriptCreateDB;
+    Script.ScriptCreateTb;
     ///// œ–Œ¬≈– ¿ —Œ≈ƒ»Õ≈Õ»ﬂ — —≈–¬≈–ŒÃ /////
-    {Connection := TConnection.create;
-    ADOConnection1:=Connection.GetADOConnection; }
     try
       ADOConnection1.ConnectionString:=GetDBConnect;
     except
@@ -270,7 +164,7 @@ begin
       ' Ë Ú‡·ÎËˆ˚ AddFiles, Call_records?',mtCustom,[mbYes,mbNo],0);
     if ButtonSelected2=mrYes then
     begin
-      RequestCreateTables;
+      Script.RequestCreate;
       Application.MessageBox('¡‡Á‡ ‰‡ÌÌ˚ı ÒÓÁ‰‡Ì‡.','»ÌÙÓÏ‡ˆËˇ');
       close;
     end;

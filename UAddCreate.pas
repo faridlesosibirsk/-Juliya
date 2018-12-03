@@ -4,7 +4,7 @@ interface
 
 uses
   SysUtils, Variants, Controls, Forms, StdCtrls, Buttons,
-  UInterface, UFile, UUpdateBase, UVarServer;
+  UInterface, UFile, UUpdateBase, UVarServer,IniFiles;
 
 type
   TAddCreate = class(TInterfacedObject, TInterfaceMenuCreate)
@@ -25,7 +25,15 @@ implementation
 uses UMain;
 
 constructor TAddCreate.create(AOwner: TForm);
+//var Ini:TIniFile;
 begin
+  {Ini:=TIniFile.Create(CHangeFileExt(Application.ExeName,'.INI'));
+  try
+    FMain.Caption:=Ini.ReadString('TAddCreate','Caption','FMain');
+  finally
+    Ini.Free;
+  end; }
+
   FMain.Caption:='Добавление';
   FMain.Height:=290;
   FMain.Width:=470;
@@ -83,7 +91,7 @@ begin
   Label6.Parent:= AOwner;
   Label6.Font.Name:='Times New Roman';
   Label6.Font.Size:=11;
-  Label6.Caption:='_-_-_-_-_-_-_-_-';//Label6.Caption:='05.11.2018 16:34';
+  Label6.Caption:='_-_-_-_-_-_-_-_-';
 
   Button1:=TButton.create(AOwner);
   Button1.Left:=235;
@@ -129,22 +137,22 @@ begin
       SQL.Clear;
       SQL.Add('Insert Into ['+NameServer.GetDataBase+'].[dbo].[AddFiles] (FileName, DateChange, Lines)');
       SQL.Add('VALUES ('+''''+FileName+''''+', '+''''+
-        GetFileDate(NameServer.Getpath+FileName)+''''+
-        ', '+''''+IntToStr(TextSize(NameServer.Getpath+FileName))+''''+')');
+        File1.GetFileDate(NameServer.Getpath+FileName)+''''+
+        ', '+''''+IntToStr(File1.TextSize(NameServer.Getpath+FileName))+''''+')');
       ExecSQL;
       i:=1;
       UpDateBase(NameServer.Getpath+FileName,i);
       FMain.Memo1.Clear;
       Application.MessageBox('Файл добавлен в базу данных','Информация')
     end
-    else if Fields[3].value<TextSize(NameServer.Getpath+FileName) then
+    else if Fields[3].value<File1.TextSize(NameServer.Getpath+FileName) then
     begin
       i:=Fields[3].value+1;
       UpDateBase(NameServer.Getpath+FileName,i);
       active:=false;
       SQL.Clear;
       SQL.Add('UPDATE ['+NameServer.GetDataBase+'].[dbo].[AddFiles]');
-      SQL.Add('SET [Lines] ='+''''+IntToStr(TextSize(NameServer.Getpath+FileName))+'''');
+      SQL.Add('SET [Lines] ='+''''+IntToStr(File1.TextSize(NameServer.Getpath+FileName))+'''');
       SQL.Add('WHERE [FileName]='+''''+FileName+'''');
       ExecSQL;
       Application.MessageBox('Новые записи внесены в базу данных','Информация')
