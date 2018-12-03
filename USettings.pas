@@ -5,7 +5,7 @@ interface
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.Buttons, Data.DB,UDBConnection,
-  Data.Win.ADODB,FileCtrl;
+  Data.Win.ADODB,FileCtrl,UVarServer;
 
 type
   TFSettings = class(TForm)
@@ -28,9 +28,6 @@ type
     procedure BitBtn1Click(Sender: TObject);
     procedure Button1Click(Sender: TObject);
     procedure CheckBox1Click(Sender: TObject);
-    procedure Edit1Change(Sender: TObject);
-    procedure ReadConfig;
-    procedure SaveConfig;
     procedure CreateSqript;
     procedure RequestCreateTables;
     procedure FormCreate(Sender: TObject);
@@ -43,7 +40,6 @@ type
 
 var
   FSettings:TFSettings;
-  path,NameServer,NameUser,DataBase,password:string;
 
 implementation
 
@@ -53,7 +49,11 @@ uses UMain;
 
 procedure TFSettings.FormCreate(Sender: TObject);
 begin
-  ReadConfig;
+  NameServer.ReadConfig;
+  Edit1.Text:=NameServer.Getpath;
+  Edit2.Text:=NameServer.GetNameServer;
+  Edit3.Text:=NameServer.GetNameUser;
+  Edit5.Text:=NameServer.GetDataBase;
   BitBtn1.glyph.LoadFromFile(getcurrentdir()+'\Folder.bmp');
 end;
 
@@ -65,14 +65,14 @@ begin
   chosenDirectory:='C:\';
   if SelectDirectory('','\',chosenDirectory) then
     if chosenDirectory[length(chosenDirectory)]<>'\'
-      then path:=chosenDirectory+'\'
-      else path:=chosenDirectory;
-  Edit1.Text:=path;
+      then NameServer.SetPath(chosenDirectory+'\')
+      else NameServer.SetPath(chosenDirectory);
+  Edit1.Text:=NameServer.GetPath;
 end;
 
 procedure TFSettings.Button1Click(Sender: TObject);
 begin
-  FMain.Panel1.Caption:=' Используется сервер: '+NameServer+', база данных: '+DataBase;
+  FMain.Panel1.Caption:=NameServer.GetName;
   Test1;
 end;
 
@@ -81,89 +81,6 @@ begin
   if CheckBox1.Checked=True
     then Edit4.PasswordChar:=#0
     else Edit4.PasswordChar:=#42;
-end;
-
-procedure TFSettings.Edit1Change(Sender: TObject);
-begin
-  path:=Edit1.Text;
-end;
-
-procedure TFSettings.ReadConfig;
-var
-  myFile:TextFile;
-  k:integer;
-  text:string;
-begin
-  AssignFile(myFile,GetCurrentDir()+'\config.ini');
-  Reset(myFile);
-  while (not Eof(myFile)) do
-  begin
-    readln(myFile,text);
-    if pos('[Путь к папке Trace]',text)<>0 then
-    begin
-      readln(myFile,text);
-      Edit1.text:=text;
-      path:=text;
-    end;
-    if pos('[Данные о сервере]',text)<>0 then
-    begin
-      readln(myFile,text);
-      k:=pos(' ',text);
-      NameServer:=copy(text,k+1,length(text)-k); //DataSource
-      Edit2.text:=NameServer;
-      readln(myFile,text);
-      k:=pos(' ',text);
-      NameUser:=copy(text,k+1,length(text)-k);    //UserID
-      Edit3.text:=NameUser;
-      readln(myFile,text);
-      k:=pos(' ',text);
-      DataBase:=copy(text,k+1,length(text)-k);
-      Edit5.text:=DataBase;
-    end;
-  end;
-  closefile(myFile);
-end;
-
-procedure TFSettings.SaveConfig;
-var
-  myFile:TextFile;
-  k:integer;
-  text:string;
-begin
-  Memo1.Clear;
-  AssignFile(myFile,GetCurrentDir()+'\config.ini');
-  Reset(myFile);
-  while (not Eof(myFile)) do
-  begin
-    readln(myFile,text);
-    Memo1.Lines.Add(text);
-    if pos('[Путь к папке Trace]',text)<>0 then
-    begin
-      readln(myFile,text);
-      Memo1.Lines.Add(path);
-    end;
-    if pos('[Данные о сервере]',text)<>0 then
-    begin
-      readln(myFile,text);
-      k:=pos(' ',text);
-      delete(text,k+1,(length(text)-k));
-      insert(edit2.Text,text,k+1);Memo1.Lines.Add(text);
-      NameServer:=Edit2.text;
-      readln(myFile,text);
-      k:=pos(' ',text);
-      delete(text,k+1,(length(text)-k));
-      insert(edit3.Text,text,k+1);Memo1.Lines.Add(text);
-      NameUser:=Edit3.text;
-      password:=Edit4.text;
-      readln(myFile,text);
-      k:=pos(' ',text);
-      delete(text,k+1,(length(text)-k));
-      insert(edit5.Text,text,k+1);Memo1.Lines.Add(text);
-      DataBase:=Edit5.text;
-    end;
-  end;
-  closefile(myFile);
-  Memo1.Lines.SaveToFile(GetCurrentDir()+'\config.ini');
 end;
 
 procedure TFSettings.CreateSqript;
@@ -185,7 +102,7 @@ begin
       endword:=pos(']',text);
       lengthword:=endword-startword;
       delete(text,startword,lengthword);
-      insert(DataBase,text,startword);
+      insert(NameServer.GetDataBase,text,startword);
     end;
     if pos('.mdf',text)<>0 then
     begin
@@ -193,12 +110,12 @@ begin
       endword:=pos(', ',text)-1;
       lengthword:=endword-startword;
       delete(text,startword,lengthword);
-      insert(DataBase,text,startword);
+      insert(NameServer.GetDataBase,text,startword);
       startword:=pos('MSSQL\DATA\',text)+11;
       endword:=pos('.mdf',text);
       lengthword:=endword-startword;
       delete(text,startword,lengthword);
-      insert(DataBase,text,startword);
+      insert(NameServer.GetDataBase,text,startword);
     end;
     if pos('_log.ldf',text)<>0 then
     begin
@@ -206,12 +123,12 @@ begin
       endword:=pos('_log',text);
       lengthword:=endword-startword;
       delete(text,startword,lengthword);
-      insert(DataBase,text,startword);
+      insert(NameServer.GetDataBase,text,startword);
       startword:=pos('MSSQL\DATA\',text)+11;
       endword:=pos('_log.ldf',text);
       lengthword:=endword-startword;
       delete(text,startword,lengthword);
-      insert(DataBase,text,startword);
+      insert(NameServer.GetDataBase,text,startword);
     end;
     Memo1.Lines.Add(text);
   end;
@@ -230,7 +147,7 @@ begin
       endword:=pos(']',text);
       lengthword:=endword-startword;
       delete(text,startword,lengthword);
-      insert(DataBase,text,startword);
+      insert(NameServer.GetDataBase,text,startword);
     end;
     Memo1.Lines.Add(text);
   end;
@@ -282,16 +199,14 @@ var
   i:integer;
   //Connection: TConnection;
 begin
-  if length(path)<>0 then if path[length(path)]<>'\' then path:=path+'\';
-  if length(path)<>0 then edit1.Text:=path;
   if length(edit1.Text)=0 then Application.MessageBox('Укажите путь к папке Trace.','Пустое поле')
   else if edit2.Text='' then Application.MessageBox('Укажите имя сервера.','Пустое поле')
   else if edit3.Text='' then Application.MessageBox('Укажите имя пользователя.','Пустое поле')
   else if edit5.Text='' then Application.MessageBox('Укажите имя базы данных.','Пустое поле');
   if (edit1.Text<>'')and(edit2.Text<>'')and(edit3.Text<>'')and(edit5.Text<>'') then
   begin
-    SaveConfig;
-    FMain.FileListBox1.Mask:=path+'*.trc';                                           //Fmain
+    NameServer.SaveConfig(edit2.Text,edit3.Text,edit4.Text,edit5.Text,edit1.text);
+    FMain.FileListBox1.Mask:=NameServer.Getpath+'*.trc';                                           //Fmain
     CreateSqript;
     ///// ПРОВЕРКА СОЕДИНЕНИЯ С СЕРВЕРОМ /////
     {Connection := TConnection.create;
@@ -341,17 +256,17 @@ begin
     ///// ПОИСК ВВЕДЕННОЙ БАЗЫ ДАННЫХ в списке существующих/////
     equal:=false;
     for i:=0 to FMain.ADOQuery1.RecordCount-1 do
-      if Memo1.Lines[i]=DataBase then equal:=true;
+      if Memo1.Lines[i]=NameServer.GetDataBase then equal:=true;
     Memo1.Clear;
     FMain.ADOQuery1.Close;//очищаем таблицу от записей
     if equal=true then
     begin
-      ButtonSelected1:=MessageDlg('База данных с именем '+DataBase+
+      ButtonSelected1:=MessageDlg('База данных с именем '+NameServer.GetDataBase+
       ' уже существует. Продолжить с ней работу?',mtCustom,[mbYes,mbNo],0);
       if ButtonSelected1=mrYes then close;
     end
     else
-      ButtonSelected2:=MessageDlg('Создать базу данных '+DataBase+
+      ButtonSelected2:=MessageDlg('Создать базу данных '+NameServer.GetDataBase+
       ' и таблицы AddFiles, Call_records?',mtCustom,[mbYes,mbNo],0);
     if ButtonSelected2=mrYes then
     begin
@@ -361,4 +276,5 @@ begin
     end;
   end;
 end;
+
 end.

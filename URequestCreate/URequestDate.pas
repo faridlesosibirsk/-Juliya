@@ -2,7 +2,7 @@ unit URequestDate;
 
 interface
 
-uses StdCtrls,SysUtils,Forms,ComCtrls,USettings,URequestCreate;
+uses StdCtrls,SysUtils,Forms,ComCtrls,URequestCreate;
 
 type
   TRequestDate = class(TRequestCreate)
@@ -131,8 +131,8 @@ begin
   Button2.OnClick:=Button2Click;
 
   FMain.ADOQuery1.Close;
-  if NameServer='' then FMain.Panel1.Caption:='Необходимо зайти в настройки программы!'
-  else FMain.Panel1.Caption:=' Используется сервер: '+NameServer+', база данных: '+DataBase;
+  FMain.Panel1.Caption:=NameServer.GetName;
+  //'  Записей: '+IntToStr(FMain.DBGrid1.DataSource.DataSet.RecordCount)+'  ';
 end;
 
 procedure TRequestDate.destroy;
@@ -155,7 +155,7 @@ begin
   begin
     active:=false;
     SQL.Clear;
-    SQL.Add('SELECT * FROM	['+DataBase+'].[dbo].[Call_records]');
+    SQL.Add('SELECT * FROM	['+NameServer.GetDataBase+'].[dbo].[Call_records]');
     SQL.Add('WHERE (date>='+''''+FormatDateTime('yyyy-mm-dd',DateTimePicker1.Date)+''''+')');
     SQL.Add(' AND (date<='+''''+FormatDateTime('yyyy-mm-dd',DateTimePicker2.Date)+''''+')');
     SQL.Add(' AND (time>='+''''+FormatDateTime('hh:mm:ss',DateTimePicker3.Time)+''''+')');
@@ -175,9 +175,8 @@ begin
   FMain.DBGrid1.Columns[6].Title.Caption:='Код';
   FMain.DBGrid1.Columns[7].Title.Caption:='Городской номер';
   FMain.DBGrid1.Columns[8].Title.Caption:='Внутренний номер';
-  if NameServer='' then FMain.Panel1.Caption:='Необходимо зайти в настройки программы!'
-  else FMain.Panel1.Caption:=' Используется сервер: '+NameServer+', база данных: '+DataBase+
-  '  Записей: '+IntToStr(FMain.DBGrid1.DataSource.DataSet.RecordCount)+'  ';
+  FMain.Panel1.Caption:=NameServer.GetName;
+  //'  Записей: '+IntToStr(FMain.DBGrid1.DataSource.DataSet.RecordCount)+'  ';
 end;
 
 procedure TRequestDate.Button2Click(Sender: TObject);
@@ -188,7 +187,7 @@ begin
   begin
     active:=false;
     SQL.Clear;
-    SQL.Add('USE ['+DataBase+']');
+    SQL.Add('USE ['+NameServer.GetDataBase+']');
     SQL.Add('SET ANSI_PADDING ON');
     SQL.Add('CREATE TABLE [dbo].[Temp] ([№] [int] IDENTITY(1,1) NOT NULL,[date] [date] NOT NULL,'+
       '[time] [time](0) NOT NULL,[duration] [int] NOT NULL,[statuscall] [char](9) NOT NULL,'+
@@ -196,12 +195,12 @@ begin
 	    '[insidenumber] [bigint] NULL,	[id] [int] NULL,[trunkid1] [int] NULL,'+
       '[trunkid2] [int] NULL,[trunkid3] [int] NULL) ON [PRIMARY]');
     SQL.Add('SET ANSI_PADDING OFF');
-    SQL.Add('INSERT INTO ['+DataBase+'].[dbo].[Temp] ([date],[time],[duration],[statuscall],[typecall],'+
+    SQL.Add('INSERT INTO ['+NameServer.GetDataBase+'].[dbo].[Temp] ([date],[time],[duration],[statuscall],[typecall],'+
       '[code],[citynumber],[insidenumber],[id],[trunkid1],[trunkid2],[trunkid3])');
     SQL.Add('SELECT [date],[time],[duration],[statuscall],[typecall],[code],[citynumber],'+
       '[insidenumber],[id],[trunkid1],[trunkid2],[trunkid3]');
     ///// ЗАПРОС /////
-    SQL.Add('FROM ['+DataBase+'].[dbo].[Call_records]');
+    SQL.Add('FROM ['+NameServer.GetDataBase+'].[dbo].[Call_records]');
     SQL.Add('WHERE (date>='+''''+FormatDateTime('yyyy-mm-dd',DateTimePicker1.Date)+''''+')');
     SQL.Add(' AND (date<='+''''+FormatDateTime('yyyy-mm-dd',DateTimePicker2.Date)+''''+')');
     SQL.Add(' AND (time>='+''''+FormatDateTime('hh:mm:ss',DateTimePicker3.Time)+''''+')');
@@ -220,11 +219,11 @@ begin
     ExFileFields:=getcurrentdir()+'\Name.csv';
     ExFileTemp:=getcurrentdir()+'\Temp.csv';
     SQL.Add('EXEC master..xp_cmdshell');
-    SQL.Add(''''+'bcp "SELECT * FROM ['+DataBase+'].[dbo].[Temp]" queryout '+
+    SQL.Add(''''+'bcp "SELECT * FROM ['+NameServer.GetDataBase+'].[dbo].[Temp]" queryout '+
       '"'+ExFileTemp+'"'+' -T -w -x -t"	"'+'''');
     SQL.Add('EXEC master..xp_cmdshell');
     SQL.Add(''''+'copy '+'"'+ExFileFields+'"'+' + '+'"'+ExFileTemp+'"'+' '+'"'+ExFileName+'"'+'''');
-    SQL.Add('Drop Table ['+DataBase+'].[dbo].[Temp]');
+    SQL.Add('Drop Table ['+NameServer.GetDataBase+'].[dbo].[Temp]');
     Active:=True;  //ExecSQL;
   end;
 end;

@@ -8,7 +8,7 @@ uses
   Vcl.Grids, Vcl.DBGrids,Data.DB, Data.Win.ADODB, Vcl.FileCtrl, Vcl.ExtCtrls, Vcl.ComCtrls,
   UInterface, UAddCreate,UConstructor,USpravka, USettings,
   URequestAllRecords,URequestDate,URequestStatusCall,URequestTypeCall,
-  URequestNumber;
+  URequestNumber,UVarServer;
 
 type
   TFMain = class(TForm)
@@ -44,11 +44,11 @@ type
     { Private declarations }
   public
   published
-    constructor create(AOwner: TComponent); Override;
+    constructor create(AOwner: TComponent); //Override;
   end;
 
 var
-  FMain: TFMain;
+  FMain: TFMain;NameServer:TNameServer;
 
 implementation
 

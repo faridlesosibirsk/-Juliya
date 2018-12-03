@@ -17,7 +17,10 @@ uses
   URequestDate in 'URequestCreate\URequestDate.pas',
   URequestNumber in 'URequestCreate\URequestNumber.pas',
   URequestStatusCall in 'URequestCreate\URequestStatusCall.pas',
-  URequestTypeCall in 'URequestCreate\URequestTypeCall.pas';
+  URequestTypeCall in 'URequestCreate\URequestTypeCall.pas',
+  UVarServer in 'UVarServer.pas',
+  UFile in 'UFile.pas',
+  UUpdateBase in 'UUpdateBase.pas';
 
 {$R *.res}
 

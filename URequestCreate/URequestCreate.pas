@@ -2,7 +2,7 @@ unit URequestCreate;
 
 interface
 
-uses Forms, UInterface;
+uses Forms, UInterface,UVarServer;
 
 type
   TRequestCreate = class(TInterfacedObject, TInterfaceMenuCreate)
