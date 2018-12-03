@@ -118,7 +118,6 @@ object FSettings: TFSettings
     Font.Style = []
     ParentFont = False
     TabOrder = 0
-    OnChange = Edit1Change
   end
   object BitBtn1: TBitBtn
     Left = 141

@@ -4,9 +4,11 @@ interface
 
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
-  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.Menus, Vcl.StdCtrls,USpravka,
-  UInterface, UAddCreate, USettings, UConstructor, Vcl.Grids, Vcl.DBGrids, URequestCreate,
-  Data.DB, Data.Win.ADODB, Vcl.FileCtrl, Vcl.ExtCtrls, Vcl.ComCtrls;
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.Menus, Vcl.StdCtrls,
+  Vcl.Grids, Vcl.DBGrids,Data.DB, Data.Win.ADODB, Vcl.FileCtrl, Vcl.ExtCtrls, Vcl.ComCtrls,
+  UInterface, UAddCreate,UConstructor,USpravka, USettings,
+  URequestAllRecords,URequestDate,URequestStatusCall,URequestTypeCall,
+  URequestNumber,UVarServer;
 
 type
   TFMain = class(TForm)
@@ -42,11 +44,11 @@ type
     { Private declarations }
   public
   published
-    constructor create(AOwner: TComponent); Override;
+    constructor create(AOwner: TComponent); //Override;
   end;
 
 var
-  FMain: TFMain;
+  FMain: TFMain;NameServer:TNameServer;
 
 implementation
 
@@ -76,9 +78,7 @@ begin
   if SelectMenu<>2 then
   begin
     fFileCreate.destroy;
-    //создаем нужную форму
     fFileCreate:=TRequestAllRecords.create(self);
-    //fFileCreate.make;
     SelectMenu:=2;
   end;
 end;
@@ -88,9 +88,7 @@ begin
   if SelectMenu<>3 then
   begin
     fFileCreate.destroy;
-    //создаем нужную форму
     fFileCreate:=TRequestDate.create(self);
-    //fFileCreate.make;
     SelectMenu:=3;
   end;
 end;
@@ -100,9 +98,7 @@ begin
   if SelectMenu<>4 then
   begin
     fFileCreate.destroy;
-    //создаем нужную форму
     fFileCreate:=TRequestStatusCall.create(self);
-    //fFileCreate.make;
     SelectMenu:=4;
   end;
 end;
@@ -112,7 +108,6 @@ begin
   if SelectMenu<>5 then
   begin
     fFileCreate.destroy;
-    //создаем нужную форму
     fFileCreate:=TRequestTypeCall.create(self);
     SelectMenu:=5;
   end;
@@ -123,7 +118,6 @@ begin
   if SelectMenu<>6 then
   begin
     fFileCreate.destroy;
-    //создаем нужную форму
     fFileCreate:=TRequestNumber.create(self);
     SelectMenu:=6;
   end;
@@ -132,19 +126,16 @@ end;
 procedure TFMain.ConstructorRequestsClick(Sender: TObject);
 begin
   FConstructor.ShowModal;
-  //Открыть окно конструктора
 end;
 
 procedure TFMain.MSettingsClick(Sender: TObject);
 begin
   FSettings.ShowModal;
-  //открыть окно настроек
 end;
 
 procedure TFMain.MHelpClick(Sender: TObject);
 begin
   FSpravka.ShowModal;
-  //открыть окно справки
 end;
 
 end.

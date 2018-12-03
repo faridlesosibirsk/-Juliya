@@ -73,7 +73,7 @@ implementation
 
 {$R *.dfm}
 
-uses UMain,USettings;
+uses UMain,UVarServer;
 
 procedure TFConstructor.FormCreate(Sender: TObject);
 begin
@@ -220,7 +220,7 @@ var
 begin
   with adoQuery1 do
   begin
-    SQL.Add('SELECT * FROM	['+DataBase+'].[dbo].[Call_records]');
+    SQL.Add('SELECT * FROM	['+NameServer.GetDataBase+'].[dbo].[Call_records]');
     a:='';b:='';c:='';d:='';e:='';f:='';g:='';h:='';k:=0;
     case ComboBox1.ItemIndex of
       1:a:='('+'date='+''''+FormatDateTime('yyyy-mm-dd',DateTimePicker1.Date)+''''+')';
@@ -316,7 +316,7 @@ begin
   begin
     active:=false;
     SQL.Clear;
-    SQL.Add('USE ['+DataBase+']');
+    SQL.Add('USE ['+NameServer.GetDataBase+']');
     SQL.Add('SET ANSI_PADDING ON');
     SQL.Add('CREATE TABLE [dbo].[Temp] ([¹] [int] IDENTITY(1,1) NOT NULL,[date] [date] NOT NULL,'+
       '[time] [time](0) NOT NULL,[duration] [int] NOT NULL,[statuscall] [char](9) NOT NULL,'+
@@ -324,7 +324,7 @@ begin
 	    '[insidenumber] [bigint] NULL,	[id] [int] NULL,[trunkid1] [int] NULL,'+
       '[trunkid2] [int] NULL,[trunkid3] [int] NULL) ON [PRIMARY]');
     SQL.Add('SET ANSI_PADDING OFF');
-    SQL.Add('INSERT INTO ['+DataBase+'].[dbo].[Temp] ([date],[time],[duration],[statuscall],[typecall],'+
+    SQL.Add('INSERT INTO ['+NameServer.GetDataBase+'].[dbo].[Temp] ([date],[time],[duration],[statuscall],[typecall],'+
       '[code],[citynumber],[insidenumber],[id],[trunkid1],[trunkid2],[trunkid3])');
     SQL.Add('SELECT [date],[time],[duration],[statuscall],[typecall],[code],[citynumber],'+
       '[insidenumber],[id],[trunkid1],[trunkid2],[trunkid3]');
@@ -338,11 +338,11 @@ begin
     ExFile1:=getcurrentdir()+'\Name.csv';
     ExFile2:=getcurrentdir()+'\Temp.csv';
     SQL.Add('EXEC master..xp_cmdshell');
-    SQL.Add(''''+'bcp "SELECT * FROM ['+DataBase+'].[dbo].[Temp]" queryout '+
+    SQL.Add(''''+'bcp "SELECT * FROM ['+NameServer.GetDataBase+'].[dbo].[Temp]" queryout '+
       ExFile2+' -T -w -x -t"	"'+'''');
     SQL.Add('EXEC master..xp_cmdshell');
     SQL.Add(''''+'copy '+ExFile1+' + '+ExFile2+' '+ExFileName+'.csv'+'''');
-    SQL.Add('Drop Table ['+DataBase+'].[dbo].[Temp]');
+    SQL.Add('Drop Table ['+NameServer.GetDataBase+'].[dbo].[Temp]');
     Active:=true;
   end;
 end;

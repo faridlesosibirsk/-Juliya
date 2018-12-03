@@ -1,4 +1,4 @@
-USE [Тест]
+USE [Тест0]
 
 SET QUOTED_IDENTIFIER ON
 

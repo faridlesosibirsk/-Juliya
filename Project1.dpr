@@ -12,7 +12,15 @@ uses
   UConstructor in 'UConstructor.'},
   UConstructor in 'UConstructor.pas' {FConstructor},
   UMain in 'UMain.pas' {FMain},
-  URequestCreate in 'URequestCreate.pas';
+  URequestCreate in 'URequestCreate\URequestCreate.pas',
+  URequestAllRecords in 'URequestCreate\URequestAllRecords.pas',
+  URequestDate in 'URequestCreate\URequestDate.pas',
+  URequestNumber in 'URequestCreate\URequestNumber.pas',
+  URequestStatusCall in 'URequestCreate\URequestStatusCall.pas',
+  URequestTypeCall in 'URequestCreate\URequestTypeCall.pas',
+  UVarServer in 'UVarServer.pas',
+  UFile in 'UFile.pas',
+  UUpdateBase in 'UUpdateBase.pas';
 
 {$R *.res}
 
