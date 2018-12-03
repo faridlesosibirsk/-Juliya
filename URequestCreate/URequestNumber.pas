@@ -10,8 +10,7 @@ type
     Label1,Label2,Label3:TLabel;
     Combobox1,ComboBox2:TCombobox;
     Edit1:TEdit;
-    Button1:TButton;
-    Button2:TButton;
+    Button1,Button2:TButton;
   public
     constructor create(AOwner: TForm);override;
     procedure destroy;override;

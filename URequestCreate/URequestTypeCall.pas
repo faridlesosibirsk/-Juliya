@@ -9,8 +9,7 @@ type
   private
     Label1,Label2:TLabel;
     Combobox1,ComboBox2:TCombobox;
-    Button1:TButton;
-    Button2:TButton;
+    Button1,Button2:TButton;
   public
     constructor create(AOwner: TForm);override;
     procedure destroy;override;

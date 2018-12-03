@@ -5,7 +5,7 @@ interface
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.Buttons, Data.DB,UDBConnection,
-  Data.Win.ADODB,FileCtrl,UVarServer,UScript;
+  Data.Win.ADODB,FileCtrl,UVarServer,UScript,UConstructor;
 
 type
   TFSettings = class(TForm)
@@ -23,7 +23,6 @@ type
     Button1: TButton;
     BitBtn1: TBitBtn;
     CheckBox1: TCheckBox;
-    ADOConnection1: TADOConnection;
     Memo1: TMemo;
     procedure BitBtn1Click(Sender: TObject);
     procedure Button1Click(Sender: TObject);
@@ -40,6 +39,7 @@ type
 var
   FSettings:TFSettings;
   Script:TScript;
+  Connection: TDBConnection;
 
 implementation
 
@@ -65,7 +65,7 @@ procedure TFSettings.BitBtn1Click(Sender: TObject);
 var
   chosenDirectory:string;
 begin
-  //ВОЗМОЖНАЯ ОШИБКА - ЭТОЙ ПАПКИ НЕ СУЩЕСТВУЕТ
+  //POSSIBLE ERROR - THIS FOLDER DOES NOT EXIST
   chosenDirectory:='C:\';
   if SelectDirectory('','\',chosenDirectory) then
     if chosenDirectory[length(chosenDirectory)]<>'\'
@@ -92,7 +92,6 @@ var
   ButtonSelected1,ButtonSelected2:integer;
   flag,equal:boolean;
   i:integer;
-  //Connection: TConnection;
 begin
   if length(edit1.Text)=0 then Application.MessageBox('Укажите путь к папке Trace.','Пустое поле')
   else if edit2.Text='' then Application.MessageBox('Укажите имя сервера.','Пустое поле')
@@ -104,18 +103,11 @@ begin
     FMain.FileListBox1.Mask:=NameServer.Getpath+'*.trc';                                           //Fmain
     Script.ScriptCreateDB;
     Script.ScriptCreateTb;
-    ///// ПРОВЕРКА СОЕДИНЕНИЯ С СЕРВЕРОМ /////
-    try
-      ADOConnection1.ConnectionString:=GetDBConnect;
-    except
-      on e:exception do
-      if e.Message='Операция не допускается, если объект открыт' then
-      begin
-        ADOConnection1.Close;
-        ADOConnection1.ConnectionString:=GetDBConnect;
-      end;
-    end;
-    ///поиск названий всех Баз данных
+    ///// connecting to DataBase
+    Connection:= TDBConnection.create;
+    FMain.ADOQuery1.Connection:= Connection.GetADOConnection;
+    FConstructor.ADOQuery1.Connection:= Connection.GetADOConnection;
+    ///search all names DataBases
     flag:=true;
     FMain.adoQuery1.active:=false;
     FMain.adoQuery1.SQL.Clear;
@@ -137,7 +129,7 @@ begin
   end;
   if flag=true then
   begin
-    ///// СУЩЕСТВУЮЩИЕ БАЗЫ ДАННЫХ /////
+    ///// existing database names /////
     Memo1.Clear;
     FMain.DBGrid1.DataSource.DataSet.Open;
     FMain.ADOQuery1.First;
@@ -147,12 +139,12 @@ begin
       FMain.ADOQuery1.Next;
     end;
     Memo1.Lines.Add(FMain.ADOQuery1.Fields[0].Value);
-    ///// ПОИСК ВВЕДЕННОЙ БАЗЫ ДАННЫХ в списке существующих/////
+    /////searching database in existing databases/////
     equal:=false;
     for i:=0 to FMain.ADOQuery1.RecordCount-1 do
       if Memo1.Lines[i]=NameServer.GetDataBase then equal:=true;
     Memo1.Clear;
-    FMain.ADOQuery1.Close;//очищаем таблицу от записей
+    FMain.ADOQuery1.Close;//clear table
     if equal=true then
     begin
       ButtonSelected1:=MessageDlg('База данных с именем '+NameServer.GetDataBase+

@@ -13,16 +13,10 @@ uses
 type
   TFMain = class(TForm)
     MainMenu1: TMainMenu;
-    AddFile: TMenuItem;
-    MRequest: TMenuItem;
-    MRequestDate: TMenuItem;
-    ConstructorRequests: TMenuItem;
-    MSettings: TMenuItem;
-    MHelp: TMenuItem;
-    MAllRecords: TMenuItem;
-    MStatusCall: TMenuItem;
-    MTypeCall: TMenuItem;
-    MNumber: TMenuItem;
+    AddFile, MRequest, MRequestDate,
+    ConstructorRequests, MSettings,
+    MHelp, MAllRecords, MStatusCall,
+    MTypeCall, MNumber: TMenuItem;
     ADOQuery1: TADOQuery;
     DBGrid1: TDBGrid;
     FileListBox1: TFileListBox;
@@ -42,8 +36,6 @@ type
   private
     fFileCreate: TInterfaceMenuCreate;
     SelectMenu:integer;
-    { Private declarations }
-  public
   end;
 
 var

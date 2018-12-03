@@ -206,11 +206,4 @@ object FSettings: TFSettings
     TabOrder = 7
     OnClick = Button1Click
   end
-  object ADOConnection1: TADOConnection
-    LoginPrompt = False
-    Mode = cmShareDenyWrite
-    Provider = 'SQLOLEDB'
-    Left = 352
-    Top = 144
-  end
 end
