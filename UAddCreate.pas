@@ -142,7 +142,6 @@ begin
       ExecSQL;
       i:=1;
       UpDateBase(NameServer.Getpath+FileName,i);
-      FMain.Memo1.Clear;
       Application.MessageBox('Файл добавлен в базу данных','Информация')
     end
     else if Fields[3].value<File1.TextSize(NameServer.Getpath+FileName) then
