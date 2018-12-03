@@ -12,6 +12,7 @@ object FSettings: TFSettings
   Font.Style = []
   OldCreateOrder = False
   Position = poDesktopCenter
+  OnActivate = FormActivate
   OnCreate = FormCreate
   PixelsPerInch = 96
   TextHeight = 13
@@ -105,6 +106,7 @@ object FSettings: TFSettings
     Font.Style = []
     ParentFont = False
     TabOrder = 8
+    Visible = False
   end
   object Edit1: TEdit
     Left = 176
@@ -203,12 +205,5 @@ object FSettings: TFSettings
     ParentFont = False
     TabOrder = 7
     OnClick = Button1Click
-  end
-  object ADOConnection1: TADOConnection
-    LoginPrompt = False
-    Mode = cmShareDenyWrite
-    Provider = 'SQLOLEDB'
-    Left = 352
-    Top = 144
   end
 end

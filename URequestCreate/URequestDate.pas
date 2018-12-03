@@ -9,8 +9,7 @@ type
   private
     Label1,Label2,Label3:TLabel;
     Combobox1:TCombobox;
-    Button1:TButton;
-    Button2:TButton;
+    Button1,Button2:TButton;
     DateTimePicker1,DateTimePicker2,
     DateTimePicker3,DateTimePicker4:TDateTimePicker;
   public

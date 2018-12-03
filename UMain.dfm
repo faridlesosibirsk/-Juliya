@@ -13,6 +13,7 @@ object FMain: TFMain
   Menu = MainMenu1
   OldCreateOrder = False
   Position = poDesktopCenter
+  OnCreate = FormCreate
   PixelsPerInch = 96
   TextHeight = 17
   object Memo1: TMemo

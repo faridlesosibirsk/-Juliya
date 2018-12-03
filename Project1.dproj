@@ -90,6 +90,9 @@
 				<Form>FSettings</Form>
 				<FormType>dfm</FormType>
 			</DCCReference>
+			<DCCReference Include="UMain.pas">
+				<Form>FMain</Form>
+			</DCCReference>
 			<DCCReference Include="UDBConnection.pas"/>
 			<DCCReference Include="UInterface.pas"/>
 			<DCCReference Include="UAddCreate.pas">
@@ -98,9 +101,6 @@
 			</DCCReference>
 			<DCCReference Include="UConstructor.pas">
 				<Form>FConstructor</Form>
-			</DCCReference>
-			<DCCReference Include="UMain.pas">
-				<Form>FMain</Form>
 			</DCCReference>
 			<DCCReference Include="URequestCreate\URequestCreate.pas"/>
 			<DCCReference Include="URequestCreate\URequestAllRecords.pas"/>
@@ -111,6 +111,7 @@
 			<DCCReference Include="UVarServer.pas"/>
 			<DCCReference Include="UFile.pas"/>
 			<DCCReference Include="UUpdateBase.pas"/>
+			<DCCReference Include="UScript.pas"/>
 			<BuildConfiguration Include="Release">
 				<Key>Cfg_2</Key>
 				<CfgParent>Base</CfgParent>

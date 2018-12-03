@@ -8,21 +8,15 @@ uses
   Vcl.Grids, Vcl.DBGrids,Data.DB, Data.Win.ADODB, Vcl.FileCtrl, Vcl.ExtCtrls, Vcl.ComCtrls,
   UInterface, UAddCreate,UConstructor,USpravka, USettings,
   URequestAllRecords,URequestDate,URequestStatusCall,URequestTypeCall,
-  URequestNumber,UVarServer;
+  URequestNumber,UVarServer,UFile;
 
 type
   TFMain = class(TForm)
     MainMenu1: TMainMenu;
-    AddFile: TMenuItem;
-    MRequest: TMenuItem;
-    MRequestDate: TMenuItem;
-    ConstructorRequests: TMenuItem;
-    MSettings: TMenuItem;
-    MHelp: TMenuItem;
-    MAllRecords: TMenuItem;
-    MStatusCall: TMenuItem;
-    MTypeCall: TMenuItem;
-    MNumber: TMenuItem;
+    AddFile, MRequest, MRequestDate,
+    ConstructorRequests, MSettings,
+    MHelp, MAllRecords, MStatusCall,
+    MTypeCall, MNumber: TMenuItem;
     ADOQuery1: TADOQuery;
     DBGrid1: TDBGrid;
     FileListBox1: TFileListBox;
@@ -38,17 +32,16 @@ type
     procedure MStatusCallClick(Sender: TObject);
     procedure MTypeCallClick(Sender: TObject);
     procedure MNumberClick(Sender: TObject);
+    procedure FormCreate(Sender: TObject);
   private
     fFileCreate: TInterfaceMenuCreate;
     SelectMenu:integer;
-    { Private declarations }
-  public
-  published
-    constructor create(AOwner: TComponent); //Override;
   end;
 
 var
-  FMain: TFMain;NameServer:TNameServer;
+  FMain: TFMain;
+  NameServer:TNameServer;
+  File1:TFile;
 
 implementation
 
@@ -56,10 +49,9 @@ implementation
 
 { TFMain }
 
-constructor TFMain.create(AOwner: TComponent);
+procedure TFMain.FormCreate(Sender: TObject);
 begin
-  inherited;
-  fFileCreate:=TAddCreate.create(self);
+  fFileCreate:=TAddCreate.create(FMain);
 end;
 
 procedure TFMain.AddFileClick(Sender: TObject);

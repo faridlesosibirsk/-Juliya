@@ -4,15 +4,15 @@ interface
 
 uses StdCtrls,SysUtils,Classes,UVarServer;
 
-{type
+type
   TFile = class
   private
-  public}
+  public
     function GetFileDate(FileName:String):String;
     function TextSize(FileName:string):integer;
     procedure NumberFile(FileName:string;var a,b,c:string);
     procedure SortFileListBox;
-  //end;
+  end;
 
 implementation
 
@@ -20,7 +20,7 @@ uses UMain;
 
 { TFile }
 
-function GetFileDate(FileName: String): String;
+function TFile.GetFileDate(FileName: String): String;
 var
   FHandle:Integer;
 begin
@@ -32,7 +32,7 @@ begin
   end;
 end;
 
-function TextSize(FileName:string): integer;
+function TFile.TextSize(FileName:string): integer;
 var
   tmp:TStringList;
 begin
@@ -45,7 +45,7 @@ begin
   end;
 end;
 
-procedure NumberFile(FileName:string;var a,b,c:string);    //
+procedure TFile.NumberFile(FileName:string;var a,b,c:string);
 var NameServer:TNameServer;
 begin
   a:=IntToStr(FMain.FileListBox1.ItemIndex+1);                  //Label4.Caption
@@ -65,7 +65,7 @@ begin
   FMain.DBGrid1.Columns[3].Title.Caption:='Количество строк';
 end;
 
-procedure SortFileListBox;
+procedure TFile.SortFileListBox;
 var
   i,j,N:integer;
   c:string;
@@ -89,7 +89,6 @@ begin
       flag:=true;
     end;
   until not flag;
-
 end;
 
 
