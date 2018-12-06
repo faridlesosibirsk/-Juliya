@@ -34,13 +34,13 @@ constructor TAddCreate.create(AOwner: TForm);
 begin
   FMain.Caption:='Добавление';
   FMain.Height:=290;
-  FMain.Width:=470;
+  FMain.Width:=580;
 
   FMain.DBGrid1.Align:=alNone;
   FMain.DBGrid1.Left:=8;
   FMain.DBGrid1.Top:=143;
   FMain.DBGrid1.Height:=65;
-  FMain.DBGrid1.Width:=438;
+  FMain.DBGrid1.Width:=548;
 
   Label1:=TLabel.create(AOwner);
   Label1.Left:=227;
@@ -135,7 +135,7 @@ end;
 procedure TAddCreate.Button1Click(Sender: TObject);
 var i:integer;FileName:string;
 begin
-  if FileListBox1.Count<>0 then
+  if (FileListBox1.Count<>0)and(FileListBox1.ItemIndex>=0) then
   with FMain.adoQuery1 do
   begin
     active:=false;
