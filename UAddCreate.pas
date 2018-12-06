@@ -123,6 +123,7 @@ end;
 procedure TAddCreate.Button1Click(Sender: TObject);
 var i:integer;FileName:string;
 begin
+  if FMain.FileListBox1.Count<>0 then
   with FMain.adoQuery1 do
   begin
     active:=false;
@@ -156,7 +157,8 @@ begin
       ExecSQL;
       Application.MessageBox('Новые записи внесены в базу данных','Информация')
     end;
-  end;
+  end
+  else Application.MessageBox('В выбранной папке отсутствуют файлы .trc','Предупреждение')
 end;
 
 end.

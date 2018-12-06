@@ -49,6 +49,7 @@ object FMain: TFMain
     Width = 215
     Height = 125
     ItemHeight = 17
+    Mask = '.'
     TabOrder = 1
     OnKeyUp = FileListBox1KeyUp
     OnMouseDown = FileListBox1MouseDown
