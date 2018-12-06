@@ -3,9 +3,9 @@ unit USettings;
 interface
 
 uses
-  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
-  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.Buttons, Data.DB,UDBConnection,
-  Data.Win.ADODB,FileCtrl,UVarServer,UScript,UConstructor;
+  SysUtils, Classes, Controls, Forms, Dialogs,
+  StdCtrls, Buttons, FileCtrl,
+  UDBConnection, UVarServer, UScript, UConstructor;
 
 type
   TFSettings = class(TForm)
@@ -30,6 +30,7 @@ type
     procedure FormCreate(Sender: TObject);
     procedure Test1;
     procedure FormActivate(Sender: TObject);
+    procedure FormClose(Sender: TObject; var Action: TCloseAction);
   private
     { Private declarations }
   public
@@ -54,6 +55,11 @@ begin
   Edit2.Text:=NameServer.GetNameServer;
   Edit3.Text:=NameServer.GetNameUser;
   Edit5.Text:=NameServer.GetDataBase;
+end;
+
+procedure TFSettings.FormClose(Sender: TObject; var Action: TCloseAction);
+begin
+  File1.SortFileListBox;
 end;
 
 procedure TFSettings.FormCreate(Sender: TObject);

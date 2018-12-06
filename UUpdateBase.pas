@@ -38,7 +38,6 @@ begin
   //Заменить Мемо на другое, с построчным чтением
   FMain.Memo1.Clear;
   FMain.Memo1.Lines.LoadFromFile(FileName);
-  NameServer.Create;
   //загружаем файл для чтения
   j:=start-1;n:=start-1;
   setLength(p,n);                   //количество записей по умолчанию

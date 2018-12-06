@@ -33,6 +33,10 @@ type
     procedure MTypeCallClick(Sender: TObject);
     procedure MNumberClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
+    procedure FileListBox1MouseDown(Sender: TObject; Button: TMouseButton;
+      Shift: TShiftState; X, Y: Integer);
+    procedure FileListBox1KeyUp(Sender: TObject; var Key: Word;
+      Shift: TShiftState);
   private
     fFileCreate: TInterfaceMenuCreate;
     SelectMenu:integer;
@@ -48,6 +52,25 @@ implementation
 {$R *.dfm}
 
 { TFMain }
+
+procedure TFMain.FileListBox1KeyUp(Sender: TObject; var Key: Word;
+  Shift: TShiftState);
+var a,b,c:string;
+begin
+  if FileListBox1.Count<>0 then
+    if (key=VK_LEFT)or(key=VK_RIGHT)or(key=VK_UP)or(key=VK_DOWN)
+    then File1.NumberFile(NameServer.Getpath+
+      FMain.FileListBox1.Items[FMain.FileListBox1.ItemIndex],a,b,c);
+end;
+
+procedure TFMain.FileListBox1MouseDown(Sender: TObject; Button: TMouseButton;
+  Shift: TShiftState; X, Y: Integer);
+var a,b,c:string;
+  begin
+  if FileListBox1.Count<>0
+  then File1.NumberFile(NameServer.Getpath+
+      FMain.FileListBox1.Items[FMain.FileListBox1.ItemIndex],a,b,c);
+end;
 
 procedure TFMain.FormCreate(Sender: TObject);
 begin

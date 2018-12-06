@@ -49,7 +49,11 @@ object FMain: TFMain
     Width = 215
     Height = 125
     ItemHeight = 17
+    Mask = '.'
     TabOrder = 1
+    OnKeyUp = FileListBox1KeyUp
+    OnMouseDown = FileListBox1MouseDown
+    OnMouseUp = FileListBox1MouseDown
   end
   object Panel1: TPanel
     Left = 0
@@ -104,7 +108,6 @@ object FMain: TFMain
     end
   end
   object ADOQuery1: TADOQuery
-    Connection = FSettings.ADOConnection1
     Parameters = <>
     Left = 32
     Top = 160
