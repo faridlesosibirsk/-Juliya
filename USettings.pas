@@ -5,7 +5,7 @@ interface
 uses
   SysUtils, Classes, Controls, Forms, Dialogs,
   StdCtrls, Buttons, FileCtrl,
-  UDBConnection, UVarServer, UScript, UConstructor;
+  UDBConnection, UVarServer, UScript, UConstructor,UAddCreate;
 
 type
   TFSettings = class(TForm)
@@ -59,7 +59,7 @@ end;
 
 procedure TFSettings.FormClose(Sender: TObject; var Action: TCloseAction);
 begin
-  File1.SortFileListBox;
+  File1.SortFileListBox(AddCreate.GetFileListBox);
 end;
 
 procedure TFSettings.FormCreate(Sender: TObject);
@@ -106,7 +106,7 @@ begin
   if (edit1.Text<>'')and(edit2.Text<>'')and(edit3.Text<>'')and(edit5.Text<>'') then
   begin
     NameServer.SaveConfig(edit2.Text,edit3.Text,edit4.Text,edit5.Text,edit1.text);
-    FMain.FileListBox1.Mask:=NameServer.Getpath+'*.trc';                                           //Fmain
+    AddCreate.SetFileListBox(NameServer.Getpath+'*.trc');
     Script.ScriptCreateDB;
     Script.ScriptCreateTb;
     ///// connecting to DataBase

@@ -3,7 +3,7 @@ unit UAddCreate;
 interface
 
 uses
-  SysUtils, Variants, Controls, Forms, StdCtrls, Buttons,
+  SysUtils, Variants, Controls, Forms, StdCtrls, Buttons,FileCtrl,Classes,Winapi.Windows,
   UInterface, UFile, UUpdateBase, UVarServer,IniFiles;
 
 type
@@ -13,9 +13,13 @@ type
     Label4,Label5,Label6:TLabel;
     Button1:TButton;
   public
+    procedure SetFileListBox(mask: string);
+    function GetFileListBox:TFileListBox;
     constructor create(AOwner: TForm);
     procedure destroy;
     procedure Button1Click(Sender:TObject);
+    procedure FileListBox1KeyUp(Sender: TObject; var Key: Word;Shift: TShiftState);
+    procedure FileListBox1MouseDown(Sender: TObject; Button: TMouseButton;Shift: TShiftState; X, Y: Integer);
   end;
 
 implementation
@@ -24,20 +28,13 @@ implementation
 
 uses UMain;
 
-constructor TAddCreate.create(AOwner: TForm);
-//var Ini:TIniFile;
-begin
-  {Ini:=TIniFile.Create(CHangeFileExt(Application.ExeName,'.INI'));
-  try
-    FMain.Caption:=Ini.ReadString('TAddCreate','Caption','FMain');
-  finally
-    Ini.Free;
-  end; }
+var FileListBox1:TFileListBox;
 
+constructor TAddCreate.create(AOwner: TForm);
+begin
   FMain.Caption:='Добавление';
   FMain.Height:=290;
   FMain.Width:=470;
-  FMain.FileListBox1.Visible:=True;
 
   FMain.DBGrid1.Align:=alNone;
   FMain.DBGrid1.Left:=8;
@@ -93,6 +90,19 @@ begin
   Label6.Font.Size:=11;
   Label6.Caption:='_-_-_-_-_-_-_-_-';
 
+  FileListBox1:=TFileListBox.Create(AOwner);
+  FileListBox1.Height:=125;
+  FileListBox1.ItemHeight:=17;
+  FileListBox1.Parent:=Aowner;
+  FileListBox1.Left:=8;
+  FileListBox1.Mask:=NameServer.Getpath+'*.trc';
+  FileListBox1.Top:=8;
+  FileListBox1.Width:=215;
+  FileListBox1.OnKeyDown:=FileListBox1KeyUp;
+  FileListBox1.OnKeyUp:=FileListBox1KeyUp;
+  FileListBox1.OnMouseDown:=FileListBox1MouseDown;
+  FileListBox1.OnMouseUp:=FileListBox1MouseDown;
+
   Button1:=TButton.create(AOwner);
   Button1.Left:=235;
   Button1.Top:=91;
@@ -110,6 +120,9 @@ end;
 
 procedure TAddCreate.destroy;
 begin
+  FileListBox1.mask:='.';
+  Button1.SetFocus;
+  FileListBox1.Destroy;
   Label1.Free;
   Label2.Free;
   Label3.Free;
@@ -117,18 +130,17 @@ begin
   Label5.Free;
   Label6.Free;
   Button1.Free;
-  FMain.FileListBox1.Visible:=False;
 end;
 
 procedure TAddCreate.Button1Click(Sender: TObject);
 var i:integer;FileName:string;
 begin
-  if FMain.FileListBox1.Count<>0 then
+  if FileListBox1.Count<>0 then
   with FMain.adoQuery1 do
   begin
     active:=false;
     SQL.Clear;
-    FileName:=FMain.FileListBox1.Items[FMain.FileListBox1.ItemIndex];
+    FileName:=FileListBox1.Items[FileListBox1.ItemIndex];
     SQL.Add('SELECT * FROM ['+NameServer.GetDataBase+'].[dbo].[AddFiles]');
     SQL.Add('WHERE FileName='+''''+FileName+'''');
     Active:=True;
@@ -159,6 +171,42 @@ begin
     end;
   end
   else Application.MessageBox('В выбранной папке отсутствуют файлы .trc','Предупреждение')
+end;
+
+procedure TAddCreate.FileListBox1KeyUp(Sender: TObject; var Key: Word;
+  Shift: TShiftState);
+begin
+  if FileListBox1.Count<>0 then
+    if (key=VK_LEFT)or(key=VK_RIGHT)or(key=VK_UP)or(key=VK_DOWN)
+    then
+    begin
+      File1.NumberFile(NameServer.Getpath+FileListBox1.Items[FileListBox1.ItemIndex],FileListBox1);
+      Label4.Caption:=IntToStr(FileListBox1.ItemIndex+1);
+      Label5.Caption:=IntToStr(File1.TextSize(NameServer.Getpath+FileListBox1.Items[FileListBox1.ItemIndex]));
+      Label6.Caption:=File1.GetFileDate(NameServer.Getpath+FileListBox1.Items[FileListBox1.ItemIndex]);
+    end;
+end;
+
+procedure TAddCreate.FileListBox1MouseDown(Sender: TObject; Button: TMouseButton;
+  Shift: TShiftState; X, Y: Integer);
+begin
+  if FileListBox1.Count<>0
+  then begin
+    File1.NumberFile(NameServer.Getpath+FileListBox1.Items[FileListBox1.ItemIndex],FileListBox1);
+    Label4.Caption:=IntToStr(FileListBox1.ItemIndex+1);
+    Label5.Caption:=IntToStr(File1.TextSize(NameServer.Getpath+FileListBox1.Items[FileListBox1.ItemIndex]));
+    Label6.Caption:=File1.GetFileDate(NameServer.Getpath+FileListBox1.Items[FileListBox1.ItemIndex]);
+  end;
+end;
+
+function TAddCreate.GetFileListBox: TFileListBox;
+begin
+  result:=FileListBox1;
+end;
+
+procedure TAddCreate.SetFileListBox(mask: string);
+begin
+  FileListBox1.Mask:=mask;
 end;
 
 end.

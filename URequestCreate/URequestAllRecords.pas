@@ -28,12 +28,10 @@ begin
   FMain.Caption:='Запрос: все записи';
   FMain.Height:=700;
   FMain.Width:=1000;
-  FMain.FileListBox1.Visible:=True;
   FMain.DBGrid1.Left:=8;
   FMain.DBGrid1.Top:=36;
   FMain.DBGrid1.Height:=584;
   FMain.DBGrid1.Width:=969;
-  FMain.FileListBox1.Visible:=false;
 
   Label1:=TLabel.create(AOwner);
   Label1.Left:=30;

@@ -22,8 +22,7 @@ implementation
 
 uses UMain;      //&&&
 
-var
-  path, NameServer, NameUser, DataBase, password:string;
+var path, NameServer, NameUser, DataBase, password:string;
 
 { TNameServer }
 

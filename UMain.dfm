@@ -27,7 +27,7 @@ object FMain: TFMain
     Font.Name = 'Times New Roman'
     Font.Style = []
     ParentFont = False
-    TabOrder = 3
+    TabOrder = 2
     Visible = False
   end
   object DBGrid1: TDBGrid
@@ -43,18 +43,6 @@ object FMain: TFMain
     TitleFont.Name = 'Times New Roman'
     TitleFont.Style = []
   end
-  object FileListBox1: TFileListBox
-    Left = 8
-    Top = 8
-    Width = 215
-    Height = 125
-    ItemHeight = 17
-    Mask = '.'
-    TabOrder = 1
-    OnKeyUp = FileListBox1KeyUp
-    OnMouseDown = FileListBox1MouseDown
-    OnMouseUp = FileListBox1MouseDown
-  end
   object Panel1: TPanel
     Left = 0
     Top = 215
@@ -62,7 +50,7 @@ object FMain: TFMain
     Height = 17
     Align = alBottom
     BevelOuter = bvSpace
-    TabOrder = 2
+    TabOrder = 1
   end
   object MainMenu1: TMainMenu
     Left = 376
