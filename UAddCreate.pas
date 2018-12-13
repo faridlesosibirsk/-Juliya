@@ -35,61 +35,21 @@ begin
   FMain.Caption:='Добавление';
   FMain.Height:=290;
   FMain.Width:=580;
-
   FMain.DBGrid1.Align:=alNone;
   FMain.DBGrid1.Left:=8;
   FMain.DBGrid1.Top:=143;
   FMain.DBGrid1.Height:=65;
   FMain.DBGrid1.Width:=548;
-
-  Label1:=TLabel.create(AOwner);
-  Label1.Left:=227;
-  Label1.Top:=8;
-  Label1.Parent:= AOwner;
-  Label1.Font.Name:='Times New Roman';
-  Label1.Font.Size:=11;
-  Label1.Caption:='Номер выбранного файла:';
-
-  Label2:=TLabel.create(AOwner);
-  Label2.Left:=227;
-  Label2.Top:=31;
-  Label2.Parent:= AOwner;
-  Label2.Font.Name:='Times New Roman';
-  Label2.Font.Size:=11;
-  Label2.Caption:='Количество строк в файле:';
-
-  Label3:=TLabel.create(AOwner);
-  Label3.Left:=227;
-  Label3.Top:=54;
-  Label3.Parent:= AOwner;
-  Label3.Font.Name:='Times New Roman';
-  Label3.Font.Size:=11;
-  Label3.Caption:='Дата изменения:';
-
-  Label4:=TLabel.create(AOwner);
-  Label4.Left:=398;
-  Label4.Top:=8;
-  Label4.Parent:= AOwner;
-  Label4.Font.Name:='Times New Roman';
-  Label4.Font.Size:=11;
-  Label4.Caption:='_-_-_';
-
-  Label5:=TLabel.create(AOwner);
-  Label5.Left:=398;
-  Label5.Top:=31;
-  Label5.Parent:= AOwner;
-  Label5.Caption:='_-_-_';
-  Label5.Font.Name:='Times New Roman';
-  Label5.Font.Size:=11;
-
-  Label6:=TLabel.create(AOwner);
-  Label6.Left:=335;
-  Label6.Top:=54;
-  Label6.Parent:= AOwner;
-  Label6.Font.Name:='Times New Roman';
-  Label6.Font.Size:=11;
-  Label6.Caption:='_-_-_-_-_-_-_-_-';
-
+  FMain.ADOQuery1.Close;
+  FMain.Panel1.Caption:=NameServer.GetName;
+  ObjectsCreate.LabelCreate(AOwner,227,8,'Номер выбранного файла:',Label1);
+  ObjectsCreate.LabelCreate(AOwner,227,31,'Количество строк в файле:',Label2);
+  ObjectsCreate.LabelCreate(AOwner,227,54,'Дата изменения:',Label3);
+  ObjectsCreate.LabelCreate(AOwner,398,8,'_-_-_',Label4);
+  ObjectsCreate.LabelCreate(AOwner,398,31,'_-_-_',Label5);
+  ObjectsCreate.LabelCreate(AOwner,335,54,'_-_-_-_-_-_-_-_-',Label6);
+  ObjectsCreate.ButtonCreate(AOwner,235,91,25,200,'Добавить',Button1);
+  Button1.OnClick:=Button1Click;
   FileListBox1:=TFileListBox.Create(AOwner);
   FileListBox1.Height:=125;
   FileListBox1.ItemHeight:=17;
@@ -102,20 +62,6 @@ begin
   FileListBox1.OnKeyUp:=FileListBox1KeyUp;
   FileListBox1.OnMouseDown:=FileListBox1MouseDown;
   FileListBox1.OnMouseUp:=FileListBox1MouseDown;
-
-  Button1:=TButton.create(AOwner);
-  Button1.Left:=235;
-  Button1.Top:=91;
-  Button1.Height:=25;
-  Button1.Width:=200;
-  Button1.Parent:= AOwner;
-  Button1.Font.Name:='Times New Roman';
-  Button1.Font.Size:=11;
-  Button1.Caption:='Добавить';
-
-  FMain.ADOQuery1.Close;
-  FMain.Panel1.Caption:=NameServer.GetName;
-  Button1.OnClick:=Button1Click;
 end;
 
 procedure TAddCreate.destroy;

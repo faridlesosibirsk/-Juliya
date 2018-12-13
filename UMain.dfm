@@ -51,7 +51,6 @@ object FMain: TFMain
     Align = alBottom
     BevelOuter = bvSpace
     TabOrder = 1
-    ExplicitWidth = 454
   end
   object MainMenu1: TMainMenu
     Left = 376

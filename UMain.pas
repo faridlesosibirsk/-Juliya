@@ -8,7 +8,7 @@ uses
   Vcl.Grids, Vcl.DBGrids,Data.DB, Data.Win.ADODB, Vcl.FileCtrl, Vcl.ExtCtrls, Vcl.ComCtrls,
   UInterface, UAddCreate,UConstructor,USpravka, USettings,
   URequestAllRecords,URequestDate,URequestStatusCall,URequestTypeCall,
-  URequestNumber,UVarServer,UFile;
+  URequestNumber,UVarServer,UFile,UObjectsCreate;
 
 type
   TFMain = class(TForm)
@@ -42,6 +42,7 @@ var
   NameServer:TNameServer;
   File1:TFile;
   AddCreate:TAddCreate;
+  ObjectsCreate:TObjectsCreate;
 
 implementation
 

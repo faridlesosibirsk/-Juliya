@@ -112,6 +112,7 @@
 			<DCCReference Include="UFile.pas"/>
 			<DCCReference Include="UUpdateBase.pas"/>
 			<DCCReference Include="UScript.pas"/>
+			<DCCReference Include="UObjectsCreate.pas"/>
 			<BuildConfiguration Include="Release">
 				<Key>Cfg_2</Key>
 				<CfgParent>Base</CfgParent>

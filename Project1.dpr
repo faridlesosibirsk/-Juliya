@@ -19,7 +19,8 @@ uses
   UVarServer in 'UVarServer.pas',
   UFile in 'UFile.pas',
   UUpdateBase in 'UUpdateBase.pas',
-  UScript in 'UScript.pas';
+  UScript in 'UScript.pas',
+  UObjectsCreate in 'UObjectsCreate.pas';
 
 {$R *.res}
 

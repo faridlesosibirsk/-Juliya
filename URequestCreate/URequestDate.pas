@@ -34,102 +34,23 @@ begin
   FMain.DBGrid1.Top:=100;
   FMain.DBGrid1.Height:=520;
   FMain.DBGrid1.Width:=969;
-
-  Label1:=TLabel.create(AOwner);
-  Label1.Left:=30;
-  Label1.Top:=12;
-  Label1.Parent:= AOwner;
-  Label1.Font.Name:='Times New Roman';
-  Label1.Font.Size:=11;
-  Label1.Caption:='Выберите период с:                               по:';
-
-  DateTimePicker1:=TDateTimePicker.create(AOwner);
-  DateTimePicker1.Left:=160;
-  DateTimePicker1.Top:=8;
-  DateTimePicker1.Width:=110;
-  DateTimePicker1.Parent:= AOwner;
-  DateTimePicker1.Kind:=dtkDate;
-  DateTimePicker1.Font.Name:='Times New Roman';
-  DateTimePicker1.Font.Size:=11;
-
-  DateTimePicker2:=TDateTimePicker.Create(AOwner);
-  DateTimePicker2.Left:=300;
-  DateTimePicker2.Top:=8;
-  DateTimePicker2.Width:=110;
-  DateTimePicker2.Parent:= AOwner;
-  DateTimePicker2.Kind:=dtkDate;
-  DateTimePicker2.Font.Name:='Times New Roman';
-  DateTimePicker2.Font.Size:=11;
-
-  Label2:=TLabel.create(AOwner);
-  Label2.Left:=30;
-  Label2.Top:=44;
-  Label2.Parent:= AOwner;
-  Label2.Font.Name:='Times New Roman';
-  Label2.Font.Size:=11;
-  Label2.Caption:='Время с:                                                по:';
-
-  DateTimePicker3:=TDateTimePicker.create(AOwner);
-  DateTimePicker3.Left:=160;
-  DateTimePicker3.Top:=40;
-  DateTimePicker3.Width:=110;
-  DateTimePicker3.Parent:= AOwner;
-  DateTimePicker3.Kind:=dtkTime;
-  DateTimePicker3.Font.Name:='Times New Roman';
-  DateTimePicker3.Font.Size:=11;
-
-  DateTimePicker4:=TDateTimePicker.Create(AOwner);
-  DateTimePicker4.Left:=300;
-  DateTimePicker4.Top:=40;
-  DateTimePicker4.Width:=110;
-  DateTimePicker4.Parent:= AOwner;
-  DateTimePicker4.Kind:=dtkTime;
-  DateTimePicker4.Font.Name:='Times New Roman';
-  DateTimePicker4.Font.Size:=11;
-
-  Label3:=TLabel.create(AOwner);
-  Label3.Left:=30;
-  Label3.Top:=76;
-  Label3.Parent:= AOwner;
-  Label3.Font.Name:='Times New Roman';
-  Label3.Font.Size:=11;
-  Label3.Caption:='Сортировка по:';
-
-  ComboBox1:=TComboBox.create(AOwner);
-  ComboBox1.Left:=160;
-  ComboBox1.Top:=72;
-  ComboBox1.Width:=110;
-  ComboBox1.Parent:= AOwner;
-  ComboBox1.Style:=csDropDownList;
-  ComboBox1.Font.Name:='Times New Roman';
-  ComboBox1.Font.Size:=11;
+  FMain.ADOQuery1.Close;
+  FMain.Panel1.Caption:=NameServer.GetName;
+  ObjectsCreate.LabelCreate(AOwner,30,12,'Выберите период с:                               по:',Label1);
+  ObjectsCreate.LabelCreate(AOwner,30,44,'Время с:                                                по:',Label2);
+  ObjectsCreate.LabelCreate(AOwner,30,76,'Сортировка по:',Label3);
+  ObjectsCreate.DateTimePickerCreate(AOwner,160,8,110,dtkDate,DateTimePicker1);
+  ObjectsCreate.DateTimePickerCreate(AOwner,300,8,110,dtkDate,DateTimePicker2);
+  ObjectsCreate.DateTimePickerCreate(AOwner,160,40,110,dtkTime,DateTimePicker3);
+  ObjectsCreate.DateTimePickerCreate(AOwner,300,40,110,dtkTime,DateTimePicker4);
+  ObjectsCreate.ButtonCreate(AOwner,300,72,25,130,'Выполнить запрос',Button1);
+  Button1.OnClick:=Button1Click;
+  ObjectsCreate.ButtonCreate(AOwner,450,72,25,130,'Сохранить в файл',Button2);
+  Button2.OnClick:=Button2Click;
+  ObjectsCreate.ComboBoxCreate(AOwner,160,72,110,ComboBox1);
   ComboBox1.Items.Add('возрастанию');
   ComboBox1.Items.Add('убыванию');
   ComboBox1.ItemIndex:=0;
-
-  Button1:=TButton.create(AOwner);
-  Button1.Left:=300;
-  Button1.Top:=72;
-  Button1.Font.Name:='Times New Roman';
-  Button1.Font.Size:=11;
-  Button1.Width:=130;
-  Button1.Parent:= AOwner;
-  Button1.Caption:='Выполнить запрос';
-  Button1.OnClick:=Button1Click;
-
-  Button2:=TButton.create(AOwner);
-  Button2.Left:=450;
-  Button2.Top:=72;
-  Button2.Width:=130;
-  Button2.Parent:= AOwner;
-  Button2.Font.Name:='Times New Roman';
-  Button2.Font.Size:=11;
-  Button2.Caption:='Сохранить в файл';
-  Button2.OnClick:=Button2Click;
-
-  FMain.ADOQuery1.Close;
-  FMain.Panel1.Caption:=NameServer.GetName;
-  //'  Записей: '+IntToStr(FMain.DBGrid1.DataSource.DataSet.RecordCount)+'  ';
 end;
 
 procedure TRequestDate.destroy;

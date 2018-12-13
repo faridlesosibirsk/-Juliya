@@ -32,23 +32,11 @@ begin
   FMain.DBGrid1.Top:=70;
   FMain.DBGrid1.Height:=550;
   FMain.DBGrid1.Width:=969;
-
-  Label1:=TLabel.create(AOwner);
-  Label1.Left:=30;
-  Label1.Top:=12;
-  Label1.Parent:= AOwner;
-  Label1.Font.Name:='Times New Roman';
-  Label1.Font.Size:=11;
-  Label1.Caption:='Выберите тип звонка:';
-
-  ComboBox1:=TComboBox.create(AOwner);
-  ComboBox1.Left:=200;
-  ComboBox1.Top:=8;
-  ComboBox1.Width:=140;
-  ComboBox1.Parent:= AOwner;
-  ComboBox1.Style:=csDropDownList;
-  ComboBox1.Font.Name:='Times New Roman';
-  ComboBox1.Font.Size:=11;
+  FMain.ADOQuery1.Close;
+  FMain.Panel1.Caption:=NameServer.GetName;
+  ObjectsCreate.LabelCreate(AOwner,30,12,'Выберите тип звонка:',Label1);
+  ObjectsCreate.LabelCreate(AOwner,30,44,'Сортировка по:',Label2);
+  ObjectsCreate.ComboBoxCreate(AOwner,200,8,140,ComboBox1);
   ComboBox1.Items.Add('входящий');
   ComboBox1.Items.Add('локальный');
   ComboBox1.Items.Add('межгород');
@@ -61,50 +49,14 @@ begin
   ComboBox1.Items.Add('другие 4');
   ComboBox1.Items.Add('необраб');
   ComboBox1.ItemIndex:=0;
-
-  Label2:=TLabel.create(AOwner);
-  Label2.Left:=30;
-  Label2.Top:=44;
-  Label2.Parent:= AOwner;
-  Label2.Font.Name:='Times New Roman';
-  Label2.Font.Size:=11;
-  Label2.Caption:='Сортировка по:';
-
-  ComboBox2:=TComboBox.create(AOwner);
-  ComboBox2.Left:=200;
-  ComboBox2.Top:=40;
-  ComboBox2.Width:=140;
-  ComboBox2.Parent:= AOwner;
-  ComboBox2.Style:=csDropDownList;
-  ComboBox2.Font.Name:='Times New Roman';
-  ComboBox2.Font.Size:=11;
+  ObjectsCreate.ComboBoxCreate(AOwner,200,40,140,ComboBox2);
   ComboBox2.Items.Add('возрастанию');
   ComboBox2.Items.Add('убыванию');
   ComboBox2.ItemIndex:=0;
-
-  Button1:=TButton.create(AOwner);
-  Button1.Left:=360;
-  Button1.Top:=40;
-  Button1.Font.Name:='Times New Roman';
-  Button1.Font.Size:=11;
-  Button1.Width:=130;
-  Button1.Parent:= AOwner;
-  Button1.Caption:='Выполнить запрос';
+  ObjectsCreate.ButtonCreate(AOwner,360,40,25,130,'Выполнить запрос',Button1);
   Button1.OnClick:=Button1Click;
-
-  Button2:=TButton.create(AOwner);
-  Button2.Left:=510;
-  Button2.Top:=40;
-  Button2.Width:=130;
-  Button2.Parent:= AOwner;
-  Button2.Font.Name:='Times New Roman';
-  Button2.Font.Size:=11;
-  Button2.Caption:='Сохранить в файл';
+  ObjectsCreate.ButtonCreate(AOwner,510,40,25,130,'Сохранить в файл',Button2);
   Button2.OnClick:=Button2Click;
-
-  FMain.ADOQuery1.Close;
-  FMain.Panel1.Caption:=NameServer.GetName;
-  //'  Записей: '+IntToStr(FMain.DBGrid1.DataSource.DataSet.RecordCount)+'  ';
 end;
 
 procedure TRequestTypeCall.destroy;
