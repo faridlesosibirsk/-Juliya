@@ -2,7 +2,7 @@ unit UFile;
 
 interface
 
-uses StdCtrls,SysUtils,Classes,UVarServer;
+uses StdCtrls,SysUtils,Classes,UVarServer,FileCtrl;
 
 type
   TFile = class
@@ -10,13 +10,13 @@ type
   public
     function GetFileDate(FileName:String):String;
     function TextSize(FileName:string):integer;
-    procedure NumberFile(FileName:string;var a,b,c:string);
-    procedure SortFileListBox;
+    procedure NumberFile(FileName:string;var FileListBox_:TFileListBox);
+    procedure SortFileListBox(FileListBox_:TFileListBox);
   end;
 
 implementation
 
-uses UMain;
+uses UMain,UAddCreate;
 
 { TFile }
 
@@ -45,18 +45,15 @@ begin
   end;
 end;
 
-procedure TFile.NumberFile(FileName:string;var a,b,c:string);
+procedure TFile.NumberFile(FileName:string;var FileListBox_:TFileListBox);
 var NameServer:TNameServer;
 begin
-  a:=IntToStr(FMain.FileListBox1.ItemIndex+1);                  //Label4.Caption
-  b:=IntToStr(TextSize(FileName));    //Label5.Caption
-  c:=GetFileDate(FileName); //Label6.Caption
-  with FMain.adoQuery1 do   //FileName=path+FMain.FileListBox1.Items[FMain.FileListBox1.ItemIndex]
+  with FMain.adoQuery1 do
   begin
     active:=false;
     SQL.Clear;
     SQL.Add('SELECT * FROM ['+NameServer.GetDataBase+'].[dbo].[AddFiles]');
-    SQL.Add('WHERE FileName='+''''+FMain.FileListBox1.Items[FMain.FileListBox1.ItemIndex]+'''');
+    SQL.Add('WHERE FileName='+''''+FileListBox_.Items[FileListBox_.ItemIndex]+'''');
     Active:=True;
   end;
   FMain.DBGrid1.Columns[0].Title.Caption:='№';
@@ -65,7 +62,7 @@ begin
   FMain.DBGrid1.Columns[3].Title.Caption:='Количество строк';
 end;
 
-procedure TFile.SortFileListBox;
+procedure TFile.SortFileListBox(FileListBox_:TFileListBox);
 var
   i,j,N:integer;
   c:string;
@@ -75,22 +72,20 @@ begin
   result:=copy(text,12,4)+copy(text,9,2)+copy(text,6,2);
 end;
 begin
-  N:=FMain.FileListBox1.Items.Count-1;
+  N:=FileListBox_.Items.Count-1;
   i:=0;
   repeat
     i:=i+1;
     flag:=false;
     for j := n-1 downto 0 do
-    if GetText(FMain.FileListBox1.Items.Strings[j])>GetText(FMain.FileListBox1.Items.Strings[j+1]) then
+    if GetText(FileListBox_.Items.Strings[j])>GetText(FileListBox_.Items.Strings[j+1]) then
     begin
-      c:=FMain.FileListBox1.Items.Strings[j];
-      FMain.FileListBox1.Items.Strings[j]:=FMain.FileListBox1.Items.Strings[j+1];
-      FMain.FileListBox1.Items.Strings[j+1]:=c;
+      c:=FileListBox_.Items.Strings[j];
+      FileListBox_.Items.Strings[j]:=FileListBox_.Items.Strings[j+1];
+      FileListBox_.Items.Strings[j+1]:=c;
       flag:=true;
     end;
   until not flag;
 end;
-
-
 
 end.

@@ -28,55 +28,21 @@ begin
   FMain.Caption:='Запрос: все записи';
   FMain.Height:=700;
   FMain.Width:=1000;
-  FMain.FileListBox1.Visible:=True;
   FMain.DBGrid1.Left:=8;
   FMain.DBGrid1.Top:=36;
   FMain.DBGrid1.Height:=584;
   FMain.DBGrid1.Width:=969;
-  FMain.FileListBox1.Visible:=false;
-
-  Label1:=TLabel.create(AOwner);
-  Label1.Left:=30;
-  Label1.Top:=12;
-  Label1.Parent:= AOwner;
-  Label1.Font.Name:='Times New Roman';
-  Label1.Font.Size:=11;
-  Label1.Caption:='Сортировка по:';
-
-  ComboBox1:=TComboBox.create(AOwner);
-  ComboBox1.Left:=150;
-  ComboBox1.Top:=8;
-  ComboBox1.Width:=140;
-  ComboBox1.Parent:= AOwner;
-  ComboBox1.Style:=csDropDownList;
-  ComboBox1.Font.Name:='Times New Roman';
-  ComboBox1.Font.Size:=11;
+  FMain.ADOQuery1.Close;
+  FMain.Panel1.Caption:=NameServer.GetName;
+  ObjectsCreate.LabelCreate(AOwner,30,12,'Сортировка по:',Label1);
+  ObjectsCreate.ButtonCreate(AOwner,310,7,25,130,'Выполнить запрос',Button1);
+  Button1.OnClick:=Button1Click;
+  ObjectsCreate.ButtonCreate(AOwner,460,7,25,130,'Сохранить в файл',Button2);
+  Button2.OnClick:=Button2Click;
+  ObjectsCreate.ComboBoxCreate(AOwner,150,8,140,ComboBox1);
   ComboBox1.Items.Add('возрастанию');
   ComboBox1.Items.Add('убыванию');
   ComboBox1.ItemIndex:=0;
-
-  Button1:=TButton.create(AOwner);
-  Button1.Left:=310;
-  Button1.Top:=7;
-  Button1.Width:=130;
-  Button1.Parent:= AOwner;
-  Button1.Font.Name:='Times New Roman';
-  Button1.Font.Size:=11;
-  Button1.Caption:='Выполнить запрос';
-  Button1.OnClick:=Button1Click;
-
-  Button2:=TButton.create(AOwner);
-  Button2.Left:=460;
-  Button2.Top:=7;
-  Button2.Width:=130;
-  Button2.Parent:= AOwner;
-  Button2.Font.Name:='Times New Roman';
-  Button2.Font.Size:=11;
-  Button2.Caption:='Сохранить в файл';
-  Button2.OnClick:=Button2Click;
-
-  FMain.ADOQuery1.Close;
-  FMain.Panel1.Caption:=NameServer.GetName;
 end;
 
 procedure TRequestAllRecords.destroy;
