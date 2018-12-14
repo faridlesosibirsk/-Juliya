@@ -34,7 +34,6 @@ type
     procedure FormCreate(Sender: TObject);
   private
     fFileCreate: TInterfaceMenuCreate;
-    SelectMenu:integer;
   end;
 
 var
@@ -43,6 +42,7 @@ var
   File1:TFile;
   AddCreate:TAddCreate;
   ObjectsCreate:TObjectsCreate;
+  SelectMenu:integer;
 
 implementation
 

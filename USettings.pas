@@ -59,7 +59,7 @@ end;
 
 procedure TFSettings.FormClose(Sender: TObject; var Action: TCloseAction);
 begin
-  File1.SortFileListBox(AddCreate.GetFileListBox);
+  if SelectMenu=1 then File1.SortFileListBox(AddCreate.GetFileListBox);
 end;
 
 procedure TFSettings.FormCreate(Sender: TObject);

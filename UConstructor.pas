@@ -174,6 +174,7 @@ begin
     4:  ComboBox5.Items.Add('другие ис');
     5:  ComboBox5.Items.Add('другие вх');
     6:begin
+        ComboBox5.Items.Add('не важно');
         ComboBox5.Items.Add('другие ис');
         ComboBox5.Items.Add('другие вх');
         ComboBox5.Items.Add('другие 4');
@@ -220,7 +221,6 @@ var
 begin
   with adoQuery1 do
   begin
-    SQL.Add('SELECT * FROM	['+NameServer.GetDataBase+'].[dbo].[Call_records]');
     a:='';b:='';c:='';d:='';e:='';f:='';g:='';h:='';k:=0;
     case ComboBox1.ItemIndex of
       1:a:='('+'date='+''''+FormatDateTime('yyyy-mm-dd',DateTimePicker1.Date)+''''+')';
@@ -257,6 +257,7 @@ begin
     if f='' then id[6]:='0' else id[6]:='1';
     if g='' then id[7]:='0' else id[7]:='1';
     if h='' then id[8]:='0' else id[8]:='1';
+    k:=0;
     for i := 1 to 8 do
       if (id[i]='1')and(k=0) then
       begin
@@ -292,7 +293,8 @@ begin
   begin
     active:=false;
     SQL.Clear;
-    SelectingComboBox;             ///// ЗАПРОС /////
+    SQL.Add('SELECT * FROM	['+NameServer.GetDataBase+'].[dbo].[Call_records]');
+    SelectingComboBox;             ///// Request /////
     Active:=true;
   end;
   Button2.Visible:=true;
@@ -326,9 +328,10 @@ begin
     SQL.Add('SET ANSI_PADDING OFF');
     SQL.Add('INSERT INTO ['+NameServer.GetDataBase+'].[dbo].[Temp] ([date],[time],[duration],[statuscall],[typecall],'+
       '[code],[citynumber],[insidenumber],[id],[trunkid1],[trunkid2],[trunkid3])');
-    SQL.Add('SELECT [date],[time],[duration],[statuscall],[typecall],[code],[citynumber],'+
-      '[insidenumber],[id],[trunkid1],[trunkid2],[trunkid3]');
-    SelectingComboBox;             ///// ЗАПРОС /////
+    SQL.Add('SELECT [date],[time],[duration],[statuscall],[typecall],'+
+      '[code],[citynumber],[insidenumber],[id],[trunkid1],[trunkid2],[trunkid3]');
+    SQL.Add('FROM	['+NameServer.GetDataBase+'].[dbo].[Call_records]');
+    SelectingComboBox;             ///// Request /////
     {SQL.Add('EXEC sp_configure '+''''+'show advanced options'+''''+',1');
     SQL.Add('RECONFIGURE');
     SQL.Add('EXEC sp_configure '+''''+'xp_cmdshell'+''''+', 1');
@@ -341,7 +344,7 @@ begin
     SQL.Add(''''+'bcp "SELECT * FROM ['+NameServer.GetDataBase+'].[dbo].[Temp]" queryout '+
       ExFile2+' -T -w -x -t"	"'+'''');
     SQL.Add('EXEC master..xp_cmdshell');
-    SQL.Add(''''+'copy '+ExFile1+' + '+ExFile2+' '+ExFileName+'.csv'+'''');
+    SQL.Add(''''+'copy '+'"'+ExFile1+'"'+' + '+'"'+ExFile2+'"'+' '+'"'+ExFileName+'.csv'+'"'+'''');
     SQL.Add('Drop Table ['+NameServer.GetDataBase+'].[dbo].[Temp]');
     Active:=true;
   end;

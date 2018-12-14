@@ -15,8 +15,6 @@ type
       Caption: String; var Button_: TButton);
     procedure ComboBoxCreate(AOwner: TForm; Left,Top,Width: integer;
       var ComboBox_: TComboBox);
-    procedure DateTimePickerCreate(AOwner: TForm; Left,Top,Width: integer;
-      Kind:TDateTimeKind; var DateTimePicker_: TDateTimePicker);
     procedure EditCreate(AOwner: TForm; Left, Top, Width: integer;
       var Edit_: TEdit);
   end;
@@ -64,25 +62,12 @@ begin
   ComboBox_.Font.Size:=11;
 end;
 
-procedure TObjectsCreate.DateTimePickerCreate(AOwner: TForm; Left, Top,
-  Width: integer; Kind:TDateTimeKind; var DateTimePicker_: TDateTimePicker);
-begin
-  DateTimePicker_:=TDateTimePicker.create(AOwner);
-  DateTimePicker_.Left:=160;
-  DateTimePicker_.Top:=8;
-  DateTimePicker_.Width:=110;
-  DateTimePicker_.Parent:= AOwner;
-  DateTimePicker_.Kind:=Kind;
-  DateTimePicker_.Font.Name:='Times New Roman';
-  DateTimePicker_.Font.Size:=11;
-end;
-
 procedure TObjectsCreate.EditCreate(AOwner: TForm; Left, Top, Width: integer;
    var Edit_: TEdit);
 begin
   Edit_:=TEdit.create(AOwner);
   Edit_.Left:=Left;
-  Edit_.Top:=Top;    //72
+  Edit_.Top:=Top;
   Edit_.Width:=Width;
   Edit_.Parent:= AOwner;
   Edit_.Text:='';

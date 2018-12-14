@@ -32,7 +32,7 @@ uses UMain;
 
 procedure UpDateBase(FileName:string;start: integer);
 var
-  i,j,n:integer;                      //переменна€ цикла
+  i,j,n:integer;                    //переменна€ цикла
   text,s:string;                    //исходна€ строка
 begin
   //«аменить ћемо на другое, с построчным чтением

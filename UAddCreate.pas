@@ -42,13 +42,13 @@ begin
   FMain.DBGrid1.Width:=548;
   FMain.ADOQuery1.Close;
   FMain.Panel1.Caption:=NameServer.GetName;
-  ObjectsCreate.LabelCreate(AOwner,227,8,'Номер выбранного файла:',Label1);
-  ObjectsCreate.LabelCreate(AOwner,227,31,'Количество строк в файле:',Label2);
-  ObjectsCreate.LabelCreate(AOwner,227,54,'Дата изменения:',Label3);
-  ObjectsCreate.LabelCreate(AOwner,398,8,'_-_-_',Label4);
-  ObjectsCreate.LabelCreate(AOwner,398,31,'_-_-_',Label5);
-  ObjectsCreate.LabelCreate(AOwner,335,54,'_-_-_-_-_-_-_-_-',Label6);
-  ObjectsCreate.ButtonCreate(AOwner,235,91,25,200,'Добавить',Button1);
+  ObjectsCreate.LabelCreate(AOwner,257,8,'Номер выбранного файла:',Label1);
+  ObjectsCreate.LabelCreate(AOwner,257,31,'Количество строк в файле:',Label2);
+  ObjectsCreate.LabelCreate(AOwner,257,54,'Дата изменения:',Label3);
+  ObjectsCreate.LabelCreate(AOwner,428,8,'_-_-_',Label4);
+  ObjectsCreate.LabelCreate(AOwner,428,31,'_-_-_',Label5);
+  ObjectsCreate.LabelCreate(AOwner,365,54,'_-_-_-_-_-_-_-_-',Label6);
+  ObjectsCreate.ButtonCreate(AOwner,265,91,25,200,'Добавить',Button1);
   Button1.OnClick:=Button1Click;
   FileListBox1:=TFileListBox.Create(AOwner);
   FileListBox1.Height:=125;
@@ -57,11 +57,12 @@ begin
   FileListBox1.Left:=8;
   FileListBox1.Mask:=NameServer.Getpath+'*.trc';
   FileListBox1.Top:=8;
-  FileListBox1.Width:=215;
+  FileListBox1.Width:=220;
   FileListBox1.OnKeyDown:=FileListBox1KeyUp;
   FileListBox1.OnKeyUp:=FileListBox1KeyUp;
   FileListBox1.OnMouseDown:=FileListBox1MouseDown;
   FileListBox1.OnMouseUp:=FileListBox1MouseDown;
+  File1.SortFileListBox(AddCreate.GetFileListBox);
 end;
 
 procedure TAddCreate.destroy;
@@ -113,10 +114,12 @@ begin
       SQL.Add('SET [Lines] ='+''''+IntToStr(File1.TextSize(NameServer.Getpath+FileName))+'''');
       SQL.Add('WHERE [FileName]='+''''+FileName+'''');
       ExecSQL;
-      Application.MessageBox('Новые записи внесены в базу данных','Информация')
+      Application.MessageBox('Новые записи внесены в базу данных','Информация');
     end;
   end
-  else Application.MessageBox('В выбранной папке отсутствуют файлы .trc','Предупреждение')
+  else if (FileListBox1.Count<>0)and(FileListBox1.ItemIndex<0)
+    then Application.MessageBox('Выберите файл из списка','Предупреждение')
+    else Application.MessageBox('В выбранной папке отсутствуют файлы .trc','Предупреждение');
 end;
 
 procedure TAddCreate.FileListBox1KeyUp(Sender: TObject; var Key: Word;
