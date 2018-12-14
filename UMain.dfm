@@ -18,7 +18,7 @@ object FMain: TFMain
   TextHeight = 17
   object Memo1: TMemo
     Left = 8
-    Top = 8
+    Top = 139
     Width = 438
     Height = 33
     Font.Charset = RUSSIAN_CHARSET

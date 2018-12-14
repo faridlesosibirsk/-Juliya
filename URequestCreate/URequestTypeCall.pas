@@ -76,15 +76,12 @@ begin
     active:=false;
     SQL.Clear;
     SQL.Add('SELECT * FROM	['+NameServer.GetDataBase+'].[dbo].[Call_records]');
-    case ComboBox1.ItemIndex of
-      0:SQL.Add('WHERE typecall='+''''+ComboBox1.Items[ComboBox1.ItemIndex]+'''');
-      1:SQL.Add('WHERE typecall='+''''+ComboBox1.Items[ComboBox1.ItemIndex]+'''');
-    end;
+    SQL.Add('WHERE typecall='+''''+ComboBox1.Items[ComboBox1.ItemIndex]+'''');
     case ComboBox2.ItemIndex of
       0:SQL.Add('ORDER BY [date] asc,[time] asc');
       1:SQL.Add('ORDER BY [date] desc,[time] desc');
     end;
-    Active:=True;  //ExecSQL;
+    Active:=True;
   end;
   FMain.DBGrid1.Columns[0].Title.Caption:='№';
   FMain.DBGrid1.Columns[1].Title.Caption:='Дата';
@@ -95,8 +92,8 @@ begin
   FMain.DBGrid1.Columns[6].Title.Caption:='Код';
   FMain.DBGrid1.Columns[7].Title.Caption:='Городской номер';
   FMain.DBGrid1.Columns[8].Title.Caption:='Внутренний номер';
-  FMain.Panel1.Caption:=NameServer.GetName;
-  //'  Записей: '+IntToStr(FMain.DBGrid1.DataSource.DataSet.RecordCount)+'  ';
+  FMain.Panel1.Caption:=NameServer.GetName+'  Записей: '
+    +IntToStr(FMain.DBGrid1.DataSource.DataSet.RecordCount)+'  ';
 end;
 
 procedure TRequestTypeCall.Button2Click(Sender: TObject);
@@ -119,17 +116,13 @@ begin
       '[code],[citynumber],[insidenumber],[id],[trunkid1],[trunkid2],[trunkid3])');
     SQL.Add('SELECT [date],[time],[duration],[statuscall],[typecall],[code],[citynumber],'+
       '[insidenumber],[id],[trunkid1],[trunkid2],[trunkid3]');
-    ///// ЗАПРОС /////
+    ///// Request /////
     SQL.Add('FROM ['+NameServer.GetDataBase+'].[dbo].[Call_records]');
-    case ComboBox1.ItemIndex of
-      0:SQL.Add('WHERE typecall='+''''+ComboBox1.Items[ComboBox1.ItemIndex]+'''');
-      1:SQL.Add('WHERE typecall='+''''+ComboBox1.Items[ComboBox1.ItemIndex]+'''');
-    end;
+    SQL.Add('WHEREtypecall='+''''+ComboBox1.Items[ComboBox1.ItemIndex]+'''');
     case ComboBox2.ItemIndex of
       0:SQL.Add('ORDER BY [date] asc,[time] asc');
       1:SQL.Add('ORDER BY [date] desc,[time] desc');
     end;
-    /////  /////
     {SQL.Add('EXEC sp_configure '+''''+'show advanced options'+''''+',1');
     SQL.Add('RECONFIGURE');
     SQL.Add('EXEC sp_configure '+''''+'xp_cmdshell'+''''+', 1');
@@ -144,7 +137,7 @@ begin
     SQL.Add('EXEC master..xp_cmdshell');
     SQL.Add(''''+'copy '+'"'+ExFileFields+'"'+' + '+'"'+ExFileTemp+'"'+' '+'"'+ExFileName+'"'+'''');
     SQL.Add('Drop Table ['+NameServer.GetDataBase+'].[dbo].[Temp]');
-    Active:=True;  //ExecSQL;
+    Active:=True;
   end;
 end;
 

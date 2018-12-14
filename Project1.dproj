@@ -86,16 +86,16 @@
 				<Form>FSpravka</Form>
 				<FormType>dfm</FormType>
 			</DCCReference>
-			<DCCReference Include="USettings.pas">
+			<DCCReference Include="USettings\USettings.pas">
 				<Form>FSettings</Form>
 				<FormType>dfm</FormType>
 			</DCCReference>
 			<DCCReference Include="UMain.pas">
 				<Form>FMain</Form>
 			</DCCReference>
-			<DCCReference Include="UDBConnection.pas"/>
+			<DCCReference Include="USettings\UDBConnection.pas"/>
 			<DCCReference Include="UInterface.pas"/>
-			<DCCReference Include="UAddCreate.pas">
+			<DCCReference Include="UAdd\UAddCreate.pas">
 				<Form>,
   UConstructor in &apos;UConstructor.&apos;</Form>
 			</DCCReference>
@@ -108,11 +108,11 @@
 			<DCCReference Include="URequestCreate\URequestNumber.pas"/>
 			<DCCReference Include="URequestCreate\URequestStatusCall.pas"/>
 			<DCCReference Include="URequestCreate\URequestTypeCall.pas"/>
-			<DCCReference Include="UVarServer.pas"/>
-			<DCCReference Include="UFile.pas"/>
-			<DCCReference Include="UUpdateBase.pas"/>
-			<DCCReference Include="UScript.pas"/>
-			<DCCReference Include="UObjectsCreate.pas"/>
+			<DCCReference Include="USettings\UVarServer.pas"/>
+			<DCCReference Include="USettings\UFile.pas"/>
+			<DCCReference Include="UAdd\UUpdateBase.pas"/>
+			<DCCReference Include="USettings\UScript.pas"/>
+			<DCCReference Include="UAdd\UObjectsCreate.pas"/>
 			<BuildConfiguration Include="Release">
 				<Key>Cfg_2</Key>
 				<CfgParent>Base</CfgParent>

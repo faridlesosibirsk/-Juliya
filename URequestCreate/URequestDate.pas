@@ -39,10 +39,38 @@ begin
   ObjectsCreate.LabelCreate(AOwner,30,12,'Выберите период с:                               по:',Label1);
   ObjectsCreate.LabelCreate(AOwner,30,44,'Время с:                                                по:',Label2);
   ObjectsCreate.LabelCreate(AOwner,30,76,'Сортировка по:',Label3);
-  ObjectsCreate.DateTimePickerCreate(AOwner,160,8,110,dtkDate,DateTimePicker1);
-  ObjectsCreate.DateTimePickerCreate(AOwner,300,8,110,dtkDate,DateTimePicker2);
-  ObjectsCreate.DateTimePickerCreate(AOwner,160,40,110,dtkTime,DateTimePicker3);
-  ObjectsCreate.DateTimePickerCreate(AOwner,300,40,110,dtkTime,DateTimePicker4);
+  DateTimePicker1:=TDateTimePicker.create(AOwner);
+  DateTimePicker1.Left:=160;
+  DateTimePicker1.Top:=8;
+  DateTimePicker1.Width:=110;
+  DateTimePicker1.Parent:= AOwner;
+  DateTimePicker1.Kind:=dtkDate;
+  DateTimePicker1.Font.Name:='Times New Roman';
+  DateTimePicker1.Font.Size:=11;
+  DateTimePicker2:=TDateTimePicker.Create(AOwner);
+  DateTimePicker2.Left:=300;
+  DateTimePicker2.Top:=8;
+  DateTimePicker2.Width:=110;
+  DateTimePicker2.Parent:= AOwner;
+  DateTimePicker2.Kind:=dtkDate;
+  DateTimePicker2.Font.Name:='Times New Roman';
+  DateTimePicker2.Font.Size:=11;
+  DateTimePicker3:=TDateTimePicker.create(AOwner);
+  DateTimePicker3.Left:=160;
+  DateTimePicker3.Top:=40;
+  DateTimePicker3.Width:=110;
+  DateTimePicker3.Parent:= AOwner;
+  DateTimePicker3.Kind:=dtkTime;
+  DateTimePicker3.Font.Name:='Times New Roman';
+  DateTimePicker3.Font.Size:=11;
+  DateTimePicker4:=TDateTimePicker.Create(AOwner);
+  DateTimePicker4.Left:=300;
+  DateTimePicker4.Top:=40;
+  DateTimePicker4.Width:=110;
+  DateTimePicker4.Parent:= AOwner;
+  DateTimePicker4.Kind:=dtkTime;
+  DateTimePicker4.Font.Name:='Times New Roman';
+  DateTimePicker4.Font.Size:=11;
   ObjectsCreate.ButtonCreate(AOwner,300,72,25,130,'Выполнить запрос',Button1);
   Button1.OnClick:=Button1Click;
   ObjectsCreate.ButtonCreate(AOwner,450,72,25,130,'Сохранить в файл',Button2);
@@ -93,8 +121,8 @@ begin
   FMain.DBGrid1.Columns[6].Title.Caption:='Код';
   FMain.DBGrid1.Columns[7].Title.Caption:='Городской номер';
   FMain.DBGrid1.Columns[8].Title.Caption:='Внутренний номер';
-  FMain.Panel1.Caption:=NameServer.GetName;
-  //'  Записей: '+IntToStr(FMain.DBGrid1.DataSource.DataSet.RecordCount)+'  ';
+  FMain.Panel1.Caption:=NameServer.GetName+'  Записей: '
+    +IntToStr(FMain.DBGrid1.DataSource.DataSet.RecordCount)+'  ';
 end;
 
 procedure TRequestDate.Button2Click(Sender: TObject);
@@ -117,7 +145,7 @@ begin
       '[code],[citynumber],[insidenumber],[id],[trunkid1],[trunkid2],[trunkid3])');
     SQL.Add('SELECT [date],[time],[duration],[statuscall],[typecall],[code],[citynumber],'+
       '[insidenumber],[id],[trunkid1],[trunkid2],[trunkid3]');
-    ///// ЗАПРОС /////
+    ///// Request /////
     SQL.Add('FROM ['+NameServer.GetDataBase+'].[dbo].[Call_records]');
     SQL.Add('WHERE (date>='+''''+FormatDateTime('yyyy-mm-dd',DateTimePicker1.Date)+''''+')');
     SQL.Add(' AND (date<='+''''+FormatDateTime('yyyy-mm-dd',DateTimePicker2.Date)+''''+')');
@@ -127,7 +155,6 @@ begin
       0:SQL.Add('ORDER BY [date] asc,[time] asc');
       1:SQL.Add('ORDER BY [date] desc,[time] desc');
     end;
-    /////  /////
     {SQL.Add('EXEC sp_configure '+''''+'show advanced options'+''''+',1');
     SQL.Add('RECONFIGURE');
     SQL.Add('EXEC sp_configure '+''''+'xp_cmdshell'+''''+', 1');
@@ -142,7 +169,7 @@ begin
     SQL.Add('EXEC master..xp_cmdshell');
     SQL.Add(''''+'copy '+'"'+ExFileFields+'"'+' + '+'"'+ExFileTemp+'"'+' '+'"'+ExFileName+'"'+'''');
     SQL.Add('Drop Table ['+NameServer.GetDataBase+'].[dbo].[Temp]');
-    Active:=True;  //ExecSQL;
+    Active:=True;
   end;
 end;
 

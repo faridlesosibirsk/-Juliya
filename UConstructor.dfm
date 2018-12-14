@@ -562,7 +562,7 @@ object FConstructor: TFConstructor
       Left = 546
       Top = 0
       Width = 4
-      Height = 19
+      Height = 18
       Align = alRight
       Font.Charset = RUSSIAN_CHARSET
       Font.Color = clWindowText
@@ -570,6 +570,7 @@ object FConstructor: TFConstructor
       Font.Name = 'Times New Roman'
       Font.Style = []
       ParentFont = False
+      ExplicitHeight = 19
     end
     object Panel5: TPanel
       Left = 0
@@ -588,7 +589,6 @@ object FConstructor: TFConstructor
     end
   end
   object ADOQuery1: TADOQuery
-    Connection = FSettings.ADOConnection1
     Parameters = <>
     Left = 31
     Top = 357

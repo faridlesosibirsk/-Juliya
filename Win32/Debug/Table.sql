@@ -1,4 +1,4 @@
-USE [Test]
+USE [Тест2018]
 
 SET QUOTED_IDENTIFIER ON
 
