@@ -17,6 +17,7 @@ type
     procedure destroy;override;
     procedure Button1Click(Sender:TObject);
     procedure Button2Click(Sender:TObject);
+    procedure Request;
   end;
 
 implementation
@@ -95,13 +96,10 @@ begin
   Button2.Free;
 end;
 
-procedure TRequestDate.Button1Click(Sender: TObject);
+procedure TRequestDate.Request;
 begin
   with FMain.AdoQuery1 do
   begin
-    active:=false;
-    SQL.Clear;
-    SQL.Add('SELECT * FROM	['+NameServer.GetDataBase+'].[dbo].[Call_records]');
     SQL.Add('WHERE (date>='+''''+FormatDateTime('yyyy-mm-dd',DateTimePicker1.Date)+''''+')');
     SQL.Add(' AND (date<='+''''+FormatDateTime('yyyy-mm-dd',DateTimePicker2.Date)+''''+')');
     SQL.Add(' AND (time>='+''''+FormatDateTime('hh:mm:ss',DateTimePicker3.Time)+''''+')');
@@ -110,17 +108,20 @@ begin
       0:SQL.Add('ORDER BY [date] asc,[time] asc');
       1:SQL.Add('ORDER BY [date] desc,[time] desc');
     end;
+  end;
+end;
+
+procedure TRequestDate.Button1Click(Sender: TObject);
+begin
+  with FMain.AdoQuery1 do
+  begin
+    active:=false;
+    SQL.Clear;
+    SQL.Add('SELECT * FROM	['+NameServer.GetDataBase+'].[dbo].[Call_records]');
+    Request;
     Active:=True;
   end;
-  FMain.DBGrid1.Columns[0].Title.Caption:='№';
-  FMain.DBGrid1.Columns[1].Title.Caption:='Дата';
-  FMain.DBGrid1.Columns[2].Title.Caption:='Время';
-  FMain.DBGrid1.Columns[3].Title.Caption:='Длительность';
-  FMain.DBGrid1.Columns[4].Title.Caption:='Статус звонка';
-  FMain.DBGrid1.Columns[5].Title.Caption:='Тип звонка';
-  FMain.DBGrid1.Columns[6].Title.Caption:='Код';
-  FMain.DBGrid1.Columns[7].Title.Caption:='Городской номер';
-  FMain.DBGrid1.Columns[8].Title.Caption:='Внутренний номер';
+  FMain.SetTitleDBGrid;
   FMain.Panel1.Caption:=NameServer.GetName+'  Записей: '
     +IntToStr(FMain.DBGrid1.DataSource.DataSet.RecordCount)+'  ';
 end;
@@ -147,14 +148,7 @@ begin
       '[insidenumber],[id],[trunkid1],[trunkid2],[trunkid3]');
     ///// Request /////
     SQL.Add('FROM ['+NameServer.GetDataBase+'].[dbo].[Call_records]');
-    SQL.Add('WHERE (date>='+''''+FormatDateTime('yyyy-mm-dd',DateTimePicker1.Date)+''''+')');
-    SQL.Add(' AND (date<='+''''+FormatDateTime('yyyy-mm-dd',DateTimePicker2.Date)+''''+')');
-    SQL.Add(' AND (time>='+''''+FormatDateTime('hh:mm:ss',DateTimePicker3.Time)+''''+')');
-    SQL.Add(' AND (time<'+''''+FormatDateTime('hh:mm:ss',DateTimePicker4.Time)+''''+')');
-    case ComboBox1.ItemIndex of
-      0:SQL.Add('ORDER BY [date] asc,[time] asc');
-      1:SQL.Add('ORDER BY [date] desc,[time] desc');
-    end;
+    Request;
     {SQL.Add('EXEC sp_configure '+''''+'show advanced options'+''''+',1');
     SQL.Add('RECONFIGURE');
     SQL.Add('EXEC sp_configure '+''''+'xp_cmdshell'+''''+', 1');

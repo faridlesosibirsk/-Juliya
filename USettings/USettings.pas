@@ -9,17 +9,10 @@ uses
 
 type
   TFSettings = class(TForm)
-    Edit1: TEdit;
-    Edit2: TEdit;
-    Edit3: TEdit;
-    Edit4: TEdit;
-    Edit5: TEdit;
-    Label1: TLabel;
-    Label2: TLabel;
-    Label3: TLabel;
-    Label4: TLabel;
-    Label5: TLabel;
-    Label6: TLabel;
+    Edit1, Edit2, Edit3,
+    Edit4, Edit5: TEdit;
+    Label1, Label2, Label3,
+    Label4, Label5, Label6: TLabel;
     Button1: TButton;
     BitBtn1: TBitBtn;
     CheckBox1: TCheckBox;
@@ -30,7 +23,6 @@ type
     procedure FormCreate(Sender: TObject);
     procedure Test1;
     procedure FormActivate(Sender: TObject);
-    procedure FormClose(Sender: TObject; var Action: TCloseAction);
   private
     { Private declarations }
   public
@@ -55,11 +47,6 @@ begin
   Edit2.Text:=NameServer.GetNameServer;
   Edit3.Text:=NameServer.GetNameUser;
   Edit5.Text:=NameServer.GetDataBase;
-end;
-
-procedure TFSettings.FormClose(Sender: TObject; var Action: TCloseAction);
-begin
-  if SelectMenu=1 then File1.SortFileListBox(AddCreate.GetFileListBox);
 end;
 
 procedure TFSettings.FormCreate(Sender: TObject);
@@ -107,6 +94,7 @@ begin
   begin
     NameServer.SaveConfig(edit2.Text,edit3.Text,edit4.Text,edit5.Text,edit1.text);
     AddCreate.SetFileListBox(NameServer.Getpath+'*.trc');
+    if SelectMenu=1 then File1.SortFileListBox(AddCreate.GetFileListBox);
     Script.ScriptCreateDB;
     Script.ScriptCreateTb;
     ///// connecting to DataBase

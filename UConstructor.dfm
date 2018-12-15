@@ -535,6 +535,7 @@ object FConstructor: TFConstructor
       Top = 0
       Width = 550
       Height = 157
+      Align = alClient
       DataSource = DataSource1
       Font.Charset = RUSSIAN_CHARSET
       Font.Color = clDefault
