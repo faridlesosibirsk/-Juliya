@@ -3,17 +3,16 @@ unit UMain;
 interface
 
 uses
-  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, Classes,
-  Graphics,Controls, Forms, Dialogs, Menus, StdCtrls,
-  Grids, DBGrids,Data.DB, Data.Win.ADODB, FileCtrl, ExtCtrls, ComCtrls,
-  UInterface, UAddCreate,UConstructor,USpravka, USettings,
-  URequestAllRecords,URequestDate,URequestStatusCall,URequestTypeCall,
-  URequestNumber,UVarServer,UFile,UObjectsCreate;
+  Vcl.Controls, Vcl.Grids, System.Classes, Forms, Menus,
+  StdCtrls, DBGrids, Data.DB, Data.Win.ADODB,  ExtCtrls,
+  UInterface, UAddCreate, UConstructor, UHelp, USettings,
+  URequestAllRecords, URequestDate, URequestStatusCall, URequestTypeCall,
+  URequestNumber, UVarServer, UFile, UObjectsCreate;
 
 type
   TFMain = class(TForm)
     MainMenu1: TMainMenu;
-    AddFile, MRequest, MRequestDate,
+    MAddFile, MRequest, MRequestDate,
     ConstructorRequests, MSettings,
     MHelp, MAllRecords, MStatusCall,
     MTypeCall, MNumber: TMenuItem;
@@ -22,7 +21,7 @@ type
     Panel1: TPanel;
     DataSource1: TDataSource;
     Memo1: TMemo;
-    procedure AddFileClick(Sender: TObject);
+    procedure MAddFileClick(Sender: TObject);
     procedure MSettingsClick(Sender: TObject);
     procedure MHelpClick(Sender: TObject);
     procedure MRequestDateClick(Sender: TObject);
@@ -58,13 +57,13 @@ begin
   MSettings.Enabled:=True;
 end;
 
-procedure TFMain.AddFileClick(Sender: TObject);
+procedure TFMain.MAddFileClick(Sender: TObject);
 begin
   if SelectMenu<>1 then
   begin
     fFileCreate.destroy;
     fFileCreate:=TAddCreate.create(self);
-    Caption:=AddFile.Caption;
+    Caption:=MAddFile.Caption;
     SelectMenu:=1;
     MSettings.Enabled:=True;
   end;
@@ -150,7 +149,7 @@ end;
 
 procedure TFMain.MHelpClick(Sender: TObject);
 begin
-  FSpravka.ShowModal;
+  FHelp.ShowModal;
 end;
 
 end.

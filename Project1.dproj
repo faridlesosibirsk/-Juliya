@@ -82,8 +82,8 @@
 			<DelphiCompile Include="$(MainSource)">
 				<MainSource>MainSource</MainSource>
 			</DelphiCompile>
-			<DCCReference Include="USpravka.pas">
-				<Form>FSpravka</Form>
+			<DCCReference Include="UHelp.pas">
+				<Form>FHelp</Form>
 				<FormType>dfm</FormType>
 			</DCCReference>
 			<DCCReference Include="USettings\USettings.pas">

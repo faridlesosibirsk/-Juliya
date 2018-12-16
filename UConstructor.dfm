@@ -2,7 +2,7 @@ object FConstructor: TFConstructor
   Left = 0
   Top = 0
   BorderStyle = bsSingle
-  Caption = #1050#1086#1085#1089#1090#1088#1091#1082#1090#1086#1088' '#1079#1072#1087#1088#1086#1089#1086#1074
+  Caption = #1050#1086#1085#1089#1090#1088#1091#1082#1090#1086#1088' '#1079#1072#1087#1088#1086#1089#1072
   ClientHeight = 520
   ClientWidth = 550
   Color = clBtnFace

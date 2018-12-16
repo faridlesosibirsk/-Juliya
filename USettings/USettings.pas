@@ -3,9 +3,8 @@ unit USettings;
 interface
 
 uses
-  SysUtils, Classes, Controls, Forms, Dialogs,
-  StdCtrls, Buttons, FileCtrl,
-  UDBConnection, UVarServer, UScript, UConstructor,UAddCreate;
+  System.Classes, SysUtils, Controls, Forms, Dialogs, StdCtrls, Buttons, FileCtrl,
+  UDBConnection, UVarServer, UScript, UConstructor, UAddCreate;
 
 type
   TFSettings = class(TForm)

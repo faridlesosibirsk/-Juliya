@@ -3,9 +3,8 @@ unit UConstructor;
 interface
 
 uses
-  Winapi.Windows, Winapi.Messages, SysUtils, Variants, Classes, Graphics,
-  Controls, Forms, Dialogs, ComCtrls, StdCtrls, ExtCtrls,
-  Grids, DBGrids, Data.DB, Data.Win.ADODB;
+  Vcl.Grids, Vcl.Controls, System.Classes, SysUtils, Forms,
+  ComCtrls, StdCtrls, ExtCtrls, DBGrids, Data.DB, Data.Win.ADODB;
 
 type
   TFConstructor = class(TForm)

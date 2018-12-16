@@ -2,7 +2,7 @@ unit URequestAllRecords;
 
 interface
 
-uses StdCtrls,SysUtils,Forms,URequestCreate;
+uses StdCtrls, SysUtils, Forms, URequestCreate;
 
 type
   TRequestAllRecords = class(TRequestCreate)

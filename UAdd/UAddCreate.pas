@@ -3,7 +3,7 @@ unit UAddCreate;
 interface
 
 uses
-  SysUtils, Variants, Controls, Forms, StdCtrls, Buttons,FileCtrl,Classes,Winapi.Windows,
+  SysUtils, Variants, Controls, Forms, StdCtrls, FileCtrl, Classes, Winapi.Windows,
   UInterface, UFile, UVarServer,IniFiles, UUpdateBase;
 
 type
@@ -33,8 +33,8 @@ var FileListBox1:TFileListBox;
 constructor TAddCreate.create(AOwner: TForm);
 begin
   FMain.Caption:='Добавление';
-  FMain.Height:=290;
-  FMain.Width:=580;
+  FMain.Height:=280;
+  FMain.Width:=570;
   FMain.DBGrid1.Align:=alNone;
   FMain.DBGrid1.Left:=8;
   FMain.DBGrid1.Top:=143;

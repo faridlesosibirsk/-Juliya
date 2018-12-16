@@ -3,7 +3,7 @@ unit UObjectsCreate;
 interface
 
 uses
-  stdCtrls,comctrls,Forms;
+  StdCtrls, Forms;
 
 type
   TObjectsCreate = class
@@ -76,3 +76,4 @@ begin
 end;
 
 end.
+
