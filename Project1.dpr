@@ -2,7 +2,7 @@ program Project1;
 
 uses
   Vcl.Forms,
-  USpravka in 'USpravka.pas' {FSpravka},
+  UHelp in 'UHelp.pas' {FHelp},
   USettings in 'USettings\USettings.pas' {FSettings},
   UMain in 'UMain.pas' {FMain},
   UDBConnection in 'USettings\UDBConnection.pas',
@@ -28,7 +28,7 @@ begin
   Application.Initialize;
   Application.MainFormOnTaskbar := True;
   Application.CreateForm(TFMain, FMain);
-  Application.CreateForm(TFSpravka, FSpravka);
+  Application.CreateForm(TFHelp, FHelp);
   Application.CreateForm(TFSettings, FSettings);
   Application.CreateForm(TFConstructor, FConstructor);
   Application.Run;

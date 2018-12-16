@@ -1,8 +1,9 @@
 object FMain: TFMain
   Left = 0
   Top = 0
+  BorderStyle = bsSingle
   Caption = 'FMain'
-  ClientHeight = 232
+  ClientHeight = 231
   ClientWidth = 564
   Color = clBtnFace
   Font.Charset = RUSSIAN_CHARSET
@@ -18,7 +19,7 @@ object FMain: TFMain
   TextHeight = 17
   object Memo1: TMemo
     Left = 8
-    Top = 139
+    Top = 155
     Width = 438
     Height = 33
     Font.Charset = RUSSIAN_CHARSET
@@ -32,9 +33,9 @@ object FMain: TFMain
   end
   object DBGrid1: TDBGrid
     Left = 8
-    Top = 139
+    Top = 143
     Width = 548
-    Height = 75
+    Height = 65
     DataSource = DataSource1
     TabOrder = 0
     TitleFont.Charset = RUSSIAN_CHARSET
@@ -45,12 +46,14 @@ object FMain: TFMain
   end
   object Panel1: TPanel
     Left = 0
-    Top = 215
+    Top = 214
     Width = 564
     Height = 17
     Align = alBottom
     BevelOuter = bvSpace
     TabOrder = 1
+    ExplicitLeft = 8
+    ExplicitTop = 94
   end
   object MainMenu1: TMainMenu
     Left = 376
@@ -59,9 +62,9 @@ object FMain: TFMain
       Caption = #1053#1072#1089#1090#1088#1086#1081#1082#1080
       OnClick = MSettingsClick
     end
-    object AddFile: TMenuItem
+    object MAddFile: TMenuItem
       Caption = #1044#1086#1073#1072#1074#1083#1077#1085#1080#1077
-      OnClick = AddFileClick
+      OnClick = MAddFileClick
     end
     object MRequest: TMenuItem
       Caption = #1047#1072#1087#1088#1086#1089#1099

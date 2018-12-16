@@ -2,7 +2,7 @@ unit UFile;
 
 interface
 
-uses StdCtrls,SysUtils,Classes,UVarServer,FileCtrl;
+uses StdCtrls,SysUtils,Classes,UVarServer,FileCtrl,DBGrids,ADODB;
 
 type
   TFile = class
@@ -10,13 +10,14 @@ type
   public
     function GetFileDate(FileName:String):String;
     function TextSize(FileName:string):integer;
-    procedure NumberFile(FileName:string;var FileListBox_:TFileListBox);
+    procedure NumberFile(FileName:string; var FileListBox_:TFileListBox;
+      DBGrid_:TDBGrid; adoQuery_:TADOQuery);
     procedure SortFileListBox(FileListBox_:TFileListBox);
   end;
 
 implementation
 
-uses UMain,UAddCreate;
+uses UMain;
 
 { TFile }
 
@@ -45,10 +46,10 @@ begin
   end;
 end;
 
-procedure TFile.NumberFile(FileName:string;var FileListBox_:TFileListBox);
+procedure TFile.NumberFile(FileName:string; var FileListBox_:TFileListBox; DBGrid_:TDBGrid; adoQuery_:TADOQuery);
 var NameServer:TNameServer;
 begin
-  with FMain.adoQuery1 do
+  with adoQuery_ do
   begin
     active:=false;
     SQL.Clear;
@@ -56,10 +57,10 @@ begin
     SQL.Add('WHERE FileName='+''''+FileListBox_.Items[FileListBox_.ItemIndex]+'''');
     Active:=True;
   end;
-  FMain.DBGrid1.Columns[0].Title.Caption:='№';
-  FMain.DBGrid1.Columns[1].Title.Caption:='Имя файла';
-  FMain.DBGrid1.Columns[2].Title.Caption:='Дата изменения';
-  FMain.DBGrid1.Columns[3].Title.Caption:='Количество строк';
+  DBGrid_.Columns[0].Title.Caption:='№';
+  DBGrid_.Columns[1].Title.Caption:='Имя файла';
+  DBGrid_.Columns[2].Title.Caption:='Дата изменения';
+  DBGrid_.Columns[3].Title.Caption:='Количество строк';
 end;
 
 procedure TFile.SortFileListBox(FileListBox_:TFileListBox);

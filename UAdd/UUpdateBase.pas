@@ -2,7 +2,7 @@ unit UUpdateBase;
 
 interface
 
-uses SysUtils,UVarServer;
+uses SysUtils;
 
 type
   Filestr = record

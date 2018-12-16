@@ -1,9 +1,10 @@
 object FSettings: TFSettings
   Left = 0
   Top = 0
+  BorderStyle = bsSingle
   Caption = #1053#1072#1089#1090#1088#1086#1081#1082#1080
-  ClientHeight = 217
-  ClientWidth = 435
+  ClientHeight = 216
+  ClientWidth = 434
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -13,7 +14,6 @@ object FSettings: TFSettings
   OldCreateOrder = False
   Position = poDesktopCenter
   OnActivate = FormActivate
-  OnClose = FormClose
   OnCreate = FormCreate
   PixelsPerInch = 96
   TextHeight = 13

@@ -3,17 +3,16 @@ unit UMain;
 interface
 
 uses
-  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
-  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.Menus, Vcl.StdCtrls,
-  Vcl.Grids, Vcl.DBGrids,Data.DB, Data.Win.ADODB, Vcl.FileCtrl, Vcl.ExtCtrls, Vcl.ComCtrls,
-  UInterface, UAddCreate,UConstructor,USpravka, USettings,
-  URequestAllRecords,URequestDate,URequestStatusCall,URequestTypeCall,
-  URequestNumber,UVarServer,UFile,UObjectsCreate;
+  Vcl.Controls, Vcl.Grids, System.Classes, Forms, Menus,
+  StdCtrls, DBGrids, Data.DB, Data.Win.ADODB,  ExtCtrls,
+  UInterface, UAddCreate, UConstructor, UHelp, USettings,
+  URequestAllRecords, URequestDate, URequestStatusCall, URequestTypeCall,
+  URequestNumber, UVarServer, UFile, UObjectsCreate;
 
 type
   TFMain = class(TForm)
     MainMenu1: TMainMenu;
-    AddFile, MRequest, MRequestDate,
+    MAddFile, MRequest, MRequestDate,
     ConstructorRequests, MSettings,
     MHelp, MAllRecords, MStatusCall,
     MTypeCall, MNumber: TMenuItem;
@@ -22,7 +21,7 @@ type
     Panel1: TPanel;
     DataSource1: TDataSource;
     Memo1: TMemo;
-    procedure AddFileClick(Sender: TObject);
+    procedure MAddFileClick(Sender: TObject);
     procedure MSettingsClick(Sender: TObject);
     procedure MHelpClick(Sender: TObject);
     procedure MRequestDateClick(Sender: TObject);
@@ -32,6 +31,7 @@ type
     procedure MTypeCallClick(Sender: TObject);
     procedure MNumberClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
+    procedure SetTitleDBGrid;
   private
     fFileCreate: TInterfaceMenuCreate;
   end;
@@ -53,16 +53,19 @@ implementation
 procedure TFMain.FormCreate(Sender: TObject);
 begin
   fFileCreate:=TAddCreate.create(FMain);
+  SelectMenu:=1;
+  MSettings.Enabled:=True;
 end;
 
-procedure TFMain.AddFileClick(Sender: TObject);
+procedure TFMain.MAddFileClick(Sender: TObject);
 begin
   if SelectMenu<>1 then
   begin
     fFileCreate.destroy;
     fFileCreate:=TAddCreate.create(self);
-    Caption:=AddFile.Caption;
+    Caption:=MAddFile.Caption;
     SelectMenu:=1;
+    MSettings.Enabled:=True;
   end;
 end;
 
@@ -73,6 +76,7 @@ begin
     fFileCreate.destroy;
     fFileCreate:=TRequestAllRecords.create(self);
     SelectMenu:=2;
+    MSettings.Enabled:=False;
   end;
 end;
 
@@ -83,6 +87,7 @@ begin
     fFileCreate.destroy;
     fFileCreate:=TRequestDate.create(self);
     SelectMenu:=3;
+    MSettings.Enabled:=False;
   end;
 end;
 
@@ -93,6 +98,7 @@ begin
     fFileCreate.destroy;
     fFileCreate:=TRequestStatusCall.create(self);
     SelectMenu:=4;
+    MSettings.Enabled:=False;
   end;
 end;
 
@@ -103,7 +109,21 @@ begin
     fFileCreate.destroy;
     fFileCreate:=TRequestTypeCall.create(self);
     SelectMenu:=5;
+    MSettings.Enabled:=False;
   end;
+end;
+
+procedure TFMain.SetTitleDBGrid;
+begin
+  DBGrid1.Columns[0].Title.Caption:='№';
+  DBGrid1.Columns[1].Title.Caption:='Дата';
+  DBGrid1.Columns[2].Title.Caption:='Время';
+  DBGrid1.Columns[3].Title.Caption:='Длительность';
+  DBGrid1.Columns[4].Title.Caption:='Статус звонка';
+  DBGrid1.Columns[5].Title.Caption:='Тип звонка';
+  DBGrid1.Columns[6].Title.Caption:='Код';
+  DBGrid1.Columns[7].Title.Caption:='Городской номер';
+  DBGrid1.Columns[8].Title.Caption:='Внутренний номер';
 end;
 
 procedure TFMain.MNumberClick(Sender: TObject);
@@ -113,6 +133,7 @@ begin
     fFileCreate.destroy;
     fFileCreate:=TRequestNumber.create(self);
     SelectMenu:=6;
+    MSettings.Enabled:=False;
   end;
 end;
 
@@ -128,7 +149,7 @@ end;
 
 procedure TFMain.MHelpClick(Sender: TObject);
 begin
-  FSpravka.ShowModal;
+  FHelp.ShowModal;
 end;
 
 end.
