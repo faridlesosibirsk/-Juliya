@@ -2,7 +2,7 @@ unit URequestStatusCall;
 
 interface
 
-uses StdCtrls, SysUtils, Forms, URequestCreate;
+uses StdCtrls, SysUtils, Forms, URequestCreate, UVarServer, UObjectsCreate;
 
 type
   TRequestStatusCall = class(TRequestCreate)
@@ -10,6 +10,8 @@ type
     Label1,Label2:TLabel;
     Combobox1,ComboBox2:TCombobox;
     Button1,Button2:TButton;
+    NameServer:TNameServer;
+    ObjectsCreate:TObjectsCreate;
   public
     constructor create(AOwner: TForm);override;
     procedure destroy;override;
@@ -26,6 +28,7 @@ uses UMain;
 
 constructor TRequestStatusCall.create(AOwner: TForm);
 begin
+  NameServer:=TNameServer.GetInstance;
   FMain.Caption:='Запрос: статус звонка';
   FMain.Height:=700;
   FMain.Width:=1000;

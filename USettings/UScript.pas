@@ -9,8 +9,8 @@ type
   TScript = class
   private
   public
-    procedure ScriptCreateDB;
-    procedure ScriptCreateTb;
+    procedure ScriptCreateDB(NameServer:TNameServer);
+    procedure ScriptCreateTb(NameServer:TNameServer);
     procedure RequestCreate;
   end;
 
@@ -56,7 +56,7 @@ begin
   end;
 end;
 
-procedure TScript.ScriptCreateDB;
+procedure TScript.ScriptCreateDB(NameServer:TNameServer);
 var
   myFile:TextFile;
   startword,endword,lengthword:integer;
@@ -109,7 +109,7 @@ begin
   FMain.Memo1.Lines.SaveToFile(GetCurrentDir()+'\Calls.sql');
 end;
 
-procedure TScript.ScriptCreateTb;
+procedure TScript.ScriptCreateTb(NameServer:TNameServer);
 var
   myFile:TextFile;
   startword,endword,lengthword:integer;

@@ -2,12 +2,13 @@ unit UDBConnection;
 
 interface
 
-uses Data.Win.ADODB;
+uses Data.Win.ADODB, UVarServer;
 
 type
   TDBConnection = class
   private
     ADOConnection:TADOConnection;
+    NameServer:TNameServer;
   public
     function GetDBConnect:String;
     function GetADOConnection: TADOConnection;
@@ -18,7 +19,7 @@ implementation
 
 { TDBconnection }
 
-uses UVarServer,UMain;
+uses UMain;
 
 constructor TDBConnection.create;
 begin
@@ -36,6 +37,7 @@ end;
 
 function TDBConnection.GetDBConnect: String;
 begin
+  NameServer:=TNameServer.GetInstance;
   result:='Provider=SQLOLEDB;Password='+NameServer.GetPassword+
   ';Persist Security Info=True;User ID='+NameServer.GetNameUser+
   ';Initial Catalog='+'model'+';Data Source='+NameServer.GetNameServer;

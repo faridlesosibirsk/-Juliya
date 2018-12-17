@@ -4,7 +4,7 @@ interface
 
 uses
   SysUtils, Variants, Controls, Forms, StdCtrls, FileCtrl, Classes, Winapi.Windows,
-  UInterface, UFile, UVarServer,IniFiles, UUpdateBase;
+  UInterface, UFile, UVarServer,IniFiles, UUpdateBase, UObjectsCreate;
 
 type
   TAddCreate = class(TInterfacedObject, TInterfaceMenuCreate)
@@ -12,6 +12,9 @@ type
     Label1,Label2,Label3:TLabel;
     Label4,Label5,Label6:TLabel;
     Button1:TButton;
+    NameServer:TNameServer;
+    ObjectsCreate:TObjectsCreate;
+    File1:TFile;
   public
     procedure SetFileListBox(mask: string);
     function GetFileListBox:TFileListBox;
@@ -32,6 +35,7 @@ var FileListBox1:TFileListBox;
 
 constructor TAddCreate.create(AOwner: TForm);
 begin
+  NameServer:=TNameServer.GetInstance;
   FMain.Caption:='Добавление';
   FMain.Height:=280;
   FMain.Width:=570;
@@ -62,7 +66,7 @@ begin
   FileListBox1.OnKeyUp:=FileListBox1KeyUp;
   FileListBox1.OnMouseDown:=FileListBox1MouseDown;
   FileListBox1.OnMouseUp:=FileListBox1MouseDown;
-  File1.SortFileListBox(AddCreate.GetFileListBox);
+  File1.SortFileListBox(GetFileListBox);
 end;
 
 procedure TAddCreate.destroy;
@@ -101,13 +105,13 @@ begin
         ', '+''''+IntToStr(File1.TextSize(NameServer.Getpath+FileName))+''''+')');
       ExecSQL;
       i:=1;
-      UpDateBase(NameServer.Getpath+FileName,i);
+      UpDateBase(NameServer,NameServer.Getpath+FileName,i);
       Application.MessageBox('Файл добавлен в базу данных','Информация')
     end
     else if Fields[3].value<File1.TextSize(NameServer.Getpath+FileName) then
     begin
       i:=Fields[3].value+1;
-      UpDateBase(NameServer.Getpath+FileName,i);
+      UpDateBase(NameServer,NameServer.Getpath+FileName,i);
       active:=false;
       SQL.Clear;
       SQL.Add('UPDATE ['+NameServer.GetDataBase+'].[dbo].[AddFiles]');
@@ -129,7 +133,7 @@ begin
     if (key=VK_LEFT)or(key=VK_RIGHT)or(key=VK_UP)or(key=VK_DOWN)
     then
     begin
-      File1.NumberFile(NameServer.Getpath+FileListBox1.Items[FileListBox1.ItemIndex],FileListBox1,FMain.DBGrid1,FMain.ADOQuery1);
+      File1.NumberFile(NameServer,FileListBox1,FMain.DBGrid1,FMain.ADOQuery1);
       Label4.Caption:=IntToStr(FileListBox1.ItemIndex+1);
       Label5.Caption:=IntToStr(File1.TextSize(NameServer.Getpath+FileListBox1.Items[FileListBox1.ItemIndex]));
       Label6.Caption:=File1.GetFileDate(NameServer.Getpath+FileListBox1.Items[FileListBox1.ItemIndex]);
@@ -141,8 +145,7 @@ procedure TAddCreate.FileListBox1MouseDown(Sender: TObject; Button: TMouseButton
 begin
   if FileListBox1.Count<>0
   then begin
-    File1.NumberFile(NameServer.Getpath+FileListBox1.Items[FileListBox1.ItemIndex],
-      FileListBox1,FMain.DBGrid1,FMain.ADOQuery1);
+    File1.NumberFile(NameServer,FileListBox1,FMain.DBGrid1,FMain.ADOQuery1);
     Label4.Caption:=IntToStr(FileListBox1.ItemIndex+1);
     Label5.Caption:=IntToStr(File1.TextSize(NameServer.Getpath+FileListBox1.Items[FileListBox1.ItemIndex]));
     Label6.Caption:=File1.GetFileDate(NameServer.Getpath+FileListBox1.Items[FileListBox1.ItemIndex]);

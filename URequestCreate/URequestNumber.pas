@@ -2,7 +2,7 @@ unit URequestNumber;
 
 interface
 
-uses StdCtrls, SysUtils, Forms, URequestCreate;
+uses StdCtrls, SysUtils, Forms, URequestCreate, UVarServer, UObjectsCreate;
 
 type
   TRequestNumber = class(TRequestCreate)
@@ -11,6 +11,8 @@ type
     Combobox1,ComboBox2:TCombobox;
     Edit1:TEdit;
     Button1,Button2:TButton;
+    NameServer:TNameServer;
+    ObjectsCreate:TObjectsCreate;
   public
     constructor create(AOwner: TForm);override;
     procedure destroy;override;
@@ -27,6 +29,7 @@ uses UMain;
 
 constructor TRequestNumber.create(AOwner: TForm);
 begin
+  NameServer:=TNameServer.GetInstance;
   FMain.Caption:='Запрос: по номеру телефона';
   FMain.Height:=700;
   FMain.Width:=1000;

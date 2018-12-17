@@ -10,7 +10,7 @@ type
   public
     function GetFileDate(FileName:String):String;
     function TextSize(FileName:string):integer;
-    procedure NumberFile(FileName:string; var FileListBox_:TFileListBox;
+    procedure NumberFile(NameServer:TNameServer;var FileListBox_:TFileListBox;
       DBGrid_:TDBGrid; adoQuery_:TADOQuery);
     procedure SortFileListBox(FileListBox_:TFileListBox);
   end;
@@ -46,8 +46,7 @@ begin
   end;
 end;
 
-procedure TFile.NumberFile(FileName:string; var FileListBox_:TFileListBox; DBGrid_:TDBGrid; adoQuery_:TADOQuery);
-var NameServer:TNameServer;
+procedure TFile.NumberFile(NameServer:TNameServer;var FileListBox_:TFileListBox; DBGrid_:TDBGrid; adoQuery_:TADOQuery);
 begin
   with adoQuery_ do
   begin

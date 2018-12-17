@@ -2,7 +2,7 @@ unit UUpdateBase;
 
 interface
 
-uses SysUtils;
+uses SysUtils, UVarServer;
 
 type
   Filestr = record
@@ -18,7 +18,7 @@ type
     trunkid2:string[4];
     trunkid3:string[2];
   end;
-  procedure UpDateBase(FileName:string;start:integer);
+  procedure UpDateBase(NameServer:TNameServer;FileName:string;start:integer);
 
 var
    p:array of Filestr;         //динамический массив записей
@@ -30,7 +30,7 @@ uses UMain;
 
 { TUpdateDB }
 
-procedure UpDateBase(FileName:string;start: integer);
+procedure UpDateBase(NameServer:TNameServer;FileName:string;start: integer);
 var
   i,j,n:integer;                    //переменная цикла
   text,s:string;                    //исходная строка

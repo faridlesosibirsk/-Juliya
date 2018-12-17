@@ -6,7 +6,12 @@ uses SysUtils,IniFiles,Forms;
 
 type
   TNameServer = class
+  private
+    var path, NameServer, NameUser, DataBase, password:string;
+    class var FInstance: TNameServer;
   public
+    class function GetInstance: TNameServer;
+    class destructor DestroyClass;
     function GetName:string;
     function GetNameUser:string;
     function GetDataBase:string;
@@ -20,9 +25,22 @@ type
 
 implementation
 
-var path, NameServer, NameUser, DataBase, password:string;
+
 
 { TNameServer }
+
+class function TNameServer.GetInstance: TNameServer;
+begin
+  if not Assigned(FInstance) then
+    FInstance := TNameServer.Create;
+  Result := FInstance;
+end;
+
+class destructor TNameServer.DestroyClass;
+begin
+  if Assigned(FInstance) then
+    FInstance.Free;
+end;
 
 function TNameServer.GetDataBase: string;
 begin

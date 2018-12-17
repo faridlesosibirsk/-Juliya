@@ -2,7 +2,7 @@ unit URequestDate;
 
 interface
 
-uses StdCtrls, SysUtils, Forms, ComCtrls, URequestCreate;
+uses StdCtrls, SysUtils, Forms, ComCtrls, URequestCreate, UVarServer, UObjectsCreate;
 
 type
   TRequestDate = class(TRequestCreate)
@@ -12,6 +12,8 @@ type
     Button1,Button2:TButton;
     DateTimePicker1,DateTimePicker2,
     DateTimePicker3,DateTimePicker4:TDateTimePicker;
+    NameServer:TNameServer;
+    ObjectsCreate:TObjectsCreate;
   public
     constructor create(AOwner: TForm);override;
     procedure destroy;override;
@@ -28,6 +30,7 @@ uses UMain;
 
 constructor TRequestDate.create(AOwner: TForm);
 begin
+  NameServer:=TNameServer.GetInstance;
   FMain.Caption:='Запрос: по дате и времени';
   FMain.Height:=700;
   FMain.Width:=1000;
