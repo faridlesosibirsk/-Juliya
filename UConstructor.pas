@@ -4,7 +4,7 @@ interface
 
 uses
   Vcl.Grids, Vcl.Controls, System.Classes, SysUtils, Forms,
-  ComCtrls, StdCtrls, ExtCtrls, DBGrids, Data.DB, Data.Win.ADODB;
+  ComCtrls, StdCtrls, ExtCtrls, DBGrids, Data.DB, Data.Win.ADODB, UVarServer;
 
 type
   TFConstructor = class(TForm)
@@ -60,6 +60,7 @@ type
     procedure Edit1KeyPress(Sender: TObject; var Key: Char);
     procedure SelectingComboBox;
   private
+    NameServer:TNameServer;
     { Private declarations }
   public
     { Public declarations }
@@ -72,10 +73,11 @@ implementation
 
 {$R *.dfm}
 
-uses UMain,UVarServer;
+uses UMain;
 
 procedure TFConstructor.FormCreate(Sender: TObject);
 begin
+  NameServer:=TNameServer.GetInstance;
   Label10.Visible:=False;
   Label11.Visible:=False;
   Button2.Visible:=False;
@@ -341,7 +343,7 @@ begin
     ExFile2:=getcurrentdir()+'\Temp.csv';
     SQL.Add('EXEC master..xp_cmdshell');
     SQL.Add(''''+'bcp "SELECT * FROM ['+NameServer.GetDataBase+'].[dbo].[Temp]" queryout '+
-      ExFile2+' -T -w -x -t"	"'+'''');
+      '"'+ExFile2+'"'+' -T -w -x -t"	"'+'''');
     SQL.Add('EXEC master..xp_cmdshell');
     SQL.Add(''''+'copy '+'"'+ExFile1+'"'+' + '+'"'+ExFile2+'"'+' '+'"'+ExFileName+'.csv'+'"'+'''');
     SQL.Add('Drop Table ['+NameServer.GetDataBase+'].[dbo].[Temp]');

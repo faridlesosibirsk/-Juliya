@@ -7,7 +7,7 @@ uses
   StdCtrls, DBGrids, Data.DB, Data.Win.ADODB,  ExtCtrls,
   UInterface, UAddCreate, UConstructor, UHelp, USettings,
   URequestAllRecords, URequestDate, URequestStatusCall, URequestTypeCall,
-  URequestNumber, UVarServer, UFile, UObjectsCreate;
+  URequestNumber;
 
 type
   TFMain = class(TForm)
@@ -38,10 +38,7 @@ type
 
 var
   FMain: TFMain;
-  NameServer:TNameServer;
-  File1:TFile;
   AddCreate:TAddCreate;
-  ObjectsCreate:TObjectsCreate;
   SelectMenu:integer;
 
 implementation

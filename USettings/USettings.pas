@@ -4,7 +4,7 @@ interface
 
 uses
   System.Classes, SysUtils, Controls, Forms, Dialogs, StdCtrls, Buttons, FileCtrl,
-  UDBConnection, UVarServer, UScript, UConstructor, UAddCreate;
+  UDBConnection, UVarServer, UScript, UConstructor, UAddCreate, UFile;
 
 type
   TFSettings = class(TForm)
@@ -23,6 +23,9 @@ type
     procedure Test1;
     procedure FormActivate(Sender: TObject);
   private
+    NameServer:TNameServer;
+    Script:TScript;
+    File1:TFile;
     { Private declarations }
   public
     { Public declarations }
@@ -30,7 +33,6 @@ type
 
 var
   FSettings:TFSettings;
-  Script:TScript;
   Connection: TDBConnection;
 
 implementation
@@ -51,6 +53,7 @@ end;
 procedure TFSettings.FormCreate(Sender: TObject);
 begin
   BitBtn1.glyph.LoadFromFile(getcurrentdir()+'\Folder.bmp');
+  NameServer:=TNameServer.GetInstance;
 end;
 
 procedure TFSettings.BitBtn1Click(Sender: TObject);
@@ -94,8 +97,8 @@ begin
     NameServer.SaveConfig(edit2.Text,edit3.Text,edit4.Text,edit5.Text,edit1.text);
     AddCreate.SetFileListBox(NameServer.Getpath+'*.trc');
     if SelectMenu=1 then File1.SortFileListBox(AddCreate.GetFileListBox);
-    Script.ScriptCreateDB;
-    Script.ScriptCreateTb;
+    Script.ScriptCreateDB(NameServer);
+    Script.ScriptCreateTb(NameServer);
     ///// connecting to DataBase
     Connection:= TDBConnection.create;
     FMain.ADOQuery1.Connection:= Connection.GetADOConnection;
