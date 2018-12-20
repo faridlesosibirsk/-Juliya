@@ -2,16 +2,15 @@ unit URequestAllRecords;
 
 interface
 
-uses StdCtrls, SysUtils, Forms, URequestCreate, UVarServer, UObjectsCreate;
+uses StdCtrls, SysUtils, Forms, URequestCreate, UVarServer, UInterface;
 
 type
-  TRequestAllRecords = class(TRequestCreate)
+  TRequestAllRecords = class(TInterfaceMenuCreate)
   private
     Label1:TLabel;
     Combobox1:TCombobox;
     Button1,Button2:TButton;
     NameServer:TNameServer;
-    ObjectsCreate:TObjectsCreate;
   public
     constructor create(AOwner: TForm);override;
     procedure destroy;override;
@@ -38,12 +37,12 @@ begin
   FMain.DBGrid1.Width:=969;
   FMain.ADOQuery1.Close;
   FMain.Panel1.Caption:=NameServer.GetName;
-  ObjectsCreate.LabelCreate(AOwner,30,12,'Сортировка по:',Label1);
-  ObjectsCreate.ButtonCreate(AOwner,310,7,25,130,'Выполнить запрос',Button1);
+  fFileCreate.LabelCreate(AOwner,30,12,'Сортировка по:',Label1);
+  fFileCreate.ButtonCreate(AOwner,310,7,25,130,'Выполнить запрос',Button1);
   Button1.OnClick:=Button1Click;
-  ObjectsCreate.ButtonCreate(AOwner,460,7,25,130,'Сохранить в файл',Button2);
+  fFileCreate.ButtonCreate(AOwner,460,7,25,130,'Сохранить в файл',Button2);
   Button2.OnClick:=Button2Click;
-  ObjectsCreate.ComboBoxCreate(AOwner,150,8,140,ComboBox1);
+  fFileCreate.ComboBoxCreate(AOwner,150,8,140,ComboBox1);
   ComboBox1.Items.Add('возрастанию');
   ComboBox1.Items.Add('убыванию');
   ComboBox1.ItemIndex:=0;

@@ -23,9 +23,16 @@ type
     procedure Test1;
     procedure FormActivate(Sender: TObject);
   private
-    NameServer:TNameServer;
-    Script:TScript;
-    File1:TFile;
+    /// <link>aggregation</link>
+    NameServer: TNameServer;
+    /// <link>aggregation</link>
+    Script: TScript;
+    /// <link>aggregation</link>
+    File1: TFile;
+    /// <link>aggregation</link>
+    AddCreate: TAddCreate;
+    /// <link>aggregation</link>
+    Connection: TDBConnection;
     { Private declarations }
   public
     { Public declarations }
@@ -33,7 +40,7 @@ type
 
 var
   FSettings:TFSettings;
-  Connection: TDBConnection;
+
 
 implementation
 
@@ -100,7 +107,7 @@ begin
     Script.ScriptCreateDB(NameServer);
     Script.ScriptCreateTb(NameServer);
     ///// connecting to DataBase
-    Connection:= TDBConnection.create;
+    Connection:= TDBConnection.create(NameServer);
     FMain.ADOQuery1.Connection:= Connection.GetADOConnection;
     FConstructor.ADOQuery1.Connection:= Connection.GetADOConnection;
     ///search all names DataBases

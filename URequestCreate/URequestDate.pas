@@ -2,10 +2,10 @@ unit URequestDate;
 
 interface
 
-uses StdCtrls, SysUtils, Forms, ComCtrls, URequestCreate, UVarServer, UObjectsCreate;
+uses StdCtrls, SysUtils, Forms, ComCtrls, URequestCreate, UVarServer, UInterface;
 
 type
-  TRequestDate = class(TRequestCreate)
+  TRequestDate = class(TInterfaceMenuCreate)
   private
     Label1,Label2,Label3:TLabel;
     Combobox1:TCombobox;
@@ -13,13 +13,15 @@ type
     DateTimePicker1,DateTimePicker2,
     DateTimePicker3,DateTimePicker4:TDateTimePicker;
     NameServer:TNameServer;
-    ObjectsCreate:TObjectsCreate;
+    FProperty1: Integer;
+    procedure SetProperty1(val: Integer);
   public
     constructor create(AOwner: TForm);override;
     procedure destroy;override;
     procedure Button1Click(Sender:TObject);
     procedure Button2Click(Sender:TObject);
     procedure Request;
+    property Property1: Integer read FProperty1 write SetProperty1;
   end;
 
 implementation
@@ -40,9 +42,9 @@ begin
   FMain.DBGrid1.Width:=969;
   FMain.ADOQuery1.Close;
   FMain.Panel1.Caption:=NameServer.GetName;
-  ObjectsCreate.LabelCreate(AOwner,30,12,'Выберите период с:                               по:',Label1);
-  ObjectsCreate.LabelCreate(AOwner,30,44,'Время с:                                                по:',Label2);
-  ObjectsCreate.LabelCreate(AOwner,30,76,'Сортировка по:',Label3);
+  fFileCreate.LabelCreate(AOwner,30,12,'Выберите период с:                               по:',Label1);
+  fFileCreate.LabelCreate(AOwner,30,44,'Время с:                                                по:',Label2);
+  fFileCreate.LabelCreate(AOwner,30,76,'Сортировка по:',Label3);
   DateTimePicker1:=TDateTimePicker.create(AOwner);
   DateTimePicker1.Left:=160;
   DateTimePicker1.Top:=8;
@@ -75,11 +77,11 @@ begin
   DateTimePicker4.Kind:=dtkTime;
   DateTimePicker4.Font.Name:='Times New Roman';
   DateTimePicker4.Font.Size:=11;
-  ObjectsCreate.ButtonCreate(AOwner,300,72,25,130,'Выполнить запрос',Button1);
+  fFileCreate.ButtonCreate(AOwner,300,72,25,130,'Выполнить запрос',Button1);
   Button1.OnClick:=Button1Click;
-  ObjectsCreate.ButtonCreate(AOwner,450,72,25,130,'Сохранить в файл',Button2);
+  fFileCreate.ButtonCreate(AOwner,450,72,25,130,'Сохранить в файл',Button2);
   Button2.OnClick:=Button2Click;
-  ObjectsCreate.ComboBoxCreate(AOwner,160,72,110,ComboBox1);
+  fFileCreate.ComboBoxCreate(AOwner,160,72,110,ComboBox1);
   ComboBox1.Items.Add('возрастанию');
   ComboBox1.Items.Add('убыванию');
   ComboBox1.ItemIndex:=0;
@@ -168,6 +170,10 @@ begin
     SQL.Add('Drop Table ['+NameServer.GetDataBase+'].[dbo].[Temp]');
     Active:=True;
   end;
+end;
+
+procedure TRequestDate.SetProperty1(val: Integer);
+begin
 end;
 
 end.
