@@ -229,28 +229,21 @@ begin
       2:a:='('+'date>='+''''+FormatDateTime('yyyy-mm-dd',DateTimePicker1.Date)+''''+')'
         +' and ('+'date<='+''''+FormatDateTime('yyyy-mm-dd',DateTimePicker2.Date)+''''+')';
     end;
-    case ComboBox2.ItemIndex of
-      1:b:='('+'time>='+''''+FormatDateTime('hh:mm:ss',DateTimePicker3.Time)+''''+')'
+    if ComboBox2.ItemIndex=1 then
+      b:='('+'time>='+''''+FormatDateTime('hh:mm:ss',DateTimePicker3.Time)+''''+')'
         +'and ('+'time<='+''''+FormatDateTime('hh:mm:ss',DateTimePicker4.Time)+''''+')';
-    end;
-    case ComboBox3.ItemIndex of
-      1:c:='('+'duration='+''''+Edit1.Text+''''+')';
-    end;
-    case ComboBox4.ItemIndex of
-      1..7:d:='('+'statuscall='+''''+ComboBox4.Items[ComboBox4.ItemIndex]+''''+')';
-    end;
-    case ComboBox5.ItemIndex of
-      1..11:e:='('+'typecall='+''''+ComboBox5.Items[ComboBox5.ItemIndex]+''''+')';
-    end;
-    case ComboBox6.ItemIndex of
-      1:f:='('+'code='+''''+Edit2.Text+''''+')';
-    end;
-    case ComboBox7.ItemIndex of
-      1:g:='('+'citynumber='+''''+Edit3.Text+''''+')';
-    end;
-    case ComboBox8.ItemIndex of
-      1:h:='('+'insidenumber='+''''+Edit4.Text+''''+')';
-    end;
+    if ComboBox3.ItemIndex=1 then
+      c:='('+'duration='+''''+Edit1.Text+''''+')';
+    if (ComboBox4.ItemIndex>=1)and(ComboBox4.ItemIndex<=7) then
+      d:='('+'statuscall='+''''+ComboBox4.Items[ComboBox4.ItemIndex]+''''+')';
+    if (ComboBox5.ItemIndex>=1)and(ComboBox4.ItemIndex<=11) then
+      e:='('+'typecall='+''''+ComboBox5.Items[ComboBox5.ItemIndex]+''''+')';
+    if ComboBox6.ItemIndex=1 then
+      f:='('+'code='+''''+Edit2.Text+''''+')';
+    if ComboBox7.ItemIndex=1 then
+      g:='('+'citynumber='+''''+Edit3.Text+''''+')';
+    if ComboBox8.ItemIndex=1 then
+      h:='('+'insidenumber='+''''+Edit4.Text+''''+')';
     if a='' then id[1]:='0' else id[1]:='1';
     if b='' then id[2]:='0' else id[2]:='1';
     if c='' then id[3]:='0' else id[3]:='1';

@@ -34,6 +34,70 @@ procedure UpDateBase(NameServer:TNameServer;FileName:string;start: integer);
 var
   i,j,n:integer;                    //переменная цикла
   text,s:string;                    //исходная строка
+//********************************************************************//
+  procedure Select9801;
+begin
+  with FMain.adoQuery1 do
+  case length(p[i].citynumber) of  //уровень вложенности 8
+    1:SQL.Add(s+''''+'межгород'+''', ');
+    2:if p[i].citynumber='89' then SQL.Add(s+''''+'межгород'+''', ')
+      else SQL.Add(s+''''+'спецномер'+''', ');
+    4:SQL.Add(s+''''+'другие'+''', ');
+    5:SQL.Add(s+''''+'локальный'+''', ');
+    6:SQL.Add(s+''''+'локальный'+''', ');
+    7:SQL.Add(s+''''+'внутривед'+''', ');
+    8:SQL.Add(s+''''+'внутривед'+''', ');
+    10:SQL.Add(s+''''+'межгород'+''', ');
+    9,11,12,14:SQL.Add(s+''''+'межгород'+''', ');
+    else SQL.Add(s+''''+'необраб'+''', ');
+  end;
+end;
+//-------------------------------------------------------------------//
+procedure AdaptationRequest(i:integer);
+begin
+  with FMain.adoQuery1 do
+  begin
+    active:=false;
+    SQL.Clear;
+    SQL.Add('Insert Into ['+NameServer.GetDataBase+'].[dbo].[Call_records] (date, time, duration, statuscall, typecall, code, citynumber, insidenumber, id, trunkid1, trunkid2, trunkid3)');
+    SQL.Add('VALUES ('''+'20'+copy(p[i].date,5,2)+'-'+copy(p[i].date,3,2)+'-'+copy(p[i].date,1,2)+''''+', ');  //1
+    SQL.Add(''''+copy(p[i].time,1,2)+':'+copy(p[i].time,3,2)+''''+', ');                                       //2
+    SQL.Add(''''+p[i].duration+''''+', ');                                                                     //3
+    case p[i].statuscall[1] of                                                                                 //4,5
+      '0':SQL.Add(''''+'другие'+''''+', '+''''+'другие 0'+''''+', ');
+      '7':begin
+            s:=''''+'исходящий'+''', ';
+            case p[i].code of
+              801:SQL.Add(s+''''+'локальный'+''', ');
+              802:if length(p[i].citynumber)=4 then SQL.Add(s+''''+'другие'+''', ')
+                  else if (length(p[i].citynumber)=7)or(length(p[i].citynumber)=8) then SQL.Add(s+''''+'внутривед'+''', ')
+                    else SQL.Add(s+''''+'необраб'+''', ');
+              9801: Select9801;
+              else SQL.Add(s+''''+'необраб'+''', ');
+            end;
+      end;
+      '9':SQL.Add(''''+'входящий'+''', '+''''+'входящий'+''', ');
+      'A':SQL.Add(''''+'другие A'+''', '+''''+'другие ис'+''', ');
+      'C':SQL.Add(''''+'другие C'+''', '+''''+'другие вх'+''', ');
+      '4':begin
+            SQL.Add(''''+'другие 4'+''', ');
+            if p[i].insidenumber='               ' then SQL.Add(''''+'другие вх'+''', ')
+            else if p[i].code=9801 then SQL.Add(''''+'другие ис'+''', ')
+              else SQL.Add(''''+'другие 4'+''', ');
+      end;
+      else SQL.Add(''''+'нз'+''', '+''''+'необраб'+''', ');
+    end;
+    if p[i].code=0 then SQL.Add('NULL, ')  else SQL.Add(IntToStr(p[i].code)+', ');                            //6
+    SQL.Add(''''+p[i].citynumber+''''+', ');                                                                  //7
+    if p[i].insidenumber='               ' then SQL.Add('NULL'+', ')  else SQL.Add(''''+p[i].insidenumber+''''+', '); //8
+    if p[i].id='                     ' then SQL.Add('NULL'+', ')  else SQL.Add(''''+p[i].id+''''+', ');       //9
+    if p[i].trunkid1='  ' then SQL.Add('NULL'+', ')  else SQL.Add(''''+p[i].trunkid1+''''+', ');              //10
+    if p[i].trunkid2='    ' then SQL.Add('NULL'+', ')  else SQL.Add(''''+p[i].trunkid2+''''+', ');            //11
+    if p[i].trunkid3='  ' then SQL.Add('NULL'+')')  else SQL.Add(''''+p[i].trunkid3+''''+')');                //12
+    ExecSQL;
+  end;//AdaptationRequest(i:integer) end
+end;
+//********************************************************************//
 begin
   //Заменить Мемо на другое, с построчным чтением
   FMain.Memo1.Clear;
@@ -65,60 +129,7 @@ begin
         trunkid1:=copy(text,83,2);
         trunkid2:=copy(text,86,4);
         trunkid3:=copy(text,93,2);
-        with FMain.adoQuery1 do
-        begin
-          active:=false;
-          SQL.Clear;
-          SQL.Add('Insert Into ['+NameServer.GetDataBase+'].[dbo].[Call_records] (date, time, duration, statuscall, typecall, code, citynumber, insidenumber, id, trunkid1, trunkid2, trunkid3)');
-          SQL.Add('VALUES ('''+'20'+copy(p[i].date,5,2)+'-'+copy(p[i].date,3,2)+'-'+copy(p[i].date,1,2)+''''+', ');  //1
-          SQL.Add(''''+copy(p[i].time,1,2)+':'+copy(p[i].time,3,2)+''''+', ');                                       //2
-          SQL.Add(''''+p[i].duration+''''+', ');                                                                     //3
-          case p[i].statuscall[1] of                                                                                 //4,5
-            '0':SQL.Add(''''+'другие'+''''+', '+''''+'другие 0'+''''+', ');
-            '7':begin
-                s:=''''+'исходящий'+''', ';
-                case p[i].code of
-                  801:SQL.Add(s+''''+'локальный'+''', ');
-                  802:if length(p[i].citynumber)=4 then SQL.Add(s+''''+'другие'+''', ')
-                      else if (length(p[i].citynumber)=7)or(length(p[i].citynumber)=8) then SQL.Add(s+''''+'внутривед'+''', ')
-                        else SQL.Add(s+''''+'необраб'+''', ');
-                  9801:
-                      case length(p[i].citynumber) of
-                        1:SQL.Add(s+''''+'межгород'+''', ');
-                        2:if p[i].citynumber='89' then SQL.Add(s+''''+'межгород'+''', ')
-                          else SQL.Add(s+''''+'спецномер'+''', ');
-                        4:SQL.Add(s+''''+'другие'+''', ');
-                        5:SQL.Add(s+''''+'локальный'+''', ');
-                        6:SQL.Add(s+''''+'локальный'+''', ');
-                        7:SQL.Add(s+''''+'внутривед'+''', ');
-                        8:SQL.Add(s+''''+'внутривед'+''', ');
-                        10:SQL.Add(s+''''+'межгород'+''', ');
-                        9,11,12,14:SQL.Add(s+''''+'межгород'+''', ');
-                        else SQL.Add(s+''''+'необраб'+''', ');
-                      end;
-                  else SQL.Add(s+''''+'необраб'+''', ');
-              end;
-            end;
-            '9':SQL.Add(''''+'входящий'+''', '+''''+'входящий'+''', ');
-            'A':SQL.Add(''''+'другие A'+''', '+''''+'другие ис'+''', ');
-            'C':SQL.Add(''''+'другие C'+''', '+''''+'другие вх'+''', ');
-            '4':begin
-                SQL.Add(''''+'другие 4'+''', ');
-                if p[i].insidenumber='               ' then SQL.Add(''''+'другие вх'+''', ')
-                else if p[i].code=9801 then SQL.Add(''''+'другие ис'+''', ')
-                else SQL.Add(''''+'другие 4'+''', ');
-            end;
-            else SQL.Add(''''+'нз'+''', '+''''+'необраб'+''', ');
-          end;
-          if p[i].code=0 then SQL.Add('NULL, ')  else SQL.Add(IntToStr(p[i].code)+', ');                            //6
-          SQL.Add(''''+p[i].citynumber+''''+', ');                                                                  //7
-          if p[i].insidenumber='               ' then SQL.Add('NULL'+', ')  else SQL.Add(''''+p[i].insidenumber+''''+', '); //8
-          if p[i].id='                     ' then SQL.Add('NULL'+', ')  else SQL.Add(''''+p[i].id+''''+', ');       //9
-          if p[i].trunkid1='  ' then SQL.Add('NULL'+', ')  else SQL.Add(''''+p[i].trunkid1+''''+', ');              //10
-          if p[i].trunkid2='    ' then SQL.Add('NULL'+', ')  else SQL.Add(''''+p[i].trunkid2+''''+', ');            //11
-          if p[i].trunkid3='  ' then SQL.Add('NULL'+')')  else SQL.Add(''''+p[i].trunkid3+''''+')');                //12
-          ExecSQL;
-        end;
+        Adaptationrequest(i);
         i:=i+1;
       end;
     end;

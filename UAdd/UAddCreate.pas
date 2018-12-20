@@ -4,7 +4,7 @@ interface
 
 uses
   SysUtils, Variants, Controls, Forms, StdCtrls, FileCtrl, Classes, Winapi.Windows,
-  UInterface, UFile, UVarServer,IniFiles, UUpdateBase;
+  UInterface, UFile, UVarServer, IniFiles, UUpdateBase;
 
 type
   TAddCreate = class(TInterfaceMenuCreate)

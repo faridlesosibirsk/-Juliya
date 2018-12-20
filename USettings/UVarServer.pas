@@ -8,10 +8,10 @@ type
   TNameServer = class
   private
     var path, NameServer, NameUser, DataBase, password:string;
-      class var
+    class var
         /// <link>aggregation</link>
         FInstance: TNameServer;
-      public
+  public
     class function GetInstance: TNameServer;
     class destructor DestroyClass;
     function GetName:string;

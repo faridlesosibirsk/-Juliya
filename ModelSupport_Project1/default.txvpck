@@ -456,7 +456,7 @@
     </reference>
     <reference referencedUin="delphi:e_class:src:Project1:URequestNumber.TRequestNumber">
       <property name="$shortcutReference" value="true" />
-      <property name="bounds" value="520,160,222,100" />
+      <property name="bounds" value="500,160,222,100" />
       <property name="hideAttribute" value="True" />
       <property name="location_set_by_user" value="True" />
       <property name="bounds_setted_by_user" value="True" />
@@ -475,12 +475,12 @@
       <reference referencedUin="delphi:e_method:src:Project1:URequestNumber.TRequestNumber.Button2Click(System.TObject)" />
       <reference referencedUin="delphi:e_method:src:Project1:URequestNumber.TRequestNumber.Request()" />
       <reference referencedUin="delphi:l_ast:src:Project1:URequestNumber.TRequestNumber.NameServer">
-        <property name="sourceAnchor" value="742,210" />
+        <property name="sourceAnchor" value="722,210" />
         <property name="targetAnchor" value="780,210" />
         <property name="bendpoints" value="" />
       </reference>
       <reference referencedUin="delphi:l_gnt:src:Project1:URequestNumber.TRequestNumber:UInterface.TInterfaceMenuCreate">
-        <property name="sourceAnchor" value="520,246" />
+        <property name="sourceAnchor" value="500,246" />
         <property name="targetAnchor" value="459,144" />
         <property name="bendpoints" value="459,246" />
         <property name="bounds_setted_by_user" value="True" />

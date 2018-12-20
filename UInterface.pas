@@ -6,7 +6,7 @@ uses
   StdCtrls, Forms;
 type
   TInterfaceMenuCreate = class
-   public
+  public
     procedure destroy;virtual;abstract;
     procedure LabelCreate(AOwner:TForm; Left, Top:integer;
       Caption:String; var Label_:TLabel);
