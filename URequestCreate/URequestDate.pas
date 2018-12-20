@@ -2,7 +2,7 @@ unit URequestDate;
 
 interface
 
-uses StdCtrls, SysUtils, Forms, ComCtrls, URequestCreate, UVarServer, UInterface;
+uses StdCtrls, SysUtils, Forms, ComCtrls, UVarServer, UInterface;
 
 type
   TRequestDate = class(TInterfaceMenuCreate)
@@ -12,11 +12,12 @@ type
     Button1,Button2:TButton;
     DateTimePicker1,DateTimePicker2,
     DateTimePicker3,DateTimePicker4:TDateTimePicker;
-    NameServer:TNameServer;
+    /// <link>aggregation</link>
+    NameServer: TNameServer;
     FProperty1: Integer;
     procedure SetProperty1(val: Integer);
   public
-    constructor create(AOwner: TForm);override;
+    constructor create(AOwner: TForm);
     procedure destroy;override;
     procedure Button1Click(Sender:TObject);
     procedure Button2Click(Sender:TObject);

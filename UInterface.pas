@@ -4,7 +4,6 @@ interface
 
 uses
   StdCtrls, Forms;
-
 type
   TInterfaceMenuCreate = class
   public
@@ -17,9 +16,9 @@ type
       var ComboBox_: TComboBox);
     procedure EditCreate(AOwner: TForm; Left, Top, Width: integer;
       var Edit_: TEdit);
-  private
-    fFileCreate: TInterfaceMenuCreate;
   end;
+
+var    fFileCreate: TInterfaceMenuCreate;
 
 implementation
 

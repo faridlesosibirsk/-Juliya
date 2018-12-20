@@ -10,7 +10,6 @@ uses
   UAddCreate in 'UAdd\UAddCreate.pas' {,
   UConstructor in 'UConstructor.'},
   UConstructor in 'UConstructor.pas' {FConstructor},
-  URequestCreate in 'URequestCreate\URequestCreate.pas',
   URequestAllRecords in 'URequestCreate\URequestAllRecords.pas',
   URequestDate in 'URequestCreate\URequestDate.pas',
   URequestNumber in 'URequestCreate\URequestNumber.pas',
@@ -19,8 +18,7 @@ uses
   UVarServer in 'USettings\UVarServer.pas',
   UFile in 'USettings\UFile.pas',
   UUpdateBase in 'UAdd\UUpdateBase.pas',
-  UScript in 'USettings\UScript.pas',
-  UObjectsCreate in 'UAdd\UObjectsCreate.pas';
+  UScript in 'USettings\UScript.pas';
 
 {$R *.res}
 

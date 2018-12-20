@@ -2,7 +2,7 @@ unit URequestNumber;
 
 interface
 
-uses StdCtrls, SysUtils, Forms, URequestCreate, UVarServer, UInterface;
+uses StdCtrls, SysUtils, Forms, UVarServer, UInterface;
 
 type
   TRequestNumber = class(TInterfaceMenuCreate)
@@ -11,9 +11,10 @@ type
     Combobox1,ComboBox2:TCombobox;
     Edit1:TEdit;
     Button1,Button2:TButton;
-    NameServer:TNameServer;
+    /// <link>aggregation</link>
+    NameServer: TNameServer;
   public
-    constructor create(AOwner: TForm);override;
+    constructor create(AOwner: TForm);
     procedure destroy;override;
     procedure Button1Click(Sender:TObject);
     procedure Button2Click(Sender:TObject);
