@@ -563,7 +563,7 @@ object FConstructor: TFConstructor
       Left = 546
       Top = 0
       Width = 4
-      Height = 18
+      Height = 19
       Align = alRight
       Font.Charset = RUSSIAN_CHARSET
       Font.Color = clWindowText
@@ -571,7 +571,6 @@ object FConstructor: TFConstructor
       Font.Name = 'Times New Roman'
       Font.Style = []
       ParentFont = False
-      ExplicitHeight = 19
     end
     object Panel5: TPanel
       Left = 0

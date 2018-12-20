@@ -60,7 +60,8 @@ type
     procedure Edit1KeyPress(Sender: TObject; var Key: Char);
     procedure SelectingComboBox;
   private
-    NameServer:TNameServer;
+    /// <link>aggregation</link>
+    NameServer: TNameServer;
     { Private declarations }
   public
     { Public declarations }

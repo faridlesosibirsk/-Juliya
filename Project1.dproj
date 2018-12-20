@@ -102,7 +102,6 @@
 			<DCCReference Include="UConstructor.pas">
 				<Form>FConstructor</Form>
 			</DCCReference>
-			<DCCReference Include="URequestCreate\URequestCreate.pas"/>
 			<DCCReference Include="URequestCreate\URequestAllRecords.pas"/>
 			<DCCReference Include="URequestCreate\URequestDate.pas"/>
 			<DCCReference Include="URequestCreate\URequestNumber.pas"/>
@@ -112,7 +111,6 @@
 			<DCCReference Include="USettings\UFile.pas"/>
 			<DCCReference Include="UAdd\UUpdateBase.pas"/>
 			<DCCReference Include="USettings\UScript.pas"/>
-			<DCCReference Include="UAdd\UObjectsCreate.pas"/>
 			<None Include="ModelSupport_Project1\default.txaPackage"/>
 			<None Include="ModelSupport_Project1\default.txvpck"/>
 			<None Include="ModelSupport_Project1\UDBConnection\default.txvpck"/>

@@ -2,7 +2,7 @@ unit URequestStatusCall;
 
 interface
 
-uses StdCtrls, SysUtils, Forms, URequestCreate, UVarServer, UInterface;
+uses StdCtrls, SysUtils, Forms, UVarServer, UInterface;
 
 type
   TRequestStatusCall = class(TInterfaceMenuCreate)
@@ -10,9 +10,10 @@ type
     Label1,Label2:TLabel;
     Combobox1,ComboBox2:TCombobox;
     Button1,Button2:TButton;
-    NameServer:TNameServer;
+    /// <link>aggregation</link>
+    NameServer: TNameServer;
   public
-    constructor create(AOwner: TForm);override;
+    constructor create(AOwner: TForm);
     procedure destroy;override;
     procedure Button1Click(Sender:TObject);
     procedure Button2Click(Sender:TObject);
