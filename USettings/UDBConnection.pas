@@ -8,11 +8,11 @@ type
   TDBConnection = class
   private
     ADOConnection:TADOConnection;
-    NameServer:TNameServer;
+    /// <link>aggregation</link>
   public
-    function GetDBConnect:String;
+    function GetDBConnect(NameServer:TNameServer):String;
     function GetADOConnection: TADOConnection;
-    constructor create;
+    constructor create(NameServer:TNameServer);
   end;
 
 implementation
@@ -21,11 +21,11 @@ implementation
 
 uses UMain;
 
-constructor TDBConnection.create;
+constructor TDBConnection.create(NameServer:TNameServer);
 begin
   if not Assigned(ADOConnection) then
     ADOConnection := TADOConnection.create(nil);
-  ADOConnection.ConnectionString :=GetDBConnect;
+  ADOConnection.ConnectionString :=GetDBConnect(NameServer);
   ADOConnection.LoginPrompt := false;
   ADOConnection.Connected := true;
 end;
@@ -35,9 +35,8 @@ begin
   result := ADOConnection;
 end;
 
-function TDBConnection.GetDBConnect: String;
+function TDBConnection.GetDBConnect(NameServer:TNameServer): String;
 begin
-  NameServer:=TNameServer.GetInstance;
   result:='Provider=SQLOLEDB;Password='+NameServer.GetPassword+
   ';Persist Security Info=True;User ID='+NameServer.GetNameUser+
   ';Initial Catalog='+'model'+';Data Source='+NameServer.GetNameServer;

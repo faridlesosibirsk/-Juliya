@@ -1,0 +1,588 @@
+<?xml version="1.0" encoding="utf-8"?>
+<nodeSet version="1.0">
+  <view uin="9rry0dn45kk_v">
+    <property name="$defaultDiagram" value="true" />
+    <property name="$metaclass" value="Package Diagram" />
+    <property name="$name" value="default" />
+    <reference referencedUin="design:view:::ga2p806ju6f_v">
+      <property name="$hidden" value="True" />
+      <property name="$shortcutReference" value="true" />
+      <property name="bounds" value="10,10,106,121" />
+      <reference referencedUin="delphi:e_class:src:Project1:UDBConnection.@unitclass" />
+      <reference referencedUin="delphi:e_class:src:Project1:UDBConnection.TDBConnection" />
+    </reference>
+    <reference referencedUin="design:view:::coyxgdwcyvk_v">
+      <property name="$hidden" value="True" />
+      <property name="$shortcutReference" value="true" />
+      <property name="bounds" value="173,1,100,121" />
+      <reference referencedUin="delphi:e_class:src:Project1:UScript.TScript" />
+      <reference referencedUin="delphi:e_class:src:Project1:UScript.@unitclass" />
+    </reference>
+    <reference referencedUin="design:view:::e6jud1qq2lq_v">
+      <property name="$hidden" value="True" />
+      <property name="$shortcutReference" value="true" />
+      <property name="bounds" value="173,171,100,121" />
+      <reference referencedUin="delphi:e_class:src:Project1:USettings.TFSettings" />
+      <reference referencedUin="delphi:e_class:src:Project1:USettings.@unitclass" />
+    </reference>
+    <reference referencedUin="design:view:::0mtf02kx1m_v">
+      <property name="$hidden" value="True" />
+      <property name="$shortcutReference" value="true" />
+      <property name="bounds" value="24,180,100,121" />
+      <reference referencedUin="delphi:e_class:src:Project1:UInterface.TInterfaceMenuCreate" />
+      <reference referencedUin="delphi:e_class:src:Project1:UInterface.@unitclass" />
+    </reference>
+    <reference referencedUin="design:view:::rff5ev52rog_v">
+      <property name="$hidden" value="True" />
+      <property name="$shortcutReference" value="true" />
+      <property name="bounds" value="292,1,130,121" />
+      <reference referencedUin="delphi:e_class:src:Project1:URequestStatusCall.TRequestStatusCall" />
+      <reference referencedUin="delphi:e_class:src:Project1:URequestStatusCall.@unitclass" />
+    </reference>
+    <reference referencedUin="design:view:::l0dxd5utxpt_v">
+      <property name="$hidden" value="True" />
+      <property name="$shortcutReference" value="true" />
+      <property name="bounds" value="320,171,100,121" />
+      <reference referencedUin="delphi:e_class:src:Project1:UHelp.TFHelp" />
+      <reference referencedUin="delphi:e_class:src:Project1:UHelp.@unitclass" />
+    </reference>
+    <reference referencedUin="design:view:::9uuhfyae4ze_v">
+      <property name="$hidden" value="True" />
+      <property name="$shortcutReference" value="true" />
+      <property name="bounds" value="497,1,100,121" />
+      <reference referencedUin="delphi:e_class:src:Project1:UConstructor.@unitclass" />
+      <reference referencedUin="delphi:e_class:src:Project1:UConstructor.TFConstructor" />
+    </reference>
+    <reference referencedUin="design:view:::rc8r8uc474q_v">
+      <property name="$hidden" value="True" />
+      <property name="$shortcutReference" value="true" />
+      <property name="bounds" value="497,171,100,121" />
+      <reference referencedUin="delphi:e_class:src:Project1:UVarServer.@unitclass" />
+      <reference referencedUin="delphi:e_class:src:Project1:UVarServer.TNameServer" />
+    </reference>
+    <reference referencedUin="design:view:::ewyb60s5lqr_v">
+      <property name="$hidden" value="True" />
+      <property name="$shortcutReference" value="true" />
+      <property name="bounds" value="497,341,117,121" />
+      <reference referencedUin="delphi:e_class:src:Project1:URequestNumber.@unitclass" />
+      <reference referencedUin="delphi:e_class:src:Project1:URequestNumber.TRequestNumber" />
+    </reference>
+    <reference referencedUin="design:view:::tqeqnip5xan_v">
+      <property name="$hidden" value="True" />
+      <property name="$shortcutReference" value="true" />
+      <property name="bounds" value="348,369,106,119" />
+      <reference referencedUin="delphi:e_class:src:Project1:UObjectsCreate.@unitclass" />
+    </reference>
+    <reference referencedUin="design:view:::wv52p7edb6h_v">
+      <property name="$hidden" value="True" />
+      <property name="$shortcutReference" value="true" />
+      <property name="bounds" value="209,369,100,121" />
+      <reference referencedUin="delphi:e_class:src:Project1:UUpdateBase.@unitclass" />
+      <reference referencedUin="delphi:e_class:src:Project1:UUpdateBase.Filestr" />
+    </reference>
+    <reference referencedUin="design:view:::d028wc2m0it_v">
+      <property name="$hidden" value="True" />
+      <property name="$shortcutReference" value="true" />
+      <property name="bounds" value="40,369,122,121" />
+      <reference referencedUin="delphi:e_class:src:Project1:URequestTypeCall.@unitclass" />
+      <reference referencedUin="delphi:e_class:src:Project1:URequestTypeCall.TRequestTypeCall" />
+    </reference>
+    <reference referencedUin="design:view:::dugjmb026ym_v">
+      <property name="$hidden" value="True" />
+      <property name="$shortcutReference" value="true" />
+      <property name="bounds" value="689,1,100,121" />
+      <reference referencedUin="delphi:e_class:src:Project1:URequestDate.@unitclass" />
+      <reference referencedUin="delphi:e_class:src:Project1:URequestDate.TRequestDate" />
+    </reference>
+    <reference referencedUin="design:view:::m0yqmmirh0k_v">
+      <property name="$hidden" value="True" />
+      <property name="$shortcutReference" value="true" />
+      <property name="bounds" value="689,171,110,119" />
+      <reference referencedUin="delphi:e_class:src:Project1:URequestCreate.@unitclass" />
+    </reference>
+    <reference referencedUin="design:view:::bqumewuta8m_v">
+      <property name="$hidden" value="True" />
+      <property name="$shortcutReference" value="true" />
+      <property name="bounds" value="689,341,134,121" />
+      <reference referencedUin="delphi:e_class:src:Project1:URequestAllRecords.@unitclass" />
+      <reference referencedUin="delphi:e_class:src:Project1:URequestAllRecords.TRequestAllRecords" />
+    </reference>
+    <reference referencedUin="design:view:::00hkdmu0x7t_v">
+      <property name="$hidden" value="True" />
+      <property name="$shortcutReference" value="true" />
+      <property name="bounds" value="529,511,100,119" />
+      <reference referencedUin="delphi:e_class:src:Project1:Project1.@unitclass" />
+    </reference>
+    <reference referencedUin="design:view:::irkopq4voct_v">
+      <property name="$hidden" value="True" />
+      <property name="$shortcutReference" value="true" />
+      <property name="bounds" value="689,511,100,121" />
+      <reference referencedUin="delphi:e_class:src:Project1:UAddCreate.@unitclass" />
+      <reference referencedUin="delphi:e_class:src:Project1:UAddCreate.TAddCreate" />
+    </reference>
+    <reference referencedUin="design:view:::spi0e1c0ncs_v">
+      <property name="$hidden" value="True" />
+      <property name="$shortcutReference" value="true" />
+      <property name="bounds" value="420,558,100,121" />
+      <reference referencedUin="delphi:e_class:src:Project1:UFile.TFile" />
+      <reference referencedUin="delphi:e_class:src:Project1:UFile.@unitclass" />
+    </reference>
+    <reference referencedUin="design:view:::byjapemyxcj_v">
+      <property name="$hidden" value="True" />
+      <property name="$shortcutReference" value="true" />
+      <property name="bounds" value="311,558,100,121" />
+      <reference referencedUin="delphi:e_class:src:Project1:UMain.TFMain" />
+      <reference referencedUin="delphi:e_class:src:Project1:UMain.@unitclass" />
+    </reference>
+    <reference referencedUin="delphi:e_class:src:Project1:USettings.TFSettings">
+      <property name="$shortcutReference" value="true" />
+      <property name="bounds" value="1000,0,162,460" />
+      <property name="location_set_by_user" value="True" />
+      <property name="bounds_setted_by_user" value="True" />
+      <reference referencedUin="delphi:e_field:src:Project1:USettings.TFSettings.Edit1" />
+      <reference referencedUin="delphi:e_field:src:Project1:USettings.TFSettings.Edit2" />
+      <reference referencedUin="delphi:e_field:src:Project1:USettings.TFSettings.Edit3" />
+      <reference referencedUin="delphi:e_field:src:Project1:USettings.TFSettings.Edit4" />
+      <reference referencedUin="delphi:e_field:src:Project1:USettings.TFSettings.Edit5" />
+      <reference referencedUin="delphi:e_field:src:Project1:USettings.TFSettings.Label1" />
+      <reference referencedUin="delphi:e_field:src:Project1:USettings.TFSettings.Label2" />
+      <reference referencedUin="delphi:e_field:src:Project1:USettings.TFSettings.Label3" />
+      <reference referencedUin="delphi:e_field:src:Project1:USettings.TFSettings.Label4" />
+      <reference referencedUin="delphi:e_field:src:Project1:USettings.TFSettings.Label5" />
+      <reference referencedUin="delphi:e_field:src:Project1:USettings.TFSettings.Label6" />
+      <reference referencedUin="delphi:e_field:src:Project1:USettings.TFSettings.Button1" />
+      <reference referencedUin="delphi:e_field:src:Project1:USettings.TFSettings.BitBtn1" />
+      <reference referencedUin="delphi:e_field:src:Project1:USettings.TFSettings.CheckBox1" />
+      <reference referencedUin="delphi:e_field:src:Project1:USettings.TFSettings.Memo1" />
+      <reference referencedUin="delphi:e_method:src:Project1:USettings.TFSettings.BitBtn1Click(System.TObject)" />
+      <reference referencedUin="delphi:e_method:src:Project1:USettings.TFSettings.Button1Click(System.TObject)" />
+      <reference referencedUin="delphi:e_method:src:Project1:USettings.TFSettings.CheckBox1Click(System.TObject)" />
+      <reference referencedUin="delphi:e_method:src:Project1:USettings.TFSettings.FormCreate(System.TObject)" />
+      <reference referencedUin="delphi:e_method:src:Project1:USettings.TFSettings.Test1()" />
+      <reference referencedUin="delphi:e_method:src:Project1:USettings.TFSettings.FormActivate(System.TObject)" />
+      <reference referencedUin="delphi:e_field:src:Project1:USettings.TFSettings.NameServer" />
+      <reference referencedUin="delphi:e_field:src:Project1:USettings.TFSettings.Script" />
+      <reference referencedUin="delphi:l_ast:src:Project1:USettings.TFSettings.NameServer">
+        <property name="sourceAnchor" value="1000,300" />
+        <property name="targetAnchor" value="953,300" />
+        <property name="bendpoints" value="" />
+      </reference>
+      <reference referencedUin="delphi:e_field:src:Project1:USettings.TFSettings.File1" />
+      <reference referencedUin="delphi:l_ast:src:Project1:USettings.TFSettings.File1">
+        <property name="sourceAnchor" value="1000,64" />
+        <property name="targetAnchor" value="928,64" />
+        <property name="bendpoints" value="" />
+      </reference>
+      <reference referencedUin="delphi:l_ast:src:Project1:USettings.TFSettings.Script">
+        <property name="sourceAnchor" value="1162,97" />
+        <property name="targetAnchor" value="1200,97" />
+        <property name="bendpoints" value="" />
+      </reference>
+      <reference referencedUin="delphi:e_field:src:Project1:USettings.TFSettings.AddCreate" />
+      <reference referencedUin="delphi:l_ast:src:Project1:USettings.TFSettings.AddCreate">
+        <property name="sourceAnchor" value="1000,134" />
+        <property name="targetAnchor" value="399,259" />
+        <property name="bendpoints" value="606,134" />
+        <property name="bounds_setted_by_user" value="True" />
+      </reference>
+      <reference referencedUin="delphi:e_field:src:Project1:USettings.TFSettings.Connection" />
+      <reference referencedUin="delphi:l_ast:src:Project1:USettings.TFSettings.Connection">
+        <property name="sourceAnchor" value="1162,245" />
+        <property name="targetAnchor" value="1200,245" />
+        <property name="bendpoints" value="" />
+      </reference>
+    </reference>
+    <reference referencedUin="delphi:e_class:src:Project1:UUpdateBase.@unitclass">
+      <property name="$shortcutReference" value="true" />
+      <property name="bounds" value="766,195,0,0" />
+      <reference referencedUin="delphi:e_method:src:Project1:UUpdateBase.@unitclass.UpDateBase(UVarServer.TNameServer,System.string,System.Integer)" />
+      <reference referencedUin="delphi:e_field:src:Project1:UUpdateBase.@unitclass.p" />
+      <reference referencedUin="delphi:e_field:src:Project1:UUpdateBase.@unitclass.n" />
+    </reference>
+    <reference referencedUin="delphi:e_class:src:Project1:UVarServer.TNameServer">
+      <property name="$shortcutReference" value="true" />
+      <property name="bounds" value="780,140,173,326" />
+      <property name="location_set_by_user" value="True" />
+      <reference referencedUin="delphi:e_field:src:Project1:UVarServer.TNameServer.path" />
+      <reference referencedUin="delphi:e_field:src:Project1:UVarServer.TNameServer.NameServer" />
+      <reference referencedUin="delphi:e_field:src:Project1:UVarServer.TNameServer.NameUser" />
+      <reference referencedUin="delphi:e_field:src:Project1:UVarServer.TNameServer.DataBase" />
+      <reference referencedUin="delphi:e_field:src:Project1:UVarServer.TNameServer.password" />
+      <reference referencedUin="delphi:e_field:src:Project1:UVarServer.TNameServer.FInstance" />
+      <reference referencedUin="delphi:e_method:src:Project1:UVarServer.TNameServer.GetInstance()" />
+      <reference referencedUin="delphi:e_method:src:Project1:UVarServer.TNameServer.DestroyClass()" />
+      <reference referencedUin="delphi:e_method:src:Project1:UVarServer.TNameServer.GetName()" />
+      <reference referencedUin="delphi:e_method:src:Project1:UVarServer.TNameServer.GetNameUser()" />
+      <reference referencedUin="delphi:e_method:src:Project1:UVarServer.TNameServer.GetDataBase()" />
+      <reference referencedUin="delphi:e_method:src:Project1:UVarServer.TNameServer.Getpassword()" />
+      <reference referencedUin="delphi:e_method:src:Project1:UVarServer.TNameServer.GetNameServer()" />
+      <reference referencedUin="delphi:e_method:src:Project1:UVarServer.TNameServer.GetPath()" />
+      <reference referencedUin="delphi:e_method:src:Project1:UVarServer.TNameServer.SetPath(System.string)" />
+      <reference referencedUin="delphi:e_method:src:Project1:UVarServer.TNameServer.ReadConfig()" />
+      <reference referencedUin="delphi:e_method:src:Project1:UVarServer.TNameServer.SaveConfig(System.string,System.string,System.string,System.string,System.string)" />
+      <reference referencedUin="delphi:l_ast:src:Project1:UVarServer.TNameServer.FInstance">
+        <property name="sourceAnchor" value="953,458" />
+        <property name="targetAnchor" value="945,466" />
+        <property name="bendpoints" value="986,458,986,499,945,499" />
+        <property name="bounds_setted_by_user" value="True" />
+      </reference>
+    </reference>
+    <reference referencedUin="delphi:e_class:src:Project1:UMain.TFMain">
+      <property name="$shortcutReference" value="true" />
+      <property name="bounds" value="0,0,205,505" />
+      <property name="location_set_by_user" value="True" />
+      <reference referencedUin="delphi:e_field:src:Project1:UMain.TFMain.MainMenu1" />
+      <reference referencedUin="delphi:e_field:src:Project1:UMain.TFMain.MAddFile" />
+      <reference referencedUin="delphi:e_field:src:Project1:UMain.TFMain.MRequest" />
+      <reference referencedUin="delphi:e_field:src:Project1:UMain.TFMain.MRequestDate" />
+      <reference referencedUin="delphi:e_field:src:Project1:UMain.TFMain.ConstructorRequests" />
+      <reference referencedUin="delphi:e_field:src:Project1:UMain.TFMain.MSettings" />
+      <reference referencedUin="delphi:e_field:src:Project1:UMain.TFMain.MHelp" />
+      <reference referencedUin="delphi:e_field:src:Project1:UMain.TFMain.MAllRecords" />
+      <reference referencedUin="delphi:e_field:src:Project1:UMain.TFMain.MStatusCall" />
+      <reference referencedUin="delphi:e_field:src:Project1:UMain.TFMain.MTypeCall" />
+      <reference referencedUin="delphi:e_field:src:Project1:UMain.TFMain.MNumber" />
+      <reference referencedUin="delphi:e_field:src:Project1:UMain.TFMain.ADOQuery1" />
+      <reference referencedUin="delphi:e_field:src:Project1:UMain.TFMain.DBGrid1" />
+      <reference referencedUin="delphi:e_field:src:Project1:UMain.TFMain.Panel1" />
+      <reference referencedUin="delphi:e_field:src:Project1:UMain.TFMain.DataSource1" />
+      <reference referencedUin="delphi:e_field:src:Project1:UMain.TFMain.Memo1" />
+      <reference referencedUin="delphi:e_method:src:Project1:UMain.TFMain.MAddFileClick(System.TObject)" />
+      <reference referencedUin="delphi:e_method:src:Project1:UMain.TFMain.MSettingsClick(System.TObject)" />
+      <reference referencedUin="delphi:e_method:src:Project1:UMain.TFMain.MHelpClick(System.TObject)" />
+      <reference referencedUin="delphi:e_method:src:Project1:UMain.TFMain.MRequestDateClick(System.TObject)" />
+      <reference referencedUin="delphi:e_method:src:Project1:UMain.TFMain.ConstructorRequestsClick(System.TObject)" />
+      <reference referencedUin="delphi:e_method:src:Project1:UMain.TFMain.MAllRecordsClick(System.TObject)" />
+      <reference referencedUin="delphi:e_method:src:Project1:UMain.TFMain.MStatusCallClick(System.TObject)" />
+      <reference referencedUin="delphi:e_method:src:Project1:UMain.TFMain.MTypeCallClick(System.TObject)" />
+      <reference referencedUin="delphi:e_method:src:Project1:UMain.TFMain.MNumberClick(System.TObject)" />
+      <reference referencedUin="delphi:e_method:src:Project1:UMain.TFMain.FormCreate(System.TObject)" />
+      <reference referencedUin="delphi:e_method:src:Project1:UMain.TFMain.SetTitleDBGrid()" />
+      <reference referencedUin="delphi:e_field:src:Project1:UMain.TFMain.fFileCreate" />
+      <reference referencedUin="delphi:l_ast:src:Project1:UMain.TFMain.fFileCreate">
+        <property name="sourceAnchor" value="205,70" />
+        <property name="targetAnchor" value="280,70" />
+        <property name="bendpoints" value="" />
+      </reference>
+    </reference>
+    <reference referencedUin="delphi:e_class:src:Project1:UInterface.TInterfaceMenuCreate">
+      <property name="$shortcutReference" value="true" />
+      <property name="bounds" value="280,0,206,141" />
+      <property name="location_set_by_user" value="True" />
+      <reference referencedUin="delphi:e_method:src:Project1:UInterface.TInterfaceMenuCreate.destroy()" />
+      <reference referencedUin="delphi:e_method:src:Project1:UInterface.TInterfaceMenuCreate.LabelCreate(Forms.TForm,System.Integer,System.Integer,System.string,ref@StdCtrls.TLabel)" />
+      <reference referencedUin="delphi:e_method:src:Project1:UInterface.TInterfaceMenuCreate.ButtonCreate(Forms.TForm,System.Integer,System.Integer,System.Integer,System.Integer,System.string,ref@StdCtrls.TButton)" />
+      <reference referencedUin="delphi:e_method:src:Project1:UInterface.TInterfaceMenuCreate.ComboBoxCreate(Forms.TForm,System.Integer,System.Integer,System.Integer,ref@StdCtrls.TComboBox)" />
+      <reference referencedUin="delphi:e_method:src:Project1:UInterface.TInterfaceMenuCreate.EditCreate(Forms.TForm,System.Integer,System.Integer,System.Integer,ref@StdCtrls.TEdit)" />
+      <reference referencedUin="delphi:e_field:src:Project1:UInterface.TInterfaceMenuCreate.fFileCreate" />
+      <reference referencedUin="delphi:l_ast:src:Project1:UInterface.TInterfaceMenuCreate.fFileCreate">
+        <property name="sourceAnchor" value="486,122" />
+        <property name="targetAnchor" value="478,141" />
+        <property name="bendpoints" value="519,122,519,173,478,173" />
+        <property name="bounds_setted_by_user" value="True" />
+      </reference>
+    </reference>
+    <reference referencedUin="delphi:e_class:src:Project1:UFile.TFile">
+      <property name="$shortcutReference" value="true" />
+      <property name="bounds" value="800,0,128,129" />
+      <property name="location_set_by_user" value="True" />
+      <reference referencedUin="delphi:e_method:src:Project1:UFile.TFile.GetFileDate(System.string)" />
+      <reference referencedUin="delphi:e_method:src:Project1:UFile.TFile.TextSize(System.string)" />
+      <reference referencedUin="delphi:e_method:src:Project1:UFile.TFile.NumberFile(UVarServer.TNameServer,ref@FileCtrl.TFileListBox,DBGrids.TDBGrid,Data.Win.ADODB.TADOQuery)" />
+      <reference referencedUin="delphi:e_method:src:Project1:UFile.TFile.SortFileListBox(FileCtrl.TFileListBox)" />
+      <reference referencedUin="delphi:e_method:src:Project1:UFile.TFile.NumberFile(UVarServer.TNameServer,FileCtrl.TFileListBox,DBGrids.TDBGrid,ADODB.TADOQuery)" />
+    </reference>
+    <reference referencedUin="delphi:e_class:src:Project1:UDBConnection.TDBConnection">
+      <property name="$shortcutReference" value="true" />
+      <property name="bounds" value="1200,180,236,131" />
+      <property name="location_set_by_user" value="True" />
+      <reference referencedUin="delphi:e_field:src:Project1:UDBConnection.TDBConnection.ADOConnection" />
+      <reference referencedUin="delphi:e_field:src:Project1:UDBConnection.TDBConnection.NameServer" />
+      <reference referencedUin="delphi:e_method:src:Project1:UDBConnection.TDBConnection.GetDBConnect()" />
+      <reference referencedUin="delphi:e_method:src:Project1:UDBConnection.TDBConnection.GetADOConnection()" />
+      <reference referencedUin="delphi:e_method:src:Project1:UDBConnection.TDBConnection.create()" />
+      <reference referencedUin="delphi:l_ast:src:Project1:UDBConnection.TDBConnection.NameServer">
+        <property name="sourceAnchor" value="716,73" />
+        <property name="targetAnchor" value="760,73" />
+        <property name="bendpoints" value="" />
+      </reference>
+      <reference referencedUin="delphi:e_method:src:Project1:UDBConnection.TDBConnection.GetDBConnect(UVarServer.TNameServer)" />
+      <reference referencedUin="delphi:e_method:src:Project1:UDBConnection.TDBConnection.create(UVarServer.TNameServer)" />
+    </reference>
+    <reference referencedUin="delphi:e_class:src:Project1:UAddCreate.TAddCreate">
+      <property name="$shortcutReference" value="true" />
+      <property name="bounds" value="220,160,179,311" />
+      <property name="location_set_by_user" value="True" />
+      <reference referencedUin="delphi:e_field:src:Project1:UAddCreate.TAddCreate.Label1" />
+      <reference referencedUin="delphi:e_field:src:Project1:UAddCreate.TAddCreate.Label2" />
+      <reference referencedUin="delphi:e_field:src:Project1:UAddCreate.TAddCreate.Label3" />
+      <reference referencedUin="delphi:e_field:src:Project1:UAddCreate.TAddCreate.Label4" />
+      <reference referencedUin="delphi:e_field:src:Project1:UAddCreate.TAddCreate.Label5" />
+      <reference referencedUin="delphi:e_field:src:Project1:UAddCreate.TAddCreate.Label6" />
+      <reference referencedUin="delphi:e_field:src:Project1:UAddCreate.TAddCreate.Button1" />
+      <reference referencedUin="delphi:e_field:src:Project1:UAddCreate.TAddCreate.NameServer" />
+      <reference referencedUin="delphi:e_method:src:Project1:UAddCreate.TAddCreate.SetFileListBox(System.string)" />
+      <reference referencedUin="delphi:e_method:src:Project1:UAddCreate.TAddCreate.GetFileListBox()" />
+      <reference referencedUin="delphi:e_method:src:Project1:UAddCreate.TAddCreate.create(Forms.TForm)" />
+      <reference referencedUin="delphi:e_method:src:Project1:UAddCreate.TAddCreate.destroy()" />
+      <reference referencedUin="delphi:e_method:src:Project1:UAddCreate.TAddCreate.Button1Click(System.TObject)" />
+      <reference referencedUin="delphi:e_method:src:Project1:UAddCreate.TAddCreate.FileListBox1KeyUp(System.TObject,ref@System.Word,TShiftState)" />
+      <reference referencedUin="delphi:e_method:src:Project1:UAddCreate.TAddCreate.FileListBox1MouseDown(System.TObject,System.UITypes.TMouseButton,TShiftState,System.Integer,System.Integer)" />
+      <reference referencedUin="delphi:l_ast:src:Project1:UAddCreate.TAddCreate.NameServer">
+        <property name="sourceAnchor" value="399,362" />
+        <property name="targetAnchor" value="780,362" />
+        <property name="bendpoints" value="" />
+      </reference>
+      <reference referencedUin="delphi:e_field:src:Project1:UAddCreate.TAddCreate.File1" />
+      <reference referencedUin="delphi:l_ast:src:Project1:UAddCreate.TAddCreate.File1">
+        <property name="sourceAnchor" value="399,251" />
+        <property name="targetAnchor" value="800,122" />
+        <property name="bendpoints" value="583,122" />
+        <property name="bounds_setted_by_user" value="True" />
+      </reference>
+      <reference referencedUin="delphi:l_gnt:src:Project1:UAddCreate.TAddCreate:UInterface.TInterfaceMenuCreate">
+        <property name="sourceAnchor" value="339,160" />
+        <property name="targetAnchor" value="339,141" />
+        <property name="bendpoints" value="" />
+      </reference>
+    </reference>
+    <reference referencedUin="delphi:e_class:src:Project1:UScript.TScript">
+      <property name="$shortcutReference" value="true" />
+      <property name="bounds" value="1200,40,112,114" />
+      <property name="location_set_by_user" value="True" />
+      <reference referencedUin="delphi:e_method:src:Project1:UScript.TScript.ScriptCreateDB(UVarServer.TNameServer)" />
+      <reference referencedUin="delphi:e_method:src:Project1:UScript.TScript.ScriptCreateTb(UVarServer.TNameServer)" />
+      <reference referencedUin="delphi:e_method:src:Project1:UScript.TScript.RequestCreate()" />
+    </reference>
+    <reference referencedUin="delphi:e_class:src:Project1:UHelp.TFHelp">
+      <property name="$shortcutReference" value="true" />
+      <property name="bounds" value="0,520,112,128" />
+      <property name="location_set_by_user" value="True" />
+      <reference referencedUin="delphi:e_field:src:Project1:UHelp.TFHelp.Label2" />
+      <reference referencedUin="delphi:e_field:src:Project1:UHelp.TFHelp.Button1" />
+      <reference referencedUin="delphi:e_field:src:Project1:UHelp.TFHelp.Memo1" />
+    </reference>
+    <reference referencedUin="delphi:e_class:src:Project1:UConstructor.TFConstructor">
+      <property name="$shortcutReference" value="true" />
+      <property name="bounds" value="780,520,217,160" />
+      <property name="location_set_by_user" value="True" />
+      <property name="bounds_setted_by_user" value="True" />
+      <reference referencedUin="delphi:e_field:src:Project1:UConstructor.TFConstructor.ADOQuery1" />
+      <reference referencedUin="delphi:e_field:src:Project1:UConstructor.TFConstructor.DataSource1" />
+      <reference referencedUin="delphi:e_field:src:Project1:UConstructor.TFConstructor.DBGrid1" />
+      <reference referencedUin="delphi:e_field:src:Project1:UConstructor.TFConstructor.ComboBox1" />
+      <reference referencedUin="delphi:e_field:src:Project1:UConstructor.TFConstructor.ComboBox2" />
+      <reference referencedUin="delphi:e_field:src:Project1:UConstructor.TFConstructor.ComboBox3" />
+      <reference referencedUin="delphi:e_field:src:Project1:UConstructor.TFConstructor.ComboBox4" />
+      <reference referencedUin="delphi:e_field:src:Project1:UConstructor.TFConstructor.ComboBox5" />
+      <reference referencedUin="delphi:e_field:src:Project1:UConstructor.TFConstructor.ComboBox6" />
+      <reference referencedUin="delphi:e_field:src:Project1:UConstructor.TFConstructor.ComboBox7" />
+      <reference referencedUin="delphi:e_field:src:Project1:UConstructor.TFConstructor.ComboBox8" />
+      <reference referencedUin="delphi:e_field:src:Project1:UConstructor.TFConstructor.ComboBox9" />
+      <reference referencedUin="delphi:e_field:src:Project1:UConstructor.TFConstructor.Label1" />
+      <reference referencedUin="delphi:e_field:src:Project1:UConstructor.TFConstructor.Label2" />
+      <reference referencedUin="delphi:e_field:src:Project1:UConstructor.TFConstructor.Label3" />
+      <reference referencedUin="delphi:e_field:src:Project1:UConstructor.TFConstructor.Label4" />
+      <reference referencedUin="delphi:e_field:src:Project1:UConstructor.TFConstructor.Label5" />
+      <reference referencedUin="delphi:e_field:src:Project1:UConstructor.TFConstructor.Label6" />
+      <reference referencedUin="delphi:e_field:src:Project1:UConstructor.TFConstructor.Label7" />
+      <reference referencedUin="delphi:e_field:src:Project1:UConstructor.TFConstructor.Label8" />
+      <reference referencedUin="delphi:e_field:src:Project1:UConstructor.TFConstructor.Label9" />
+      <reference referencedUin="delphi:e_field:src:Project1:UConstructor.TFConstructor.Label10" />
+      <reference referencedUin="delphi:e_field:src:Project1:UConstructor.TFConstructor.Label11" />
+      <reference referencedUin="delphi:e_field:src:Project1:UConstructor.TFConstructor.Label12" />
+      <reference referencedUin="delphi:e_field:src:Project1:UConstructor.TFConstructor.Edit1" />
+      <reference referencedUin="delphi:e_field:src:Project1:UConstructor.TFConstructor.Edit2" />
+      <reference referencedUin="delphi:e_field:src:Project1:UConstructor.TFConstructor.Edit3" />
+      <reference referencedUin="delphi:e_field:src:Project1:UConstructor.TFConstructor.Edit4" />
+      <reference referencedUin="delphi:e_field:src:Project1:UConstructor.TFConstructor.DateTimePicker1" />
+      <reference referencedUin="delphi:e_field:src:Project1:UConstructor.TFConstructor.DateTimePicker2" />
+      <reference referencedUin="delphi:e_field:src:Project1:UConstructor.TFConstructor.DateTimePicker3" />
+      <reference referencedUin="delphi:e_field:src:Project1:UConstructor.TFConstructor.DateTimePicker4" />
+      <reference referencedUin="delphi:e_field:src:Project1:UConstructor.TFConstructor.Button1" />
+      <reference referencedUin="delphi:e_field:src:Project1:UConstructor.TFConstructor.Button2" />
+      <reference referencedUin="delphi:e_field:src:Project1:UConstructor.TFConstructor.Panel1" />
+      <reference referencedUin="delphi:e_field:src:Project1:UConstructor.TFConstructor.Panel2" />
+      <reference referencedUin="delphi:e_field:src:Project1:UConstructor.TFConstructor.Panel3" />
+      <reference referencedUin="delphi:e_field:src:Project1:UConstructor.TFConstructor.Panel4" />
+      <reference referencedUin="delphi:e_field:src:Project1:UConstructor.TFConstructor.Panel5" />
+      <reference referencedUin="delphi:e_method:src:Project1:UConstructor.TFConstructor.FormCreate(System.TObject)" />
+      <reference referencedUin="delphi:e_method:src:Project1:UConstructor.TFConstructor.ComboBox1Change(System.TObject)" />
+      <reference referencedUin="delphi:e_method:src:Project1:UConstructor.TFConstructor.ComboBox2Change(System.TObject)" />
+      <reference referencedUin="delphi:e_method:src:Project1:UConstructor.TFConstructor.ComboBox3Change(System.TObject)" />
+      <reference referencedUin="delphi:e_method:src:Project1:UConstructor.TFConstructor.ComboBox4Change(System.TObject)" />
+      <reference referencedUin="delphi:e_method:src:Project1:UConstructor.TFConstructor.ComboBox6Change(System.TObject)" />
+      <reference referencedUin="delphi:e_method:src:Project1:UConstructor.TFConstructor.ComboBox7Change(System.TObject)" />
+      <reference referencedUin="delphi:e_method:src:Project1:UConstructor.TFConstructor.ComboBox8Change(System.TObject)" />
+      <reference referencedUin="delphi:e_method:src:Project1:UConstructor.TFConstructor.Button1Click(System.TObject)" />
+      <reference referencedUin="delphi:e_method:src:Project1:UConstructor.TFConstructor.Button2Click(System.TObject)" />
+      <reference referencedUin="delphi:e_method:src:Project1:UConstructor.TFConstructor.Edit1KeyPress(System.TObject,ref@System.Char)" />
+      <reference referencedUin="delphi:e_method:src:Project1:UConstructor.TFConstructor.SelectingComboBox()" />
+      <reference referencedUin="delphi:e_field:src:Project1:UConstructor.TFConstructor.NameServer" />
+      <reference referencedUin="delphi:l_ast:src:Project1:UConstructor.TFConstructor.NameServer">
+        <property name="sourceAnchor" value="866,520" />
+        <property name="targetAnchor" value="866,466" />
+        <property name="bendpoints" value="" />
+      </reference>
+    </reference>
+    <reference referencedUin="delphi:e_class:src:Project1:URequestAllRecords.TRequestAllRecords">
+      <property name="$shortcutReference" value="true" />
+      <property name="bounds" value="420,620,255,100" />
+      <property name="hideAttribute" value="True" />
+      <property name="location_set_by_user" value="True" />
+      <property name="bounds_setted_by_user" value="True" />
+      <reference referencedUin="delphi:e_field:src:Project1:URequestAllRecords.TRequestAllRecords.Label1" />
+      <reference referencedUin="delphi:e_field:src:Project1:URequestAllRecords.TRequestAllRecords.Combobox1" />
+      <reference referencedUin="delphi:e_field:src:Project1:URequestAllRecords.TRequestAllRecords.Button1" />
+      <reference referencedUin="delphi:e_field:src:Project1:URequestAllRecords.TRequestAllRecords.Button2" />
+      <reference referencedUin="delphi:e_field:src:Project1:URequestAllRecords.TRequestAllRecords.NameServer" />
+      <reference referencedUin="delphi:e_method:src:Project1:URequestAllRecords.TRequestAllRecords.create(Forms.TForm)" />
+      <reference referencedUin="delphi:e_method:src:Project1:URequestAllRecords.TRequestAllRecords.destroy()" />
+      <reference referencedUin="delphi:e_method:src:Project1:URequestAllRecords.TRequestAllRecords.Button1Click(System.TObject)" />
+      <reference referencedUin="delphi:e_method:src:Project1:URequestAllRecords.TRequestAllRecords.Button2Click(System.TObject)" />
+      <reference referencedUin="delphi:e_method:src:Project1:URequestAllRecords.TRequestAllRecords.Request()" />
+      <reference referencedUin="delphi:l_ast:src:Project1:URequestAllRecords.TRequestAllRecords.NameServer">
+        <property name="sourceAnchor" value="675,643" />
+        <property name="targetAnchor" value="780,449" />
+        <property name="bendpoints" value="763,643,763,449" />
+        <property name="bounds_setted_by_user" value="True" />
+      </reference>
+      <reference referencedUin="delphi:l_gnt:src:Project1:URequestAllRecords.TRequestAllRecords:UInterface.TInterfaceMenuCreate">
+        <property name="sourceAnchor" value="431,620" />
+        <property name="targetAnchor" value="431,141" />
+        <property name="bendpoints" value="" />
+      </reference>
+    </reference>
+    <reference referencedUin="delphi:e_class:src:Project1:URequestNumber.TRequestNumber">
+      <property name="$shortcutReference" value="true" />
+      <property name="bounds" value="480,220,222,100" />
+      <property name="hideAttribute" value="True" />
+      <property name="location_set_by_user" value="True" />
+      <property name="bounds_setted_by_user" value="True" />
+      <reference referencedUin="delphi:e_field:src:Project1:URequestNumber.TRequestNumber.Label1" />
+      <reference referencedUin="delphi:e_field:src:Project1:URequestNumber.TRequestNumber.Label2" />
+      <reference referencedUin="delphi:e_field:src:Project1:URequestNumber.TRequestNumber.Label3" />
+      <reference referencedUin="delphi:e_field:src:Project1:URequestNumber.TRequestNumber.Combobox1" />
+      <reference referencedUin="delphi:e_field:src:Project1:URequestNumber.TRequestNumber.ComboBox2" />
+      <reference referencedUin="delphi:e_field:src:Project1:URequestNumber.TRequestNumber.Edit1" />
+      <reference referencedUin="delphi:e_field:src:Project1:URequestNumber.TRequestNumber.Button1" />
+      <reference referencedUin="delphi:e_field:src:Project1:URequestNumber.TRequestNumber.Button2" />
+      <reference referencedUin="delphi:e_field:src:Project1:URequestNumber.TRequestNumber.NameServer" />
+      <reference referencedUin="delphi:e_method:src:Project1:URequestNumber.TRequestNumber.create(Forms.TForm)" />
+      <reference referencedUin="delphi:e_method:src:Project1:URequestNumber.TRequestNumber.destroy()" />
+      <reference referencedUin="delphi:e_method:src:Project1:URequestNumber.TRequestNumber.Button1Click(System.TObject)" />
+      <reference referencedUin="delphi:e_method:src:Project1:URequestNumber.TRequestNumber.Button2Click(System.TObject)" />
+      <reference referencedUin="delphi:e_method:src:Project1:URequestNumber.TRequestNumber.Request()" />
+      <reference referencedUin="delphi:l_ast:src:Project1:URequestNumber.TRequestNumber.NameServer">
+        <property name="sourceAnchor" value="702,270" />
+        <property name="targetAnchor" value="780,270" />
+        <property name="bendpoints" value="" />
+      </reference>
+      <reference referencedUin="delphi:l_gnt:src:Project1:URequestNumber.TRequestNumber:UInterface.TInterfaceMenuCreate">
+        <property name="sourceAnchor" value="480,245" />
+        <property name="targetAnchor" value="450,141" />
+        <property name="bendpoints" value="450,245" />
+        <property name="bounds_setted_by_user" value="True" />
+      </reference>
+    </reference>
+    <reference referencedUin="delphi:e_class:src:Project1:URequestStatusCall.TRequestStatusCall">
+      <property name="$shortcutReference" value="true" />
+      <property name="bounds" value="460,380,249,100" />
+      <property name="hideAttribute" value="True" />
+      <property name="location_set_by_user" value="True" />
+      <property name="bounds_setted_by_user" value="True" />
+      <reference referencedUin="delphi:e_field:src:Project1:URequestStatusCall.TRequestStatusCall.Label1" />
+      <reference referencedUin="delphi:e_field:src:Project1:URequestStatusCall.TRequestStatusCall.Label2" />
+      <reference referencedUin="delphi:e_field:src:Project1:URequestStatusCall.TRequestStatusCall.Combobox1" />
+      <reference referencedUin="delphi:e_field:src:Project1:URequestStatusCall.TRequestStatusCall.ComboBox2" />
+      <reference referencedUin="delphi:e_field:src:Project1:URequestStatusCall.TRequestStatusCall.Button1" />
+      <reference referencedUin="delphi:e_field:src:Project1:URequestStatusCall.TRequestStatusCall.Button2" />
+      <reference referencedUin="delphi:e_field:src:Project1:URequestStatusCall.TRequestStatusCall.NameServer" />
+      <reference referencedUin="delphi:e_method:src:Project1:URequestStatusCall.TRequestStatusCall.create(Forms.TForm)" />
+      <reference referencedUin="delphi:e_method:src:Project1:URequestStatusCall.TRequestStatusCall.destroy()" />
+      <reference referencedUin="delphi:e_method:src:Project1:URequestStatusCall.TRequestStatusCall.Button1Click(System.TObject)" />
+      <reference referencedUin="delphi:e_method:src:Project1:URequestStatusCall.TRequestStatusCall.Button2Click(System.TObject)" />
+      <reference referencedUin="delphi:e_method:src:Project1:URequestStatusCall.TRequestStatusCall.Request()" />
+      <reference referencedUin="delphi:l_ast:src:Project1:URequestStatusCall.TRequestStatusCall.NameServer">
+        <property name="sourceAnchor" value="709,423" />
+        <property name="targetAnchor" value="780,423" />
+        <property name="bendpoints" value="" />
+      </reference>
+      <reference referencedUin="delphi:l_gnt:src:Project1:URequestStatusCall.TRequestStatusCall:UInterface.TInterfaceMenuCreate">
+        <property name="sourceAnchor" value="460,412" />
+        <property name="targetAnchor" value="442,141" />
+        <property name="bendpoints" value="442,412" />
+        <property name="bounds_setted_by_user" value="True" />
+      </reference>
+    </reference>
+    <reference referencedUin="delphi:e_class:src:Project1:URequestTypeCall.TRequestTypeCall">
+      <property name="$shortcutReference" value="true" />
+      <property name="bounds" value="460,500,232,100" />
+      <property name="hideAttribute" value="True" />
+      <property name="location_set_by_user" value="True" />
+      <property name="bounds_setted_by_user" value="True" />
+      <reference referencedUin="delphi:e_field:src:Project1:URequestTypeCall.TRequestTypeCall.Label1" />
+      <reference referencedUin="delphi:e_field:src:Project1:URequestTypeCall.TRequestTypeCall.Label2" />
+      <reference referencedUin="delphi:e_field:src:Project1:URequestTypeCall.TRequestTypeCall.Combobox1" />
+      <reference referencedUin="delphi:e_field:src:Project1:URequestTypeCall.TRequestTypeCall.ComboBox2" />
+      <reference referencedUin="delphi:e_field:src:Project1:URequestTypeCall.TRequestTypeCall.Button1" />
+      <reference referencedUin="delphi:e_field:src:Project1:URequestTypeCall.TRequestTypeCall.Button2" />
+      <reference referencedUin="delphi:e_field:src:Project1:URequestTypeCall.TRequestTypeCall.NameServer" />
+      <reference referencedUin="delphi:e_method:src:Project1:URequestTypeCall.TRequestTypeCall.create(Forms.TForm)" />
+      <reference referencedUin="delphi:e_method:src:Project1:URequestTypeCall.TRequestTypeCall.destroy()" />
+      <reference referencedUin="delphi:e_method:src:Project1:URequestTypeCall.TRequestTypeCall.Button1Click(System.TObject)" />
+      <reference referencedUin="delphi:e_method:src:Project1:URequestTypeCall.TRequestTypeCall.Button2Click(System.TObject)" />
+      <reference referencedUin="delphi:e_method:src:Project1:URequestTypeCall.TRequestTypeCall.Request()" />
+      <reference referencedUin="delphi:l_ast:src:Project1:URequestTypeCall.TRequestTypeCall.NameServer">
+        <property name="sourceAnchor" value="692,572" />
+        <property name="targetAnchor" value="780,442" />
+        <property name="bendpoints" value="730,572,730,442" />
+        <property name="bounds_setted_by_user" value="True" />
+      </reference>
+      <reference referencedUin="delphi:l_gnt:src:Project1:URequestTypeCall.TRequestTypeCall:UInterface.TInterfaceMenuCreate">
+        <property name="sourceAnchor" value="460,540" />
+        <property name="targetAnchor" value="437,141" />
+        <property name="bendpoints" value="437,540" />
+        <property name="bounds_setted_by_user" value="True" />
+      </reference>
+    </reference>
+    <reference referencedUin="delphi:e_class:src:Project1:URequestDate.TRequestDate">
+      <property name="$shortcutReference" value="true" />
+      <property name="bounds" value="220,480,206,100" />
+      <property name="hideAttribute" value="True" />
+      <property name="hideProperty" value="True" />
+      <property name="location_set_by_user" value="True" />
+      <property name="bounds_setted_by_user" value="True" />
+      <reference referencedUin="delphi:e_field:src:Project1:URequestDate.TRequestDate.Label1" />
+      <reference referencedUin="delphi:e_field:src:Project1:URequestDate.TRequestDate.Label2" />
+      <reference referencedUin="delphi:e_field:src:Project1:URequestDate.TRequestDate.Label3" />
+      <reference referencedUin="delphi:e_field:src:Project1:URequestDate.TRequestDate.Combobox1" />
+      <reference referencedUin="delphi:e_field:src:Project1:URequestDate.TRequestDate.Button1" />
+      <reference referencedUin="delphi:e_field:src:Project1:URequestDate.TRequestDate.Button2" />
+      <reference referencedUin="delphi:e_field:src:Project1:URequestDate.TRequestDate.DateTimePicker1" />
+      <reference referencedUin="delphi:e_field:src:Project1:URequestDate.TRequestDate.DateTimePicker2" />
+      <reference referencedUin="delphi:e_field:src:Project1:URequestDate.TRequestDate.DateTimePicker3" />
+      <reference referencedUin="delphi:e_field:src:Project1:URequestDate.TRequestDate.DateTimePicker4" />
+      <reference referencedUin="delphi:e_field:src:Project1:URequestDate.TRequestDate.NameServer" />
+      <reference referencedUin="delphi:e_method:src:Project1:URequestDate.TRequestDate.create(Forms.TForm)" />
+      <reference referencedUin="delphi:e_method:src:Project1:URequestDate.TRequestDate.destroy()" />
+      <reference referencedUin="delphi:e_method:src:Project1:URequestDate.TRequestDate.Button1Click(System.TObject)" />
+      <reference referencedUin="delphi:e_method:src:Project1:URequestDate.TRequestDate.Button2Click(System.TObject)" />
+      <reference referencedUin="delphi:e_method:src:Project1:URequestDate.TRequestDate.Request()" />
+      <reference referencedUin="delphi:l_ast:src:Project1:URequestDate.TRequestDate.NameServer">
+        <property name="sourceAnchor" value="426,493" />
+        <property name="targetAnchor" value="780,434" />
+        <property name="bendpoints" value="718,493,718,434" />
+        <property name="bounds_setted_by_user" value="True" />
+      </reference>
+      <reference referencedUin="delphi:e_property:src:Project1:URequestDate.TRequestDate.Property1" />
+      <reference referencedUin="delphi:e_field:src:Project1:URequestDate.TRequestDate.FProperty1" />
+      <reference referencedUin="delphi:e_method:src:Project1:URequestDate.TRequestDate.SetProperty1(System.Integer)" />
+      <reference referencedUin="delphi:l_gnt:src:Project1:URequestDate.TRequestDate:UInterface.TInterfaceMenuCreate">
+        <property name="sourceAnchor" value="353,480" />
+        <property name="targetAnchor" value="353,141" />
+        <property name="bendpoints" value="" />
+      </reference>
+    </reference>
+  </view>
+</nodeSet>

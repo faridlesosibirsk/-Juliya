@@ -2,16 +2,15 @@ unit URequestStatusCall;
 
 interface
 
-uses StdCtrls, SysUtils, Forms, URequestCreate, UVarServer, UObjectsCreate;
+uses StdCtrls, SysUtils, Forms, URequestCreate, UVarServer, UInterface;
 
 type
-  TRequestStatusCall = class(TRequestCreate)
+  TRequestStatusCall = class(TInterfaceMenuCreate)
   private
     Label1,Label2:TLabel;
     Combobox1,ComboBox2:TCombobox;
     Button1,Button2:TButton;
     NameServer:TNameServer;
-    ObjectsCreate:TObjectsCreate;
   public
     constructor create(AOwner: TForm);override;
     procedure destroy;override;
@@ -38,9 +37,9 @@ begin
   FMain.DBGrid1.Width:=969;
   FMain.ADOQuery1.Close;
   FMain.Panel1.Caption:=NameServer.GetName;
-  ObjectsCreate.LabelCreate(AOwner,30,12,'Выберите статус звонка:',Label1);
-  ObjectsCreate.LabelCreate(AOwner,30,44,'Сортировка по:',Label2);
-  ObjectsCreate.ComboBoxCreate(AOwner,200,8,140,ComboBox1);
+  fFileCreate.LabelCreate(AOwner,30,12,'Выберите статус звонка:',Label1);
+  fFileCreate.LabelCreate(AOwner,30,44,'Сортировка по:',Label2);
+  fFileCreate.ComboBoxCreate(AOwner,200,8,140,ComboBox1);
   ComboBox1.Items.Add('входящий');
   ComboBox1.Items.Add('исходящий');
   ComboBox1.Items.Add('другие');
@@ -49,13 +48,13 @@ begin
   ComboBox1.Items.Add('другие 4');
   ComboBox1.Items.Add('нз');
   ComboBox1.ItemIndex:=0;
-  ObjectsCreate.ComboBoxCreate(AOwner,200,40,140,ComboBox2);
+  fFileCreate.ComboBoxCreate(AOwner,200,40,140,ComboBox2);
   ComboBox2.Items.Add('возрастанию');
   ComboBox2.Items.Add('убыванию');
   ComboBox2.ItemIndex:=0;
-  ObjectsCreate.ButtonCreate(AOwner,360,40,25,130,'Выполнить запрос',Button1);
+  fFileCreate.ButtonCreate(AOwner,360,40,25,130,'Выполнить запрос',Button1);
   Button1.OnClick:=Button1Click;
-  ObjectsCreate.ButtonCreate(AOwner,510,40,25,130,'Сохранить в файл',Button2);
+  fFileCreate.ButtonCreate(AOwner,510,40,25,130,'Сохранить в файл',Button2);
   Button2.OnClick:=Button2Click;
 end;
 

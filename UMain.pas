@@ -33,12 +33,12 @@ type
     procedure FormCreate(Sender: TObject);
     procedure SetTitleDBGrid;
   private
+    /// <link>aggregation</link>
     fFileCreate: TInterfaceMenuCreate;
   end;
 
 var
   FMain: TFMain;
-  AddCreate:TAddCreate;
   SelectMenu:integer;
 
 implementation

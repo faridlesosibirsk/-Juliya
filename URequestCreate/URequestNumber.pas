@@ -2,17 +2,16 @@ unit URequestNumber;
 
 interface
 
-uses StdCtrls, SysUtils, Forms, URequestCreate, UVarServer, UObjectsCreate;
+uses StdCtrls, SysUtils, Forms, URequestCreate, UVarServer, UInterface;
 
 type
-  TRequestNumber = class(TRequestCreate)
+  TRequestNumber = class(TInterfaceMenuCreate)
   private
     Label1,Label2,Label3:TLabel;
     Combobox1,ComboBox2:TCombobox;
     Edit1:TEdit;
     Button1,Button2:TButton;
     NameServer:TNameServer;
-    ObjectsCreate:TObjectsCreate;
   public
     constructor create(AOwner: TForm);override;
     procedure destroy;override;
@@ -39,22 +38,22 @@ begin
   FMain.DBGrid1.Width:=969;
   FMain.ADOQuery1.Close;
   FMain.Panel1.Caption:=NameServer.GetName;
-  ObjectsCreate.LabelCreate(AOwner,30,12,'Выберите тип номера:',Label1);
-  ObjectsCreate.LabelCreate(AOwner,30,44,'Введите номер телефона:',Label2);
-  ObjectsCreate.LabelCreate(AOwner,30,76,'Сортировка по:',Label3);
-  ObjectsCreate.ComboBoxCreate(AOwner,200,8,140,ComboBox1);
+  fFileCreate.LabelCreate(AOwner,30,12,'Выберите тип номера:',Label1);
+  fFileCreate.LabelCreate(AOwner,30,44,'Введите номер телефона:',Label2);
+  fFileCreate.LabelCreate(AOwner,30,76,'Сортировка по:',Label3);
+  fFileCreate.ComboBoxCreate(AOwner,200,8,140,ComboBox1);
   ComboBox1.Items.Add('городской/внутренний');
   ComboBox1.Items.Add('внутренний номер АТС');
   ComboBox1.ItemIndex:=0;
-  ObjectsCreate.ComboBoxCreate(AOwner,200,72,140,ComboBox2);
+  fFileCreate.ComboBoxCreate(AOwner,200,72,140,ComboBox2);
   ComboBox2.Items.Add('возрастанию');
   ComboBox2.Items.Add('убыванию');
   ComboBox2.ItemIndex:=0;
-  ObjectsCreate.ButtonCreate(AOwner,360,72,25,130,'Выполнить запрос',Button1);
+  fFileCreate.ButtonCreate(AOwner,360,72,25,130,'Выполнить запрос',Button1);
   Button1.OnClick:=Button1Click;
-  ObjectsCreate.ButtonCreate(AOwner,510,72,25,130,'Сохранить в файл',Button2);
+  fFileCreate.ButtonCreate(AOwner,510,72,25,130,'Сохранить в файл',Button2);
   Button2.OnClick:=Button2Click;
-  ObjectsCreate.EditCreate(AOwner,200, 40, 140,Edit1);
+  fFileCreate.EditCreate(AOwner,200, 40, 140,Edit1);
   Edit1.MaxLength:=8;
 end;
 

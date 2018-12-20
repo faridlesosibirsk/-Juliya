@@ -4,22 +4,24 @@ interface
 
 uses
   SysUtils, Variants, Controls, Forms, StdCtrls, FileCtrl, Classes, Winapi.Windows,
-  UInterface, UFile, UVarServer,IniFiles, UUpdateBase, UObjectsCreate;
+  UInterface, UFile, UVarServer,IniFiles, UUpdateBase;
 
 type
-  TAddCreate = class(TInterfacedObject, TInterfaceMenuCreate)
+  TAddCreate = class(TInterfaceMenuCreate)
   private
     Label1,Label2,Label3:TLabel;
     Label4,Label5,Label6:TLabel;
     Button1:TButton;
-    NameServer:TNameServer;
-    ObjectsCreate:TObjectsCreate;
-    File1:TFile;
+    /// <link>aggregation</link>
+    NameServer: TNameServer;
+    /// <link>aggregation</link>
+    /// <link>aggregation</link>
+    File1: TFile;
   public
     procedure SetFileListBox(mask: string);
     function GetFileListBox:TFileListBox;
     constructor create(AOwner: TForm);
-    procedure destroy;
+    procedure destroy;override;
     procedure Button1Click(Sender:TObject);
     procedure FileListBox1KeyUp(Sender: TObject; var Key: Word;Shift: TShiftState);
     procedure FileListBox1MouseDown(Sender: TObject; Button: TMouseButton;Shift: TShiftState; X, Y: Integer);
@@ -46,13 +48,13 @@ begin
   FMain.DBGrid1.Width:=548;
   FMain.ADOQuery1.Close;
   FMain.Panel1.Caption:=NameServer.GetName;
-  ObjectsCreate.LabelCreate(AOwner,257,8,'Номер выбранного файла:',Label1);
-  ObjectsCreate.LabelCreate(AOwner,257,31,'Количество строк в файле:',Label2);
-  ObjectsCreate.LabelCreate(AOwner,257,54,'Дата изменения:',Label3);
-  ObjectsCreate.LabelCreate(AOwner,428,8,'_-_-_',Label4);
-  ObjectsCreate.LabelCreate(AOwner,428,31,'_-_-_',Label5);
-  ObjectsCreate.LabelCreate(AOwner,365,54,'_-_-_-_-_-_-_-_-',Label6);
-  ObjectsCreate.ButtonCreate(AOwner,265,91,25,200,'Добавить',Button1);
+  fFileCreate.LabelCreate(AOwner,257,8,'Номер выбранного файла:',Label1);
+  fFileCreate.LabelCreate(AOwner,257,31,'Количество строк в файле:',Label2);
+  fFileCreate.LabelCreate(AOwner,257,54,'Дата изменения:',Label3);
+  fFileCreate.LabelCreate(AOwner,428,8,'_-_-_',Label4);
+  fFileCreate.LabelCreate(AOwner,428,31,'_-_-_',Label5);
+  fFileCreate.LabelCreate(AOwner,365,54,'_-_-_-_-_-_-_-_-',Label6);
+  fFileCreate.ButtonCreate(AOwner,265,91,25,200,'Добавить',Button1);
   Button1.OnClick:=Button1Click;
   FileListBox1:=TFileListBox.Create(AOwner);
   FileListBox1.Height:=125;
