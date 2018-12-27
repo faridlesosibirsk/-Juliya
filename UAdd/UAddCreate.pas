@@ -13,9 +13,6 @@ type
     Label4,Label5,Label6:TLabel;
     Button1:TButton;
     /// <link>aggregation</link>
-    NameServer: TNameServer;
-    /// <link>aggregation</link>
-    /// <link>aggregation</link>
     File1: TFile;
   public
     procedure SetFileListBox(mask: string);

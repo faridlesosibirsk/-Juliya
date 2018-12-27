@@ -10,8 +10,6 @@ type
     Label1,Label2:TLabel;
     Combobox1,ComboBox2:TCombobox;
     Button1,Button2:TButton;
-    /// <link>aggregation</link>
-    NameServer: TNameServer;
   public
     constructor create(AOwner: TForm);
     procedure destroy;override;

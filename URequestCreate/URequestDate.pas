@@ -12,8 +12,6 @@ type
     Button1,Button2:TButton;
     DateTimePicker1,DateTimePicker2,
     DateTimePicker3,DateTimePicker4:TDateTimePicker;
-    /// <link>aggregation</link>
-    NameServer: TNameServer;
     FProperty1: Integer;
     procedure SetProperty1(val: Integer);
   public

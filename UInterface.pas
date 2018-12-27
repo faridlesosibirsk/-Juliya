@@ -3,9 +3,14 @@ unit UInterface;
 interface
 
 uses
-  StdCtrls, Forms;
+  StdCtrls, Forms, UVarServer;
 type
   TInterfaceMenuCreate = class
+  private
+    /// <link>aggregation</link>
+    NameServer_: TNameServer;
+    /// <link>aggregation</link>
+    fFileCreate_: TInterfaceMenuCreate;
   public
     procedure destroy;virtual;abstract;
     procedure LabelCreate(AOwner:TForm; Left, Top:integer;
@@ -18,7 +23,8 @@ type
       var Edit_: TEdit);
   end;
 
-var    fFileCreate: TInterfaceMenuCreate;
+var fFileCreate: TInterfaceMenuCreate;
+    NameServer: TNameServer;
 
 implementation
 

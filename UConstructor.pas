@@ -224,6 +224,7 @@ begin
   with adoQuery1 do
   begin
     a:='';b:='';c:='';d:='';e:='';f:='';g:='';h:='';k:=0;
+    //settings combobox
     case ComboBox1.ItemIndex of
       1:a:='('+'date='+''''+FormatDateTime('yyyy-mm-dd',DateTimePicker1.Date)+''''+')';
       2:a:='('+'date>='+''''+FormatDateTime('yyyy-mm-dd',DateTimePicker1.Date)+''''+')'
@@ -232,18 +233,15 @@ begin
     if ComboBox2.ItemIndex=1 then
       b:='('+'time>='+''''+FormatDateTime('hh:mm:ss',DateTimePicker3.Time)+''''+')'
         +'and ('+'time<='+''''+FormatDateTime('hh:mm:ss',DateTimePicker4.Time)+''''+')';
-    if ComboBox3.ItemIndex=1 then
-      c:='('+'duration='+''''+Edit1.Text+''''+')';
+    if ComboBox3.ItemIndex=1 then c:='('+'duration='+''''+Edit1.Text+''''+')';
     if (ComboBox4.ItemIndex>=1)and(ComboBox4.ItemIndex<=7) then
       d:='('+'statuscall='+''''+ComboBox4.Items[ComboBox4.ItemIndex]+''''+')';
     if (ComboBox5.ItemIndex>=1)and(ComboBox4.ItemIndex<=11) then
       e:='('+'typecall='+''''+ComboBox5.Items[ComboBox5.ItemIndex]+''''+')';
-    if ComboBox6.ItemIndex=1 then
-      f:='('+'code='+''''+Edit2.Text+''''+')';
-    if ComboBox7.ItemIndex=1 then
-      g:='('+'citynumber='+''''+Edit3.Text+''''+')';
-    if ComboBox8.ItemIndex=1 then
-      h:='('+'insidenumber='+''''+Edit4.Text+''''+')';
+    if ComboBox6.ItemIndex=1 then f:='('+'code='+''''+Edit2.Text+''''+')';
+    if ComboBox7.ItemIndex=1 then g:='('+'citynumber='+''''+Edit3.Text+''''+')';
+    if ComboBox8.ItemIndex=1 then h:='('+'insidenumber='+''''+Edit4.Text+''''+')';
+    //select combobox
     if a='' then id[1]:='0' else id[1]:='1';
     if b='' then id[2]:='0' else id[2]:='1';
     if c='' then id[3]:='0' else id[3]:='1';
@@ -252,7 +250,6 @@ begin
     if f='' then id[6]:='0' else id[6]:='1';
     if g='' then id[7]:='0' else id[7]:='1';
     if h='' then id[8]:='0' else id[8]:='1';
-    k:=0;
     for i := 1 to 8 do
       if (id[i]='1')and(k=0) then
       begin

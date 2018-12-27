@@ -35,7 +35,7 @@ var
   i,j,n:integer;                    //переменная цикла
   text,s:string;                    //исходная строка
 //********************************************************************//
-  procedure Select9801;
+procedure Select9801;
 begin
   with FMain.adoQuery1 do
   case length(p[i].citynumber) of  //уровень вложенности 8
