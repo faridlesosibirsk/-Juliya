@@ -38,9 +38,7 @@ type
     { Public declarations }
   end;
 
-var
-  FSettings:TFSettings;
-
+var FSettings:TFSettings;
 
 implementation
 
@@ -106,20 +104,20 @@ begin
     if SelectMenu=1 then File1.SortFileListBox(AddCreate.GetFileListBox);
     Script.ScriptCreateDB(NameServer);
     Script.ScriptCreateTb(NameServer);
-    ///// connecting to DataBase
-    Connection:= TDBConnection.create(NameServer);
-    FMain.ADOQuery1.Connection:= Connection.GetADOConnection;
-    FConstructor.ADOQuery1.Connection:= Connection.GetADOConnection;
-    ///search all names DataBases
     flag:=true;
-    FMain.adoQuery1.active:=false;
-    FMain.adoQuery1.SQL.Clear;
-    FMain.adoQuery1.SQL.Add('SELECT name FROM [master].[dbo].[sysdatabases]');
+    ///// connecting to DataBase
     try
+      Connection:= TDBConnection.create(NameServer);
+      FMain.ADOQuery1.Connection:= Connection.GetADOConnection;
+      FConstructor.ADOQuery1.Connection:= Connection.GetADOConnection;
+      ///search all names DataBases
+      FMain.adoQuery1.active:=false;
+      FMain.adoQuery1.SQL.Clear;
+      FMain.adoQuery1.SQL.Add('SELECT name FROM [master].[dbo].[sysdatabases]');
       FMain.adoQuery1.ExecSQL;
     except
       on e:exception do
-      if e.Message='[DBNETLIB][ConnectionOpen (Connect()).]SQL Server не существует, или доступ запрещен'
+      if pos('[DBNETLIB][ConnectionOpen (Connect()).]SQL Server не существует',e.message)<>0
       then begin
         flag:=false;
         Application.MessageBox('SQL Server не существует, или доступ запрещен.','Ошибка');

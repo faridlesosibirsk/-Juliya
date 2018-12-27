@@ -11,8 +11,6 @@ type
     Combobox1,ComboBox2:TCombobox;
     Edit1:TEdit;
     Button1,Button2:TButton;
-    /// <link>aggregation</link>
-    NameServer: TNameServer;
   public
     constructor create(AOwner: TForm);
     procedure destroy;override;
