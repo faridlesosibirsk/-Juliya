@@ -136,7 +136,7 @@
     </reference>
     <reference referencedUin="delphi:e_class:src:Project1:USettings.TFSettings">
       <property name="$shortcutReference" value="true" />
-      <property name="bounds" value="980,0,162,460" />
+      <property name="bounds" value="1000,0,162,460" />
       <property name="location_set_by_user" value="True" />
       <property name="bounds_setted_by_user" value="True" />
       <reference referencedUin="delphi:e_field:src:Project1:USettings.TFSettings.Edit1" />
@@ -163,33 +163,27 @@
       <reference referencedUin="delphi:e_field:src:Project1:USettings.TFSettings.NameServer" />
       <reference referencedUin="delphi:e_field:src:Project1:USettings.TFSettings.Script" />
       <reference referencedUin="delphi:l_ast:src:Project1:USettings.TFSettings.NameServer">
-        <property name="sourceAnchor" value="980,300" />
+        <property name="sourceAnchor" value="1000,300" />
         <property name="targetAnchor" value="933,300" />
         <property name="bendpoints" value="" />
       </reference>
-      <reference referencedUin="delphi:e_field:src:Project1:USettings.TFSettings.File1" />
-      <reference referencedUin="delphi:l_ast:src:Project1:USettings.TFSettings.File1">
-        <property name="sourceAnchor" value="980,64" />
-        <property name="targetAnchor" value="908,64" />
+      <reference referencedUin="delphi:l_ast:src:Project1:USettings.TFSettings.Script">
+        <property name="sourceAnchor" value="1162,97" />
+        <property name="targetAnchor" value="1180,97" />
         <property name="bendpoints" value="" />
       </reference>
-      <reference referencedUin="delphi:l_ast:src:Project1:USettings.TFSettings.Script">
-        <property name="sourceAnchor" value="1142,97" />
-        <property name="targetAnchor" value="1180,97" />
+      <reference referencedUin="delphi:e_field:src:Project1:USettings.TFSettings.Connection" />
+      <reference referencedUin="delphi:l_ast:src:Project1:USettings.TFSettings.Connection">
+        <property name="sourceAnchor" value="1162,245" />
+        <property name="targetAnchor" value="1180,245" />
         <property name="bendpoints" value="" />
       </reference>
       <reference referencedUin="delphi:e_field:src:Project1:USettings.TFSettings.AddCreate" />
       <reference referencedUin="delphi:l_ast:src:Project1:USettings.TFSettings.AddCreate">
-        <property name="sourceAnchor" value="980,135" />
+        <property name="sourceAnchor" value="1000,135" />
         <property name="targetAnchor" value="399,269" />
         <property name="bendpoints" value="542,135" />
         <property name="bounds_setted_by_user" value="True" />
-      </reference>
-      <reference referencedUin="delphi:e_field:src:Project1:USettings.TFSettings.Connection" />
-      <reference referencedUin="delphi:l_ast:src:Project1:USettings.TFSettings.Connection">
-        <property name="sourceAnchor" value="1142,245" />
-        <property name="targetAnchor" value="1180,245" />
-        <property name="bendpoints" value="" />
       </reference>
     </reference>
     <reference referencedUin="delphi:e_class:src:Project1:UUpdateBase.@unitclass">
@@ -229,7 +223,7 @@
     </reference>
     <reference referencedUin="delphi:e_class:src:Project1:UMain.TFMain">
       <property name="$shortcutReference" value="true" />
-      <property name="bounds" value="0,0,205,505" />
+      <property name="bounds" value="0,0,205,520" />
       <property name="location_set_by_user" value="True" />
       <reference referencedUin="delphi:e_field:src:Project1:UMain.TFMain.MainMenu1" />
       <reference referencedUin="delphi:e_field:src:Project1:UMain.TFMain.MAddFile" />
@@ -264,6 +258,7 @@
         <property name="targetAnchor" value="260,88" />
         <property name="bendpoints" value="" />
       </reference>
+      <reference referencedUin="delphi:e_field:src:Project1:UMain.TFMain.sSkinManager1" />
     </reference>
     <reference referencedUin="delphi:e_class:src:Project1:UInterface.TInterfaceMenuCreate">
       <property name="$shortcutReference" value="true" />
@@ -325,7 +320,7 @@
     </reference>
     <reference referencedUin="delphi:e_class:src:Project1:UAddCreate.TAddCreate">
       <property name="$shortcutReference" value="true" />
-      <property name="bounds" value="220,200,179,296" />
+      <property name="bounds" value="220,200,179,311" />
       <property name="location_set_by_user" value="True" />
       <reference referencedUin="delphi:e_field:src:Project1:UAddCreate.TAddCreate.Label1" />
       <reference referencedUin="delphi:e_field:src:Project1:UAddCreate.TAddCreate.Label2" />
@@ -341,6 +336,11 @@
       <reference referencedUin="delphi:e_method:src:Project1:UAddCreate.TAddCreate.Button1Click(System.TObject)" />
       <reference referencedUin="delphi:e_method:src:Project1:UAddCreate.TAddCreate.FileListBox1KeyUp(System.TObject,ref@System.Word,TShiftState)" />
       <reference referencedUin="delphi:e_method:src:Project1:UAddCreate.TAddCreate.FileListBox1MouseDown(System.TObject,System.UITypes.TMouseButton,TShiftState,System.Integer,System.Integer)" />
+      <reference referencedUin="delphi:l_gnt:src:Project1:UAddCreate.TAddCreate:UInterface.TInterfaceMenuCreate">
+        <property name="sourceAnchor" value="329,200" />
+        <property name="targetAnchor" value="329,176" />
+        <property name="bendpoints" value="" />
+      </reference>
       <reference referencedUin="delphi:e_field:src:Project1:UAddCreate.TAddCreate.File1" />
       <reference referencedUin="delphi:l_ast:src:Project1:UAddCreate.TAddCreate.File1">
         <property name="sourceAnchor" value="399,259" />
@@ -348,11 +348,7 @@
         <property name="bendpoints" value="539,121" />
         <property name="bounds_setted_by_user" value="True" />
       </reference>
-      <reference referencedUin="delphi:l_gnt:src:Project1:UAddCreate.TAddCreate:UInterface.TInterfaceMenuCreate">
-        <property name="sourceAnchor" value="329,200" />
-        <property name="targetAnchor" value="329,176" />
-        <property name="bendpoints" value="" />
-      </reference>
+      <reference referencedUin="delphi:e_method:src:Project1:UAddCreate.TAddCreate.SortFileListBox(FileCtrl.TFileListBox)" />
     </reference>
     <reference referencedUin="delphi:e_class:src:Project1:UScript.TScript">
       <property name="$shortcutReference" value="true" />

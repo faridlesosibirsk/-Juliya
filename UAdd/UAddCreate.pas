@@ -22,6 +22,7 @@ type
     procedure Button1Click(Sender:TObject);
     procedure FileListBox1KeyUp(Sender: TObject; var Key: Word;Shift: TShiftState);
     procedure FileListBox1MouseDown(Sender: TObject; Button: TMouseButton;Shift: TShiftState; X, Y: Integer);
+    procedure SortFileListBox(FileListBox_:TFileListBox);
   end;
 
 implementation
@@ -65,7 +66,6 @@ begin
   FileListBox1.OnKeyUp:=FileListBox1KeyUp;
   FileListBox1.OnMouseDown:=FileListBox1MouseDown;
   FileListBox1.OnMouseUp:=FileListBox1MouseDown;
-  File1.SortFileListBox(GetFileListBox);
 end;
 
 procedure TAddCreate.destroy;
@@ -159,6 +159,32 @@ end;
 procedure TAddCreate.SetFileListBox(mask: string);
 begin
   FileListBox1.Mask:=mask;
+end;
+
+procedure TAddCreate.SortFileListBox(FileListBox_:TFileListBox);
+var
+  i,j,N:integer;
+  c:string;
+  flag:boolean;
+function GetText(text:string):string;
+begin
+  result:=copy(text,12,4)+copy(text,9,2)+copy(text,6,2);
+end;
+begin
+  N:=FileListBox_.Items.Count-1;
+  i:=0;
+  repeat
+    i:=i+1;
+    flag:=false;
+    for j := n-1 downto 0 do
+    if GetText(FileListBox_.Items.Strings[j])>GetText(FileListBox_.Items.Strings[j+1]) then
+    begin
+      c:=FileListBox_.Items.Strings[j];
+      FileListBox_.Items.Strings[j]:=FileListBox_.Items.Strings[j+1];
+      FileListBox_.Items.Strings[j+1]:=c;
+      flag:=true;
+    end;
+  until not flag;
 end;
 
 end.
