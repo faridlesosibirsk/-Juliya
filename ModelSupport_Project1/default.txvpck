@@ -281,6 +281,10 @@
         <property name="bendpoints" value="519,122,519,173,478,173" />
         <property name="bounds_setted_by_user" value="True" />
       </reference>
+      <reference referencedUin="delphi:e_field:src:Project1:UInterface.TInterfaceMenuCreate.FInstance" />
+      <reference referencedUin="delphi:l_ast:src:Project1:UInterface.TInterfaceMenuCreate.FInstance" />
+      <reference referencedUin="delphi:e_method:src:Project1:UInterface.TInterfaceMenuCreate.create()" />
+      <reference referencedUin="delphi:e_method:src:Project1:UInterface.TInterfaceMenuCreate.NameServer()" />
     </reference>
     <reference referencedUin="delphi:e_class:src:Project1:UFile.TFile">
       <property name="$shortcutReference" value="true" />
@@ -321,7 +325,6 @@
       <reference referencedUin="delphi:e_field:src:Project1:UAddCreate.TAddCreate.Label5" />
       <reference referencedUin="delphi:e_field:src:Project1:UAddCreate.TAddCreate.Label6" />
       <reference referencedUin="delphi:e_field:src:Project1:UAddCreate.TAddCreate.Button1" />
-      <reference referencedUin="delphi:e_field:src:Project1:UAddCreate.TAddCreate.NameServer" />
       <reference referencedUin="delphi:e_method:src:Project1:UAddCreate.TAddCreate.SetFileListBox(System.string)" />
       <reference referencedUin="delphi:e_method:src:Project1:UAddCreate.TAddCreate.GetFileListBox()" />
       <reference referencedUin="delphi:e_method:src:Project1:UAddCreate.TAddCreate.create(Forms.TForm)" />
@@ -329,11 +332,6 @@
       <reference referencedUin="delphi:e_method:src:Project1:UAddCreate.TAddCreate.Button1Click(System.TObject)" />
       <reference referencedUin="delphi:e_method:src:Project1:UAddCreate.TAddCreate.FileListBox1KeyUp(System.TObject,ref@System.Word,TShiftState)" />
       <reference referencedUin="delphi:e_method:src:Project1:UAddCreate.TAddCreate.FileListBox1MouseDown(System.TObject,System.UITypes.TMouseButton,TShiftState,System.Integer,System.Integer)" />
-      <reference referencedUin="delphi:l_ast:src:Project1:UAddCreate.TAddCreate.NameServer">
-        <property name="sourceAnchor" value="399,273" />
-        <property name="targetAnchor" value="780,273" />
-        <property name="bendpoints" value="" />
-      </reference>
       <reference referencedUin="delphi:e_field:src:Project1:UAddCreate.TAddCreate.File1" />
       <reference referencedUin="delphi:l_ast:src:Project1:UAddCreate.TAddCreate.File1">
         <property name="sourceAnchor" value="399,232" />
@@ -436,18 +434,11 @@
       <reference referencedUin="delphi:e_field:src:Project1:URequestAllRecords.TRequestAllRecords.Combobox1" />
       <reference referencedUin="delphi:e_field:src:Project1:URequestAllRecords.TRequestAllRecords.Button1" />
       <reference referencedUin="delphi:e_field:src:Project1:URequestAllRecords.TRequestAllRecords.Button2" />
-      <reference referencedUin="delphi:e_field:src:Project1:URequestAllRecords.TRequestAllRecords.NameServer" />
       <reference referencedUin="delphi:e_method:src:Project1:URequestAllRecords.TRequestAllRecords.create(Forms.TForm)" />
       <reference referencedUin="delphi:e_method:src:Project1:URequestAllRecords.TRequestAllRecords.destroy()" />
       <reference referencedUin="delphi:e_method:src:Project1:URequestAllRecords.TRequestAllRecords.Button1Click(System.TObject)" />
       <reference referencedUin="delphi:e_method:src:Project1:URequestAllRecords.TRequestAllRecords.Button2Click(System.TObject)" />
       <reference referencedUin="delphi:e_method:src:Project1:URequestAllRecords.TRequestAllRecords.Request()" />
-      <reference referencedUin="delphi:l_ast:src:Project1:URequestAllRecords.TRequestAllRecords.NameServer">
-        <property name="sourceAnchor" value="715,549" />
-        <property name="targetAnchor" value="791,466" />
-        <property name="bendpoints" value="753,549" />
-        <property name="bounds_setted_by_user" value="True" />
-      </reference>
       <reference referencedUin="delphi:l_gnt:src:Project1:URequestAllRecords.TRequestAllRecords:UInterface.TInterfaceMenuCreate">
         <property name="sourceAnchor" value="473,520" />
         <property name="targetAnchor" value="473,144" />
@@ -468,17 +459,11 @@
       <reference referencedUin="delphi:e_field:src:Project1:URequestNumber.TRequestNumber.Edit1" />
       <reference referencedUin="delphi:e_field:src:Project1:URequestNumber.TRequestNumber.Button1" />
       <reference referencedUin="delphi:e_field:src:Project1:URequestNumber.TRequestNumber.Button2" />
-      <reference referencedUin="delphi:e_field:src:Project1:URequestNumber.TRequestNumber.NameServer" />
       <reference referencedUin="delphi:e_method:src:Project1:URequestNumber.TRequestNumber.create(Forms.TForm)" />
       <reference referencedUin="delphi:e_method:src:Project1:URequestNumber.TRequestNumber.destroy()" />
       <reference referencedUin="delphi:e_method:src:Project1:URequestNumber.TRequestNumber.Button1Click(System.TObject)" />
       <reference referencedUin="delphi:e_method:src:Project1:URequestNumber.TRequestNumber.Button2Click(System.TObject)" />
       <reference referencedUin="delphi:e_method:src:Project1:URequestNumber.TRequestNumber.Request()" />
-      <reference referencedUin="delphi:l_ast:src:Project1:URequestNumber.TRequestNumber.NameServer">
-        <property name="sourceAnchor" value="722,210" />
-        <property name="targetAnchor" value="780,210" />
-        <property name="bendpoints" value="" />
-      </reference>
       <reference referencedUin="delphi:l_gnt:src:Project1:URequestNumber.TRequestNumber:UInterface.TInterfaceMenuCreate">
         <property name="sourceAnchor" value="500,246" />
         <property name="targetAnchor" value="459,144" />
@@ -498,17 +483,11 @@
       <reference referencedUin="delphi:e_field:src:Project1:URequestStatusCall.TRequestStatusCall.ComboBox2" />
       <reference referencedUin="delphi:e_field:src:Project1:URequestStatusCall.TRequestStatusCall.Button1" />
       <reference referencedUin="delphi:e_field:src:Project1:URequestStatusCall.TRequestStatusCall.Button2" />
-      <reference referencedUin="delphi:e_field:src:Project1:URequestStatusCall.TRequestStatusCall.NameServer" />
       <reference referencedUin="delphi:e_method:src:Project1:URequestStatusCall.TRequestStatusCall.create(Forms.TForm)" />
       <reference referencedUin="delphi:e_method:src:Project1:URequestStatusCall.TRequestStatusCall.destroy()" />
       <reference referencedUin="delphi:e_method:src:Project1:URequestStatusCall.TRequestStatusCall.Button1Click(System.TObject)" />
       <reference referencedUin="delphi:e_method:src:Project1:URequestStatusCall.TRequestStatusCall.Button2Click(System.TObject)" />
       <reference referencedUin="delphi:e_method:src:Project1:URequestStatusCall.TRequestStatusCall.Request()" />
-      <reference referencedUin="delphi:l_ast:src:Project1:URequestStatusCall.TRequestStatusCall.NameServer">
-        <property name="sourceAnchor" value="729,330" />
-        <property name="targetAnchor" value="780,330" />
-        <property name="bendpoints" value="" />
-      </reference>
       <reference referencedUin="delphi:l_gnt:src:Project1:URequestStatusCall.TRequestStatusCall:UInterface.TInterfaceMenuCreate">
         <property name="sourceAnchor" value="480,358" />
         <property name="targetAnchor" value="450,144" />
@@ -528,18 +507,11 @@
       <reference referencedUin="delphi:e_field:src:Project1:URequestTypeCall.TRequestTypeCall.ComboBox2" />
       <reference referencedUin="delphi:e_field:src:Project1:URequestTypeCall.TRequestTypeCall.Button1" />
       <reference referencedUin="delphi:e_field:src:Project1:URequestTypeCall.TRequestTypeCall.Button2" />
-      <reference referencedUin="delphi:e_field:src:Project1:URequestTypeCall.TRequestTypeCall.NameServer" />
       <reference referencedUin="delphi:e_method:src:Project1:URequestTypeCall.TRequestTypeCall.create(Forms.TForm)" />
       <reference referencedUin="delphi:e_method:src:Project1:URequestTypeCall.TRequestTypeCall.destroy()" />
       <reference referencedUin="delphi:e_method:src:Project1:URequestTypeCall.TRequestTypeCall.Button1Click(System.TObject)" />
       <reference referencedUin="delphi:e_method:src:Project1:URequestTypeCall.TRequestTypeCall.Button2Click(System.TObject)" />
       <reference referencedUin="delphi:e_method:src:Project1:URequestTypeCall.TRequestTypeCall.Request()" />
-      <reference referencedUin="delphi:l_ast:src:Project1:URequestTypeCall.TRequestTypeCall.NameServer">
-        <property name="sourceAnchor" value="732,433" />
-        <property name="targetAnchor" value="780,433" />
-        <property name="bendpoints" value="" />
-        <property name="bounds_setted_by_user" value="True" />
-      </reference>
       <reference referencedUin="delphi:l_gnt:src:Project1:URequestTypeCall.TRequestTypeCall:UInterface.TInterfaceMenuCreate">
         <property name="sourceAnchor" value="500,470" />
         <property name="targetAnchor" value="435,144" />
@@ -564,18 +536,11 @@
       <reference referencedUin="delphi:e_field:src:Project1:URequestDate.TRequestDate.DateTimePicker2" />
       <reference referencedUin="delphi:e_field:src:Project1:URequestDate.TRequestDate.DateTimePicker3" />
       <reference referencedUin="delphi:e_field:src:Project1:URequestDate.TRequestDate.DateTimePicker4" />
-      <reference referencedUin="delphi:e_field:src:Project1:URequestDate.TRequestDate.NameServer" />
       <reference referencedUin="delphi:e_method:src:Project1:URequestDate.TRequestDate.create(Forms.TForm)" />
       <reference referencedUin="delphi:e_method:src:Project1:URequestDate.TRequestDate.destroy()" />
       <reference referencedUin="delphi:e_method:src:Project1:URequestDate.TRequestDate.Button1Click(System.TObject)" />
       <reference referencedUin="delphi:e_method:src:Project1:URequestDate.TRequestDate.Button2Click(System.TObject)" />
       <reference referencedUin="delphi:e_method:src:Project1:URequestDate.TRequestDate.Request()" />
-      <reference referencedUin="delphi:l_ast:src:Project1:URequestDate.TRequestDate.NameServer">
-        <property name="sourceAnchor" value="426,510" />
-        <property name="targetAnchor" value="780,451" />
-        <property name="bendpoints" value="746,510" />
-        <property name="bounds_setted_by_user" value="True" />
-      </reference>
       <reference referencedUin="delphi:e_property:src:Project1:URequestDate.TRequestDate.Property1" />
       <reference referencedUin="delphi:e_field:src:Project1:URequestDate.TRequestDate.FProperty1" />
       <reference referencedUin="delphi:e_method:src:Project1:URequestDate.TRequestDate.SetProperty1(System.Integer)" />

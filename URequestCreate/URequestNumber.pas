@@ -12,7 +12,7 @@ type
     Edit1:TEdit;
     Button1,Button2:TButton;
     /// <link>aggregation</link>
-    NameServer: TNameServer;
+    //NameServer: TNameServer;
   public
     constructor create(AOwner: TForm);
     procedure destroy;override;
@@ -29,7 +29,7 @@ uses UMain;
 
 constructor TRequestNumber.create(AOwner: TForm);
 begin
-  NameServer:=TNameServer.GetInstance;
+  //NameServer:=TNameServer.GetInstance;
   FMain.Caption:='Запрос: по номеру телефона';
   FMain.Height:=700;
   FMain.Width:=1000;

@@ -11,7 +11,7 @@ type
     Combobox1,ComboBox2:TCombobox;
     Button1,Button2:TButton;
     /// <link>aggregation</link>
-    NameServer: TNameServer;
+    //NameServer: TNameServer;
   public
     constructor create(AOwner: TForm);
     procedure destroy;override;
@@ -28,7 +28,7 @@ uses UMain;
 
 constructor TRequestStatusCall.create(AOwner: TForm);
 begin
-  NameServer:=TNameServer.GetInstance;
+  //NameServer:=TNameServer.GetInstance;
   FMain.Caption:='Запрос: статус звонка';
   FMain.Height:=700;
   FMain.Width:=1000;

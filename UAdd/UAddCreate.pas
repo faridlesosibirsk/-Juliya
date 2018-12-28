@@ -13,7 +13,7 @@ type
     Label4,Label5,Label6:TLabel;
     Button1:TButton;
     /// <link>aggregation</link>
-    NameServer: TNameServer;
+    //NameServer: TNameServer;
     /// <link>aggregation</link>
     /// <link>aggregation</link>
     File1: TFile;
@@ -37,7 +37,7 @@ var FileListBox1:TFileListBox;
 
 constructor TAddCreate.create(AOwner: TForm);
 begin
-  NameServer:=TNameServer.GetInstance;
+  //NameServer:=TNameServer.GetInstance;
   FMain.Caption:='Добавление';
   FMain.Height:=280;
   FMain.Width:=570;
@@ -47,7 +47,7 @@ begin
   FMain.DBGrid1.Height:=65;
   FMain.DBGrid1.Width:=548;
   FMain.ADOQuery1.Close;
-  FMain.Panel1.Caption:=NameServer.GetName;
+  FMain.Panel1.Caption:=NameServer.GetName;//NameServer.GetName;
   fFileCreate.LabelCreate(AOwner,257,8,'Номер выбранного файла:',Label1);
   fFileCreate.LabelCreate(AOwner,257,31,'Количество строк в файле:',Label2);
   fFileCreate.LabelCreate(AOwner,257,54,'Дата изменения:',Label3);

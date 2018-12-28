@@ -15,6 +15,8 @@
       <reference referencedUin="delphi:e_method:src:Project1:UDBConnection.TDBConnection.GetDBConnect()" />
       <reference referencedUin="delphi:e_method:src:Project1:UDBConnection.TDBConnection.GetADOConnection()" />
       <reference referencedUin="delphi:e_method:src:Project1:UDBConnection.TDBConnection.create()" />
+      <reference referencedUin="delphi:e_method:src:Project1:UDBConnection.TDBConnection.GetDBConnect(UVarServer.TNameServer)" />
+      <reference referencedUin="delphi:e_method:src:Project1:UDBConnection.TDBConnection.create(UVarServer.TNameServer)" />
     </reference>
   </view>
 </nodeSet>

@@ -13,7 +13,7 @@ type
     DateTimePicker1,DateTimePicker2,
     DateTimePicker3,DateTimePicker4:TDateTimePicker;
     /// <link>aggregation</link>
-    NameServer: TNameServer;
+    //NameServer: TNameServer;
     FProperty1: Integer;
     procedure SetProperty1(val: Integer);
   public
@@ -33,7 +33,7 @@ uses UMain;
 
 constructor TRequestDate.create(AOwner: TForm);
 begin
-  NameServer:=TNameServer.GetInstance;
+  //NameServer:=TNameServer.GetInstance;
   FMain.Caption:='Запрос: по дате и времени';
   FMain.Height:=700;
   FMain.Width:=1000;
