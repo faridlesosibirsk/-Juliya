@@ -78,7 +78,7 @@ begin
   Edit_.Font.Size := 11;
 end;
 
-function TInterfaceMenuCreate.GetNameServer: TNameServer;
+function TInterfaceMenuCreate.NameServer: TNameServer;
 begin
   if not Assigned(FInstance) then
     FInstance := TNameServer.create;
