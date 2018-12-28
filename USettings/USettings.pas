@@ -28,8 +28,6 @@ type
     /// <link>aggregation</link>
     Script: TScript;
     /// <link>aggregation</link>
-    File1: TFile;
-    /// <link>aggregation</link>
     AddCreate: TAddCreate;
     /// <link>aggregation</link>
     Connection: TDBConnection;
@@ -101,7 +99,7 @@ begin
   begin
     NameServer.SaveConfig(edit2.Text,edit3.Text,edit4.Text,edit5.Text,edit1.text);
     AddCreate.SetFileListBox(NameServer.Getpath+'*.trc');
-    if SelectMenu=1 then File1.SortFileListBox(AddCreate.GetFileListBox);
+    if SelectMenu=1 then AddCreate.SortFileListBox(AddCreate.GetFileListBox);
     Script.ScriptCreateDB(NameServer);
     Script.ScriptCreateTb(NameServer);
     flag:=true;
