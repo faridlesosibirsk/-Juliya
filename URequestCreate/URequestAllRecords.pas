@@ -2,14 +2,10 @@ unit URequestAllRecords;
 
 interface
 
-uses StdCtrls, SysUtils, Forms, UVarServer, UInterface;
+uses StdCtrls, SysUtils, Forms, UVarServer, UInterface, UConstants, Generics.Collections;
 
 type
   TRequestAllRecords = class(TInterfaceMenuCreate)
-  private
-    Label1:TLabel;
-    Combobox1:TCombobox;
-    Button1,Button2:TButton;
   public
     constructor create(AOwner: TForm);
     procedure destroy;override;
@@ -27,39 +23,42 @@ uses UMain;
 constructor TRequestAllRecords.create(AOwner: TForm);
 begin
   NameServer:=TNameServer.GetInstance;
-  FMain.Caption:='Запрос: все записи';
-  FMain.Height:=700;
-  FMain.Width:=1000;
+  fFileCreate.OptionsFMain(FMain, RAllIni,'FMain_');
   FMain.DBGrid1.Left:=8;
   FMain.DBGrid1.Top:=36;
   FMain.DBGrid1.Height:=584;
   FMain.DBGrid1.Width:=969;
   FMain.ADOQuery1.Close;
   FMain.Panel1.Caption:=NameServer.GetName;
-  fFileCreate.LabelCreate(AOwner,30,12,'Сортировка по:',Label1);
-  fFileCreate.ButtonCreate(AOwner,310,7,25,130,'Выполнить запрос',Button1);
-  Button1.OnClick:=Button1Click;
-  fFileCreate.ButtonCreate(AOwner,460,7,25,130,'Сохранить в файл',Button2);
-  Button2.OnClick:=Button2Click;
-  fFileCreate.ComboBoxCreate(AOwner,150,8,140,ComboBox1);
-  ComboBox1.Items.Add('возрастанию');
-  ComboBox1.Items.Add('убыванию');
-  ComboBox1.ItemIndex:=0;
+
+  ListLabels:=TList<TLabel>.create;
+  fFileCreate.OptionsLabels(AOwner,RAllIni,'Label_',0);
+
+  ListButtons:=TList<TButton>.create;
+  fFileCreate.OptionsButtons(AOwner,RAllIni,'Button_',1);
+  ListButtons.Items[0].OnClick:=Button1Click;
+  ListButtons.Items[1].OnClick:=Button2Click;
+
+  ListComboBoxs:=TList<TComboBox>.create;
+  fFileCreate.OptionsComboBoxs(AOwner,RAllIni,'ComboBox_',0);
 end;
 
 procedure TRequestAllRecords.destroy;
+var i:integer;
 begin
-  Label1.Free;
-  ComboBox1.Free;
-  Button1.Free;
-  Button2.Free;
+  for i := 0 to ListLabels.Count-1 do
+    ListLabels.Items[i].Free;
+  for i := 0 to ListButtons.Count-1 do
+    ListButtons.Items[i].Free;
+  for i := 0 to ListComboBoxs.Count-1 do
+    ListComboBoxs.Items[i].Free;
 end;
 
 procedure TRequestAllRecords.Request;
 begin
   with FMain.AdoQuery1 do
   begin
-    case ComboBox1.ItemIndex of
+    case ListComboBoxs.Items[0].ItemIndex of
       0:SQL.Add('ORDER BY [date] asc,[time] asc');
       1:SQL.Add('ORDER BY [date] desc,[time] desc');
     end;

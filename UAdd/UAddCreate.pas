@@ -4,14 +4,11 @@ interface
 
 uses
   SysUtils, Variants, Controls, Forms, StdCtrls, FileCtrl, Classes, Winapi.Windows,
-  UInterface, UFile, UVarServer, IniFiles, UUpdateBase;
+  UInterface, UFile, UVarServer, IniFiles, UUpdateBase, UConstants, Generics.Collections;
 
 type
   TAddCreate = class(TInterfaceMenuCreate)
   private
-    Label1,Label2,Label3:TLabel;
-    Label4,Label5,Label6:TLabel;
-    Button1:TButton;
     /// <link>aggregation</link>
     File1: TFile;
   public
@@ -31,14 +28,10 @@ implementation
 
 uses UMain;
 
-var FileListBox1:TFileListBox;
-
 constructor TAddCreate.create(AOwner: TForm);
 begin
   NameServer:=TNameServer.GetInstance;
-  FMain.Caption:='Добавление';
-  FMain.Height:=280;
-  FMain.Width:=570;
+  fFileCreate.OptionsFMain(FMain, AddIni,'FMain_');
   FMain.DBGrid1.Align:=alNone;
   FMain.DBGrid1.Left:=8;
   FMain.DBGrid1.Top:=143;
@@ -46,51 +39,44 @@ begin
   FMain.DBGrid1.Width:=548;
   FMain.ADOQuery1.Close;
   FMain.Panel1.Caption:=NameServer.GetName;
-  fFileCreate.LabelCreate(AOwner,257,8,'Номер выбранного файла:',Label1);
-  fFileCreate.LabelCreate(AOwner,257,31,'Количество строк в файле:',Label2);
-  fFileCreate.LabelCreate(AOwner,257,54,'Дата изменения:',Label3);
-  fFileCreate.LabelCreate(AOwner,428,8,'_-_-_',Label4);
-  fFileCreate.LabelCreate(AOwner,428,31,'_-_-_',Label5);
-  fFileCreate.LabelCreate(AOwner,365,54,'_-_-_-_-_-_-_-_-',Label6);
-  fFileCreate.ButtonCreate(AOwner,265,91,25,200,'Добавить',Button1);
-  Button1.OnClick:=Button1Click;
-  FileListBox1:=TFileListBox.Create(AOwner);
-  FileListBox1.Height:=125;
-  FileListBox1.ItemHeight:=17;
-  FileListBox1.Parent:=Aowner;
-  FileListBox1.Left:=8;
-  FileListBox1.Mask:=NameServer.Getpath+'*.trc';
-  FileListBox1.Top:=8;
-  FileListBox1.Width:=220;
-  FileListBox1.OnKeyDown:=FileListBox1KeyUp;
-  FileListBox1.OnKeyUp:=FileListBox1KeyUp;
-  FileListBox1.OnMouseDown:=FileListBox1MouseDown;
-  FileListBox1.OnMouseUp:=FileListBox1MouseDown;
+  ListLabels:=TList<TLabel>.create;
+  fFileCreate.OptionsLabels(AOwner,AddIni,'Label_',5);
+
+  ListButtons:=TList<TButton>.create;
+  fFileCreate.OptionsButtons(AOwner,AddIni,'Button_',0);
+  ListButtons.Items[0].OnClick:=Button1Click;
+
+  ListFileListBoxs:=TList<TFileListBox>.create;
+  fFileCreate.OptionsFileListBox(AOwner,AddIni,'FileListBox_',0);
+
+  ListFileListBoxs.Items[0].Mask:=NameServer.Getpath+'*.trc';
+  ListFileListBoxs.Items[0].OnKeyDown:=FileListBox1KeyUp;
+  ListFileListBoxs.Items[0].OnKeyUp:=FileListBox1KeyUp;
+  ListFileListBoxs.Items[0].OnMouseDown:=FileListBox1MouseDown;
+  ListFileListBoxs.Items[0].OnMouseUp:=FileListBox1MouseDown;
 end;
 
 procedure TAddCreate.destroy;
+var i:integer;
 begin
-  FileListBox1.mask:='.';
-  Button1.SetFocus;
-  FileListBox1.Destroy;
-  Label1.Free;
-  Label2.Free;
-  Label3.Free;
-  Label4.Free;
-  Label5.Free;
-  Label6.Free;
-  Button1.Free;
+  ListFileListBoxs.Items[0].mask:='.';
+  ListButtons.Items[0].SetFocus;
+  ListFileListBoxs.Items[0].Destroy;
+  for i := 0 to ListLabels.Count-1 do
+    ListLabels.Items[i].Free;
+  for i := 0 to ListButtons.Count-1 do
+    ListButtons.Items[i].Free;
 end;
 
 procedure TAddCreate.Button1Click(Sender: TObject);
 var i:integer;FileName:string;
 begin
-  if (FileListBox1.Count<>0)and(FileListBox1.ItemIndex>=0) then
+  if (ListFileListBoxs.Items[0].Count<>0)and(ListFileListBoxs.Items[0].ItemIndex>=0) then
   with FMain.adoQuery1 do
   begin
     active:=false;
     SQL.Clear;
-    FileName:=FileListBox1.Items[FileListBox1.ItemIndex];
+    FileName:=ListFileListBoxs.Items[0].Items[ListFileListBoxs.Items[0].ItemIndex];
     SQL.Add('SELECT * FROM ['+NameServer.GetDataBase+'].[dbo].[AddFiles]');
     SQL.Add('WHERE FileName='+''''+FileName+'''');
     Active:=True;
@@ -120,7 +106,7 @@ begin
       Application.MessageBox('Новые записи внесены в базу данных','Информация');
     end;
   end
-  else if (FileListBox1.Count<>0)and(FileListBox1.ItemIndex<0)
+  else if (ListFileListBoxs.Items[0].Count<>0)and(ListFileListBoxs.Items[0].ItemIndex<0)
     then Application.MessageBox('Выберите файл из списка','Предупреждение')
     else Application.MessageBox('В выбранной папке отсутствуют файлы .trc','Предупреждение');
 end;
@@ -128,37 +114,37 @@ end;
 procedure TAddCreate.FileListBox1KeyUp(Sender: TObject; var Key: Word;
   Shift: TShiftState);
 begin
-  if FileListBox1.Count<>0 then
+  if ListFileListBoxs.Items[0].Count<>0 then
     if (key=VK_LEFT)or(key=VK_RIGHT)or(key=VK_UP)or(key=VK_DOWN)
     then
     begin
-      File1.NumberFile(NameServer,FileListBox1,FMain.DBGrid1,FMain.ADOQuery1);
-      Label4.Caption:=IntToStr(FileListBox1.ItemIndex+1);
-      Label5.Caption:=IntToStr(File1.TextSize(NameServer.Getpath+FileListBox1.Items[FileListBox1.ItemIndex]));
-      Label6.Caption:=File1.GetFileDate(NameServer.Getpath+FileListBox1.Items[FileListBox1.ItemIndex]);
+      File1.NumberFile(NameServer,ListFileListBoxs.Items[0],FMain.DBGrid1,FMain.ADOQuery1);
+      ListLabels.Items[3].Caption:=IntToStr(ListFileListBoxs.Items[0].ItemIndex+1);
+      ListLabels.Items[4].Caption:=IntToStr(File1.TextSize(NameServer.Getpath+ListFileListBoxs.Items[0].Items[ListFileListBoxs.Items[0].ItemIndex]));
+      ListLabels.Items[5].Caption:=File1.GetFileDate(NameServer.Getpath+ListFileListBoxs.Items[0].Items[ListFileListBoxs.Items[0].ItemIndex]);
     end;
 end;
 
 procedure TAddCreate.FileListBox1MouseDown(Sender: TObject; Button: TMouseButton;
   Shift: TShiftState; X, Y: Integer);
 begin
-  if FileListBox1.Count<>0
+  if ListFileListBoxs.Items[0].Count<>0
   then begin
-    File1.NumberFile(NameServer,FileListBox1,FMain.DBGrid1,FMain.ADOQuery1);
-    Label4.Caption:=IntToStr(FileListBox1.ItemIndex+1);
-    Label5.Caption:=IntToStr(File1.TextSize(NameServer.Getpath+FileListBox1.Items[FileListBox1.ItemIndex]));
-    Label6.Caption:=File1.GetFileDate(NameServer.Getpath+FileListBox1.Items[FileListBox1.ItemIndex]);
+    File1.NumberFile(NameServer,ListFileListBoxs.Items[0],FMain.DBGrid1,FMain.ADOQuery1);
+    ListLabels.Items[3].Caption:=IntToStr(ListFileListBoxs.Items[0].ItemIndex+1);
+    ListLabels.Items[4].Caption:=IntToStr(File1.TextSize(NameServer.Getpath+ListFileListBoxs.Items[0].Items[ListFileListBoxs.Items[0].ItemIndex]));
+    ListLabels.Items[5].Caption:=File1.GetFileDate(NameServer.Getpath+ListFileListBoxs.Items[0].Items[ListFileListBoxs.Items[0].ItemIndex]);
   end;
 end;
 
 function TAddCreate.GetFileListBox: TFileListBox;
 begin
-  result:=FileListBox1;
+  result:=ListFileListBoxs.Items[0];
 end;
 
 procedure TAddCreate.SetFileListBox(mask: string);
 begin
-  FileListBox1.Mask:=mask;
+  ListFileListBoxs.Items[0].Mask:=mask;
 end;
 
 procedure TAddCreate.SortFileListBox(FileListBox_:TFileListBox);

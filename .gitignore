@@ -69,3 +69,4 @@ __recovery/
 *.bmp
 *.sql
 *.exe
+*.ini
