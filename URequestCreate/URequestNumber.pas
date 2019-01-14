@@ -2,15 +2,10 @@ unit URequestNumber;
 
 interface
 
-uses StdCtrls, SysUtils, Forms, UVarServer, UInterface;
+uses StdCtrls, SysUtils, Forms, UVarServer, UInterface, UConstants, Generics.Collections;
 
 type
   TRequestNumber = class(TInterfaceMenuCreate)
-  private
-    Label1,Label2,Label3:TLabel;
-    Combobox1,ComboBox2:TCombobox;
-    Edit1:TEdit;
-    Button1,Button2:TButton;
   public
     constructor create(AOwner: TForm);
     procedure destroy;override;
@@ -28,63 +23,60 @@ uses UMain;
 constructor TRequestNumber.create(AOwner: TForm);
 begin
   NameServer:=TNameServer.GetInstance;
-  FMain.Caption:='Запрос: по номеру телефона';
-  FMain.Height:=700;
-  FMain.Width:=1000;
+  fFileCreate.OptionsFMain(FMain, RNumberIni,'FMain_');
   FMain.DBGrid1.Left:=8;
   FMain.DBGrid1.Top:=100;
   FMain.DBGrid1.Height:=520;
   FMain.DBGrid1.Width:=969;
   FMain.ADOQuery1.Close;
   FMain.Panel1.Caption:=NameServer.GetName;
-  fFileCreate.LabelCreate(AOwner,30,12,'Выберите тип номера:',Label1);
-  fFileCreate.LabelCreate(AOwner,30,44,'Введите номер телефона:',Label2);
-  fFileCreate.LabelCreate(AOwner,30,76,'Сортировка по:',Label3);
-  fFileCreate.ComboBoxCreate(AOwner,200,8,140,ComboBox1);
-  ComboBox1.Items.Add('городской/внутренний');
-  ComboBox1.Items.Add('внутренний номер АТС');
-  ComboBox1.ItemIndex:=0;
-  fFileCreate.ComboBoxCreate(AOwner,200,72,140,ComboBox2);
-  ComboBox2.Items.Add('возрастанию');
-  ComboBox2.Items.Add('убыванию');
-  ComboBox2.ItemIndex:=0;
-  fFileCreate.ButtonCreate(AOwner,360,72,25,130,'Выполнить запрос',Button1);
-  Button1.OnClick:=Button1Click;
-  fFileCreate.ButtonCreate(AOwner,510,72,25,130,'Сохранить в файл',Button2);
-  Button2.OnClick:=Button2Click;
-  fFileCreate.EditCreate(AOwner,200, 40, 140,Edit1);
-  Edit1.MaxLength:=8;
+
+  ListLabels:=TList<TLabel>.create;
+  fFileCreate.OptionsLabels(AOwner,RNumberIni,'Label_',2);
+
+  ListButtons:=TList<TButton>.create;
+  fFileCreate.OptionsButtons(AOwner,RNumberIni,'Button_',1);
+  ListButtons.Items[0].OnClick:=Button1Click;
+  ListButtons.Items[1].OnClick:=Button2Click;
+
+  ListComboBoxs:=TList<TComboBox>.create;
+  fFileCreate.OptionsComboBoxs(AOwner,RNumberIni,'ComboBox_',1);
+
+  ListEdits:=TList<TEdit>.create;
+  fFileCreate.OptionsEdits(AOwner,RNumberIni,'Edit_',0);
+  //Edit1.MaxLength:=8;
 end;
 
 procedure TRequestNumber.destroy;
+var i:integer;
 begin
-  Label1.Free;
-  Label2.Free;
-  Label3.Free;
-  ComboBox1.Free;
-  ComboBox2.Free;
-  Edit1.Free;
-  Button1.Free;
-  Button2.Free;
+  for i := 0 to ListLabels.Count-1 do
+    ListLabels.Items[i].Free;
+  for i := 0 to ListButtons.Count-1 do
+    ListButtons.Items[i].Free;
+  for i := 0 to ListComboBoxs.Count-1 do
+    ListComboBoxs.Items[i].Free;
+  for i := 0 to ListEdits.Count-1 do
+    ListEdits.Items[i].Free;
 end;
 
 procedure TRequestNumber.Request;
 begin
   with FMain.AdoQuery1 do
   begin
-    case ComboBox1.ItemIndex of
+    case ListComboBoxs.Items[0].ItemIndex of
       0:begin
         SQL.Add('WHERE ('+'citynumber=');
-        if Edit1.Text='' then SQL.Add('NULL'+')')
-        else SQL.Add(''''+Edit1.Text+''''+')');
+        if ListEdits.Items[0].Text='' then SQL.Add('NULL'+')')
+        else SQL.Add(''''+ListEdits.Items[0].Text+''''+')');
       end;
       1:begin
         SQL.Add('WHERE ('+'insidenumber=');
-        if (Edit1.Text='') then SQL.Add('NULL'+')')
-        else SQL.Add(''''+Edit1.Text+''''+')');
+        if (ListEdits.Items[0].Text='') then SQL.Add('NULL'+')')
+        else SQL.Add(''''+ListEdits.Items[0].Text+''''+')');
       end;
     end;
-    case ComboBox2.ItemIndex of
+    case ListComboBoxs.Items[1].ItemIndex of
       0:SQL.Add(' ORDER BY [date] asc,[time] asc');
       1:SQL.Add(' ORDER BY [date] desc,[time] desc');
     end;

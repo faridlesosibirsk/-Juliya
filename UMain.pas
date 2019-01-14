@@ -21,7 +21,6 @@ type
     Panel1: TPanel;
     DataSource1: TDataSource;
     Memo1: TMemo;
-    sSkinManager1: TsSkinManager;
     procedure MAddFileClick(Sender: TObject);
     procedure MSettingsClick(Sender: TObject);
     procedure MHelpClick(Sender: TObject);

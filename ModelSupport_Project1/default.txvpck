@@ -180,9 +180,9 @@
       </reference>
       <reference referencedUin="delphi:e_field:src:Project1:USettings.TFSettings.AddCreate" />
       <reference referencedUin="delphi:l_ast:src:Project1:USettings.TFSettings.AddCreate">
-        <property name="sourceAnchor" value="1000,135" />
-        <property name="targetAnchor" value="399,269" />
-        <property name="bendpoints" value="542,135" />
+        <property name="sourceAnchor" value="1000,136" />
+        <property name="targetAnchor" value="399,275" />
+        <property name="bendpoints" value="558,136" />
         <property name="bounds_setted_by_user" value="True" />
       </reference>
     </reference>
@@ -292,7 +292,7 @@
     </reference>
     <reference referencedUin="delphi:e_class:src:Project1:UFile.TFile">
       <property name="$shortcutReference" value="true" />
-      <property name="bounds" value="780,0,128,129" />
+      <property name="bounds" value="540,0,128,114" />
       <property name="location_set_by_user" value="True" />
       <reference referencedUin="delphi:e_method:src:Project1:UFile.TFile.GetFileDate(System.string)" />
       <reference referencedUin="delphi:e_method:src:Project1:UFile.TFile.TextSize(System.string)" />
@@ -343,9 +343,9 @@
       </reference>
       <reference referencedUin="delphi:e_field:src:Project1:UAddCreate.TAddCreate.File1" />
       <reference referencedUin="delphi:l_ast:src:Project1:UAddCreate.TAddCreate.File1">
-        <property name="sourceAnchor" value="399,259" />
-        <property name="targetAnchor" value="780,121" />
-        <property name="bendpoints" value="539,121" />
+        <property name="sourceAnchor" value="399,264" />
+        <property name="targetAnchor" value="547,114" />
+        <property name="bendpoints" value="" />
         <property name="bounds_setted_by_user" value="True" />
       </reference>
       <reference referencedUin="delphi:e_method:src:Project1:UAddCreate.TAddCreate.SortFileListBox(FileCtrl.TFileListBox)" />
@@ -526,7 +526,7 @@
     </reference>
     <reference referencedUin="delphi:e_class:src:Project1:URequestDate.TRequestDate">
       <property name="$shortcutReference" value="true" />
-      <property name="bounds" value="220,500,206,100" />
+      <property name="bounds" value="220,520,206,100" />
       <property name="hideAttribute" value="True" />
       <property name="hideProperty" value="True" />
       <property name="location_set_by_user" value="True" />
@@ -550,8 +550,8 @@
       <reference referencedUin="delphi:e_field:src:Project1:URequestDate.TRequestDate.FProperty1" />
       <reference referencedUin="delphi:e_method:src:Project1:URequestDate.TRequestDate.SetProperty1(System.Integer)" />
       <reference referencedUin="delphi:l_gnt:src:Project1:URequestDate.TRequestDate:UInterface.TInterfaceMenuCreate">
-        <property name="sourceAnchor" value="419,500" />
-        <property name="targetAnchor" value="419,176" />
+        <property name="sourceAnchor" value="417,520" />
+        <property name="targetAnchor" value="417,176" />
         <property name="bendpoints" value="" />
       </reference>
     </reference>

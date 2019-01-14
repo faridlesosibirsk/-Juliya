@@ -2,14 +2,10 @@ unit URequestStatusCall;
 
 interface
 
-uses StdCtrls, SysUtils, Forms, UVarServer, UInterface;
+uses StdCtrls, SysUtils, Forms, UVarServer, UInterface, UConstants, Generics.Collections;
 
 type
   TRequestStatusCall = class(TInterfaceMenuCreate)
-  private
-    Label1,Label2:TLabel;
-    Combobox1,ComboBox2:TCombobox;
-    Button1,Button2:TButton;
   public
     constructor create(AOwner: TForm);
     procedure destroy;override;
@@ -27,52 +23,43 @@ uses UMain;
 constructor TRequestStatusCall.create(AOwner: TForm);
 begin
   NameServer:=TNameServer.GetInstance;
-  FMain.Caption:='Запрос: статус звонка';
-  FMain.Height:=700;
-  FMain.Width:=1000;
+  fFileCreate.OptionsFMain(FMain, RStatusIni,'FMain_');
   FMain.DBGrid1.Left:=8;
   FMain.DBGrid1.Top:=70;
   FMain.DBGrid1.Height:=550;
   FMain.DBGrid1.Width:=969;
   FMain.ADOQuery1.Close;
   FMain.Panel1.Caption:=NameServer.GetName;
-  fFileCreate.LabelCreate(AOwner,30,12,'Выберите статус звонка:',Label1);
-  fFileCreate.LabelCreate(AOwner,30,44,'Сортировка по:',Label2);
-  fFileCreate.ComboBoxCreate(AOwner,200,8,140,ComboBox1);
-  ComboBox1.Items.Add('входящий');
-  ComboBox1.Items.Add('исходящий');
-  ComboBox1.Items.Add('другие');
-  ComboBox1.Items.Add('другие A');
-  ComboBox1.Items.Add('другие C');
-  ComboBox1.Items.Add('другие 4');
-  ComboBox1.Items.Add('нз');
-  ComboBox1.ItemIndex:=0;
-  fFileCreate.ComboBoxCreate(AOwner,200,40,140,ComboBox2);
-  ComboBox2.Items.Add('возрастанию');
-  ComboBox2.Items.Add('убыванию');
-  ComboBox2.ItemIndex:=0;
-  fFileCreate.ButtonCreate(AOwner,360,40,25,130,'Выполнить запрос',Button1);
-  Button1.OnClick:=Button1Click;
-  fFileCreate.ButtonCreate(AOwner,510,40,25,130,'Сохранить в файл',Button2);
-  Button2.OnClick:=Button2Click;
+
+  ListLabels:=TList<TLabel>.create;
+  fFileCreate.OptionsLabels(AOwner,RStatusIni,'Label_',1);
+
+  ListButtons:=TList<TButton>.create;
+  fFileCreate.OptionsButtons(AOwner,RStatusIni,'Button_',1);
+  ListButtons.Items[0].OnClick:=Button1Click;
+  ListButtons.Items[1].OnClick:=Button2Click;
+
+  ListComboBoxs:=TList<TComboBox>.create;
+  fFileCreate.OptionsComboBoxs(AOwner,RStatusIni,'ComboBox_',1);
 end;
 
 procedure TRequestStatusCall.destroy;
+var i:integer;
 begin
-  Label1.Free;
-  Label2.Free;
-  ComboBox1.Free;
-  ComboBox2.Free;
-  Button1.Free;
-  Button2.Free;
+  for i := 0 to ListLabels.Count-1 do
+    ListLabels.Items[i].Free;
+  for i := 0 to ListButtons.Count-1 do
+    ListButtons.Items[i].Free;
+  for i := 0 to ListComboBoxs.Count-1 do
+    ListComboBoxs.Items[i].Free;
 end;
 
 procedure TRequestStatusCall.Request;
 begin
   with FMain.AdoQuery1 do
   begin
-    SQL.Add('WHERE statuscall='+''''+ComboBox1.Items[ComboBox1.ItemIndex]+'''');
-    case ComboBox2.ItemIndex of
+    SQL.Add('WHERE statuscall='+''''+ListComboBoxs.Items[0].Items[ListComboBoxs.Items[0].ItemIndex]+'''');
+    case ListComboBoxs.Items[1].ItemIndex of
       0:SQL.Add('ORDER BY [date] asc,[time] asc');
       1:SQL.Add('ORDER BY [date] desc,[time] desc');
     end;

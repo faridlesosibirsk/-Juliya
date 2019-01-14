@@ -18,7 +18,8 @@ uses
   UVarServer in 'USettings\UVarServer.pas',
   UFile in 'USettings\UFile.pas',
   UUpdateBase in 'UAdd\UUpdateBase.pas',
-  UScript in 'USettings\UScript.pas';
+  UScript in 'USettings\UScript.pas',
+  UConstants in 'UConstants.pas';
 
 {$R *.res}
 

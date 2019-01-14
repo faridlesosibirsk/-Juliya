@@ -2,25 +2,16 @@ unit URequestDate;
 
 interface
 
-uses StdCtrls, SysUtils, Forms, ComCtrls, UVarServer, UInterface;
+uses StdCtrls, SysUtils, Forms, ComCtrls, UVarServer, UInterface, UConstants, Generics.Collections;
 
 type
   TRequestDate = class(TInterfaceMenuCreate)
-  private
-    Label1,Label2,Label3:TLabel;
-    Combobox1:TCombobox;
-    Button1,Button2:TButton;
-    DateTimePicker1,DateTimePicker2,
-    DateTimePicker3,DateTimePicker4:TDateTimePicker;
-    FProperty1: Integer;
-    procedure SetProperty1(val: Integer);
   public
     constructor create(AOwner: TForm);
     procedure destroy;override;
     procedure Button1Click(Sender:TObject);
     procedure Button2Click(Sender:TObject);
     procedure Request;
-    property Property1: Integer read FProperty1 write SetProperty1;
   end;
 
 implementation
@@ -32,83 +23,55 @@ uses UMain;
 constructor TRequestDate.create(AOwner: TForm);
 begin
   NameServer:=TNameServer.GetInstance;
-  FMain.Caption:='Запрос: по дате и времени';
-  FMain.Height:=700;
-  FMain.Width:=1000;
+  fFileCreate.OptionsFMain(FMain, RDateIni,'FMain_');
   FMain.DBGrid1.Left:=8;
   FMain.DBGrid1.Top:=100;
   FMain.DBGrid1.Height:=520;
   FMain.DBGrid1.Width:=969;
   FMain.ADOQuery1.Close;
   FMain.Panel1.Caption:=NameServer.GetName;
-  fFileCreate.LabelCreate(AOwner,30,12,'Выберите период с:                               по:',Label1);
-  fFileCreate.LabelCreate(AOwner,30,44,'Время с:                                                по:',Label2);
-  fFileCreate.LabelCreate(AOwner,30,76,'Сортировка по:',Label3);
-  DateTimePicker1:=TDateTimePicker.create(AOwner);
-  DateTimePicker1.Left:=160;
-  DateTimePicker1.Top:=8;
-  DateTimePicker1.Width:=110;
-  DateTimePicker1.Parent:= AOwner;
-  DateTimePicker1.Kind:=dtkDate;
-  DateTimePicker1.Font.Name:='Times New Roman';
-  DateTimePicker1.Font.Size:=11;
-  DateTimePicker2:=TDateTimePicker.Create(AOwner);
-  DateTimePicker2.Left:=300;
-  DateTimePicker2.Top:=8;
-  DateTimePicker2.Width:=110;
-  DateTimePicker2.Parent:= AOwner;
-  DateTimePicker2.Kind:=dtkDate;
-  DateTimePicker2.Font.Name:='Times New Roman';
-  DateTimePicker2.Font.Size:=11;
-  DateTimePicker3:=TDateTimePicker.create(AOwner);
-  DateTimePicker3.Left:=160;
-  DateTimePicker3.Top:=40;
-  DateTimePicker3.Width:=110;
-  DateTimePicker3.Parent:= AOwner;
-  DateTimePicker3.Kind:=dtkTime;
-  DateTimePicker3.Font.Name:='Times New Roman';
-  DateTimePicker3.Font.Size:=11;
-  DateTimePicker4:=TDateTimePicker.Create(AOwner);
-  DateTimePicker4.Left:=300;
-  DateTimePicker4.Top:=40;
-  DateTimePicker4.Width:=110;
-  DateTimePicker4.Parent:= AOwner;
-  DateTimePicker4.Kind:=dtkTime;
-  DateTimePicker4.Font.Name:='Times New Roman';
-  DateTimePicker4.Font.Size:=11;
-  fFileCreate.ButtonCreate(AOwner,300,72,25,130,'Выполнить запрос',Button1);
-  Button1.OnClick:=Button1Click;
-  fFileCreate.ButtonCreate(AOwner,450,72,25,130,'Сохранить в файл',Button2);
-  Button2.OnClick:=Button2Click;
-  fFileCreate.ComboBoxCreate(AOwner,160,72,110,ComboBox1);
-  ComboBox1.Items.Add('возрастанию');
-  ComboBox1.Items.Add('убыванию');
-  ComboBox1.ItemIndex:=0;
+
+  ListLabels:=TList<TLabel>.create;
+  fFileCreate.OptionsLabels(AOwner,RDateIni,'Label_',2);
+
+  ListButtons:=TList<TButton>.create;
+  fFileCreate.OptionsButtons(AOwner,RDateIni,'Button_',1);
+  ListButtons.Items[0].OnClick:=Button1Click;
+  ListButtons.Items[1].OnClick:=Button2Click;
+
+  ListDateTimePickers:=TList<TDateTimePicker>.create;
+  fFileCreate.OptionsDateTimePickers(AOwner,RDateIni,'DateTimePicker_',3);
+  ListDateTimePickers.Items[0].Kind:=dtkDate;
+  ListDateTimePickers.Items[1].Kind:=dtkDate;
+  ListDateTimePickers.Items[2].Kind:=dtkTime;
+  ListDateTimePickers.Items[3].Kind:=dtkTime;
+
+  ListComboBoxs:=TList<TComboBox>.create;
+  fFileCreate.OptionsComboBoxs(AOwner,RDateIni,'ComboBox_',0);
 end;
 
 procedure TRequestDate.destroy;
+var i:integer;
 begin
-  Label1.Free;
-  Label2.Free;
-  Label3.Free;
-  DateTimePicker1.Free;
-  DateTimePicker2.Free;
-  DateTimePicker3.Free;
-  DateTimePicker4.Free;
-  ComboBox1.Free;
-  Button1.Free;
-  Button2.Free;
+  for i := 0 to ListLabels.Count-1 do
+    ListLabels.Items[i].Free;
+  for i := 0 to ListButtons.Count-1 do
+    ListButtons.Items[i].Free;
+  for i := 0 to ListComboBoxs.Count-1 do
+    ListComboBoxs.Items[i].Free;
+  for i := 0 to ListDateTimePickers.Count-1 do
+    ListDateTimePickers.Items[i].Free;
 end;
 
 procedure TRequestDate.Request;
 begin
   with FMain.AdoQuery1 do
   begin
-    SQL.Add('WHERE (date>='+''''+FormatDateTime('yyyy-mm-dd',DateTimePicker1.Date)+''''+')');
-    SQL.Add(' AND (date<='+''''+FormatDateTime('yyyy-mm-dd',DateTimePicker2.Date)+''''+')');
-    SQL.Add(' AND (time>='+''''+FormatDateTime('hh:mm:ss',DateTimePicker3.Time)+''''+')');
-    SQL.Add(' AND (time<'+''''+FormatDateTime('hh:mm:ss',DateTimePicker4.Time)+''''+')');
-    case ComboBox1.ItemIndex of
+    SQL.Add('WHERE (date>='+''''+FormatDateTime('yyyy-mm-dd',ListDateTimePickers.Items[0].Date)+''''+')');
+    SQL.Add(' AND (date<='+''''+FormatDateTime('yyyy-mm-dd',ListDateTimePickers.Items[1].Date)+''''+')');
+    SQL.Add(' AND (time>='+''''+FormatDateTime('hh:mm:ss',ListDateTimePickers.Items[2].Time)+''''+')');
+    SQL.Add(' AND (time<'+''''+FormatDateTime('hh:mm:ss',ListDateTimePickers.Items[3].Time)+''''+')');
+    case ListComboBoxs.Items[0].ItemIndex of
       0:SQL.Add('ORDER BY [date] asc,[time] asc');
       1:SQL.Add('ORDER BY [date] desc,[time] desc');
     end;
@@ -169,10 +132,6 @@ begin
     SQL.Add('Drop Table ['+NameServer.GetDataBase+'].[dbo].[Temp]');
     Active:=True;
   end;
-end;
-
-procedure TRequestDate.SetProperty1(val: Integer);
-begin
 end;
 
 end.
