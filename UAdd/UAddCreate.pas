@@ -4,13 +4,13 @@ interface
 
 uses
   SysUtils, Variants, Controls, Forms, StdCtrls, FileCtrl, Classes, Winapi.Windows,
-  UInterface, UFile, UVarServer, IniFiles, UUpdateBase, UConstants, Generics.Collections;
+  UInterface, UFile, UVarServer,  UUpdateBase, UConstants, Generics.Collections;
 
 type
   TAddCreate = class(TInterfaceMenuCreate)
   private
     /// <link>aggregation</link>
-    File1: TFile;
+    File_: TFile;
   public
     procedure SetFileListBox(mask: string);
     function GetFileListBox:TFileListBox;
@@ -21,6 +21,9 @@ type
     procedure FileListBox1MouseDown(Sender: TObject; Button: TMouseButton;Shift: TShiftState; X, Y: Integer);
     procedure SortFileListBox(FileListBox_:TFileListBox);
   end;
+  procedure ClickKeyOrMouse;
+
+var File1: TFile;
 
 implementation
 
@@ -33,12 +36,10 @@ begin
   NameServer:=TNameServer.GetInstance;
   fFileCreate.OptionsFMain(FMain, AddIni,'FMain_');
   FMain.DBGrid1.Align:=alNone;
-  FMain.DBGrid1.Left:=8;
-  FMain.DBGrid1.Top:=143;
-  FMain.DBGrid1.Height:=65;
-  FMain.DBGrid1.Width:=548;
+  fFileCreate.OptionsDBGrid(FMain.DBGrid1, AddIni,'DBGrid_');
   FMain.ADOQuery1.Close;
-  FMain.Panel1.Caption:=NameServer.GetName;
+  FMain.GetPanel1;
+
   ListLabels:=TList<TLabel>.create;
   fFileCreate.OptionsLabels(AOwner,AddIni,'Label_',5);
 
@@ -116,25 +117,14 @@ procedure TAddCreate.FileListBox1KeyUp(Sender: TObject; var Key: Word;
 begin
   if ListFileListBoxs.Items[0].Count<>0 then
     if (key=VK_LEFT)or(key=VK_RIGHT)or(key=VK_UP)or(key=VK_DOWN)
-    then
-    begin
-      File1.NumberFile(NameServer,ListFileListBoxs.Items[0],FMain.DBGrid1,FMain.ADOQuery1);
-      ListLabels.Items[3].Caption:=IntToStr(ListFileListBoxs.Items[0].ItemIndex+1);
-      ListLabels.Items[4].Caption:=IntToStr(File1.TextSize(NameServer.Getpath+ListFileListBoxs.Items[0].Items[ListFileListBoxs.Items[0].ItemIndex]));
-      ListLabels.Items[5].Caption:=File1.GetFileDate(NameServer.Getpath+ListFileListBoxs.Items[0].Items[ListFileListBoxs.Items[0].ItemIndex]);
-    end;
+    then ClickKeyOrMouse;
 end;
 
 procedure TAddCreate.FileListBox1MouseDown(Sender: TObject; Button: TMouseButton;
   Shift: TShiftState; X, Y: Integer);
 begin
   if ListFileListBoxs.Items[0].Count<>0
-  then begin
-    File1.NumberFile(NameServer,ListFileListBoxs.Items[0],FMain.DBGrid1,FMain.ADOQuery1);
-    ListLabels.Items[3].Caption:=IntToStr(ListFileListBoxs.Items[0].ItemIndex+1);
-    ListLabels.Items[4].Caption:=IntToStr(File1.TextSize(NameServer.Getpath+ListFileListBoxs.Items[0].Items[ListFileListBoxs.Items[0].ItemIndex]));
-    ListLabels.Items[5].Caption:=File1.GetFileDate(NameServer.Getpath+ListFileListBoxs.Items[0].Items[ListFileListBoxs.Items[0].ItemIndex]);
-  end;
+  then ClickKeyOrMouse;
 end;
 
 function TAddCreate.GetFileListBox: TFileListBox;
@@ -171,6 +161,14 @@ begin
       flag:=true;
     end;
   until not flag;
+end;
+
+procedure ClickKeyOrMouse;
+begin
+  File1.NumberFile(NameServer,ListFileListBoxs.Items[0],FMain.DBGrid1,FMain.ADOQuery1);
+  ListLabels.Items[3].Caption:=IntToStr(ListFileListBoxs.Items[0].ItemIndex+1);
+  ListLabels.Items[4].Caption:=IntToStr(File1.TextSize(NameServer.Getpath+ListFileListBoxs.Items[0].Items[ListFileListBoxs.Items[0].ItemIndex]));
+  ListLabels.Items[5].Caption:=File1.GetFileDate(NameServer.Getpath+ListFileListBoxs.Items[0].Items[ListFileListBoxs.Items[0].ItemIndex]);
 end;
 
 end.

@@ -24,12 +24,9 @@ constructor TRequestDate.create(AOwner: TForm);
 begin
   NameServer:=TNameServer.GetInstance;
   fFileCreate.OptionsFMain(FMain, RDateIni,'FMain_');
-  FMain.DBGrid1.Left:=8;
-  FMain.DBGrid1.Top:=100;
-  FMain.DBGrid1.Height:=520;
-  FMain.DBGrid1.Width:=969;
+  fFileCreate.OptionsDBGrid(FMain.DBGrid1, RDateIni,'DBGrid_');
   FMain.ADOQuery1.Close;
-  FMain.Panel1.Caption:=NameServer.GetName;
+  FMain.GetPanel1;
 
   ListLabels:=TList<TLabel>.create;
   fFileCreate.OptionsLabels(AOwner,RDateIni,'Label_',2);
@@ -89,8 +86,7 @@ begin
     Active:=True;
   end;
   FMain.SetTitleDBGrid;
-  FMain.Panel1.Caption:=NameServer.GetName+'  Записей: '
-    +IntToStr(FMain.DBGrid1.DataSource.DataSet.RecordCount)+'  ';
+  FMain.GetPanel2;
 end;
 
 procedure TRequestDate.Button2Click(Sender: TObject);

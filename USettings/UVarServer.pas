@@ -23,6 +23,7 @@ type
     function SetPath(PT:string):string;
     procedure ReadConfig;
     procedure SaveConfig(NS,NU,PW,DB,PT:String);
+    procedure Clear;
   end;
 
 implementation
@@ -37,6 +38,8 @@ begin
     FInstance := TNameServer.Create;
   Result := FInstance;
 end;
+
+
 
 class destructor TNameServer.DestroyClass;
 begin
@@ -114,6 +117,11 @@ begin
   finally
     Ini.Free;
   end;
+end;
+
+procedure TNameServer.Clear;
+begin
+
 end;
 
 end.

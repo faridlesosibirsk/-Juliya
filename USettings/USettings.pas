@@ -74,7 +74,7 @@ end;
 
 procedure TFSettings.Button1Click(Sender: TObject);
 begin
-  FMain.Panel1.Caption:=NameServer.GetName;
+  FMain.GetPanel1;
   Test1;
 end;
 
