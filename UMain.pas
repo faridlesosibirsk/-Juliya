@@ -3,11 +3,11 @@ unit UMain;
 interface
 
 uses
-  Vcl.Controls, Vcl.Grids, System.Classes, Forms, Menus,
+  SysUtils, Forms, Menus,
   StdCtrls, DBGrids, Data.DB, Data.Win.ADODB,  ExtCtrls,
   UInterface, UAddCreate, UConstructor, UHelp, USettings,
   URequestAllRecords, URequestDate, URequestStatusCall, URequestTypeCall,
-  URequestNumber, sSkinManager;
+  URequestNumber, sSkinManager, Vcl.Controls, Vcl.Grids, System.Classes;
 
 type
   TFMain = class(TForm)
@@ -35,6 +35,9 @@ type
   private
     /// <link>aggregation</link>
     fFileCreate: TInterfaceMenuCreate;
+  public
+    procedure GetPanel1;
+    procedure GetPanel2;
   end;
 
 var
@@ -52,6 +55,17 @@ begin
   fFileCreate:=TAddCreate.create(FMain);
   SelectMenu:=1;
   MSettings.Enabled:=True;
+end;
+
+procedure TFMain.GetPanel1;
+begin
+  Panel1.Caption:=NameServer.GetName;
+end;
+
+procedure TFMain.GetPanel2;
+begin
+  Panel1.Caption:=NameServer.GetName+'  Записей: '
+    +IntToStr(FMain.DBGrid1.DataSource.DataSet.RecordCount)+'  ';
 end;
 
 procedure TFMain.MAddFileClick(Sender: TObject);
